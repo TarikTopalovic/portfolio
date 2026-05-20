@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ENGINEER_CORE_OS - Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f8f8",
+                        "primary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e9e8e7",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-tint": "#5e5e5e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#001a43",
+                        "secondary-container": "#006ff0",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#efdbff",
+                        "primary": "#050505",
+                        "surface-container": "#efeded",
+                        "on-surface": "#050505",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-variant": "#e4e2e2",
+                        "primary-container": "#1b1b1b",
+                        "secondary-fixed-dim": "#aec6ff",
+                        "on-tertiary-container": "#a75dfa",
+                        "tertiary-container": "#2b0052",
+                        "surface-container-low": "#f5f3f3",
+                        "on-primary-container": "#848484",
+                        "secondary": "#0057c0",
+                        "inverse-primary": "#c6c6c6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#dbb8ff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbdad9",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fbf9f8",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-surface-variant": "#4c4546",
+                        "outline-variant": "#cfc4c5",
+                        "on-secondary-fixed-variant": "#004397",
+                        "on-secondary-container": "#fefcff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f8f8",
+                        "on-tertiary-fixed": "#2b0052",
+                        "on-tertiary-fixed-variant": "#6600b7",
+                        "tertiary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#050505",
+                        "on-primary-fixed-variant": "#474747",
+                        "outline": "#d1d1d1",
+                        "inverse-surface": "#303031"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "24px",
+                        "gutter": "32px",
+                        "unit": "4px",
+                        "margin-desktop": "80px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "display-xl-mobile": ["Geist"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "display-xl": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "fontWeight": "600", "letterSpacing": "0.1em" }],
+                        "display-xl": ["88px", { "lineHeight": "0.95", "letterSpacing": "-0.05em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .dark .grid-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .dev-mode-active {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .dark .dev-mode-active {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+        }
+        .dark .glass-panel {
+            background: rgba(13, 17, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        .bento-card {
+            border: 1px solid rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dark .bento-card {
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1);
+            border-color: rgba(0,0,0,0.2);
+        }
+        .dark .bento-card:hover {
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background-color: #e5e5e5;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .dark .toggle-switch {
+            background-color: #333;
+            border-color: rgba(255,255,255,0.1);
+        }
+        .toggle-knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.55);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .dark .toggle-knob {
+            transform: translateX(20px);
+            background-color: #f8f8f8;
+        }
+
+        .sparkline {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2s ease-out forwards;
+        }
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-surface dark:bg-[#050505] text-on-surface dark:text-[#f8f8f8] antialiased min-h-screen flex flex-col pt-16 transition-colors duration-300 relative" id="app-body">
+<div class="absolute inset-0 grid-bg z-0 pointer-events-none"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/60 dark:bg-[#050505]/60 backdrop-blur-xl border-b border-black/5 dark:border-white/5">
+<div class="font-label-caps text-label-caps text-primary dark:text-on-primary flex items-center gap-2">
+<div class="w-2 h-2 bg-primary dark:bg-white rounded-sm"></div>
+            ENGINEER_CORE_OS
+        </div>
+<div class="hidden md:flex gap-12 h-full">
+<a class="h-full flex items-center text-primary dark:text-white border-b-2 border-primary dark:border-white pb-1" href="#">
+<span class="font-code-sm text-code-sm">Systems</span>
+</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Architecture</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Stack</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Logs</a>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-code-sm text-[10px] text-gray-500 uppercase tracking-widest hidden md:inline-block" id="mode-label">UI_MODE</span>
+<div aria-checked="false" class="toggle-switch" id="dev-mode-toggle" role="switch">
+<div class="toggle-knob"></div>
+</div>
+</div>
+</nav>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-32 space-y-32 relative z-10">
+<!-- Hero Section -->
+<section class="space-y-16 relative">
+<div class="max-w-5xl">
+<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-primary dark:text-white leading-[0.95]">
+                    Software Developer building high-performance web systems, cross-platform mobile apps, and automated data pipelines.
+                </h1>
+<p class="mt-6 font-body-md text-gray-600 dark:text-gray-300 max-w-2xl">
+                    Hands-on: Python, TypeScript, Rust. Projects include web apps, automation tools, and mobile apps. TDD &amp; CI/CD focus.
+                </p>
+</div>
+<!-- Terminal Window -->
+<div class="w-full max-w-4xl glass-panel rounded-xl overflow-hidden dev-terminal ml-auto -mt-8 md:-mt-24 relative z-20">
+<div class="flex items-center justify-between px-4 py-3 border-b border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
+<div class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
+</div>
+<span class="font-code-sm text-[11px] text-gray-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+                        core_stack.json — bash
+                    </span>
+<div class="w-16"></div> <!-- Spacer for centering -->
+</div>
+<div class="p-6 md:p-8 font-code-sm text-sm overflow-x-auto text-on-surface dark:text-[#e5e5e5] leading-relaxed">
+<pre><code>{
+  <span class="text-gray-500">"engineer"</span>: <span class="text-blue-600 dark:text-blue-400">"SYSTEM_ARCHITECT"</span>,
+  <span class="text-gray-500">"languages"</span>: [<span class="text-green-600 dark:text-green-400">"Python"</span>, <span class="text-green-600 dark:text-green-400">"TypeScript"</span>, <span class="text-green-600 dark:text-green-400">"Rust"</span>],
+  <span class="text-gray-500">"architectures"</span>: [<span class="text-green-600 dark:text-green-400">"Asynchronous"</span>, <span class="text-green-600 dark:text-green-400">"Microservices"</span>, <span class="text-green-600 dark:text-green-400">"Event-Driven"</span>],
+  <span class="text-gray-500">"mobile"</span>: [<span class="text-green-600 dark:text-green-400">"React Native"</span>, <span class="text-green-600 dark:text-green-400">"Swift"</span>, <span class="text-green-600 dark:text-green-400">"Kotlin"</span>],
+  <span class="text-gray-500">"data_pipelines"</span>: {
+    <span class="text-gray-500">"throughput"</span>: <span class="text-blue-600 dark:text-blue-400">"High-Concurrency"</span>,
+    <span class="text-gray-500">"memory_footprint"</span>: <span class="text-blue-600 dark:text-blue-400">"Minimal"</span>,
+    <span class="text-gray-500">"status"</span>: <span class="text-blue-600 dark:text-blue-400">"Operational"</span><span class="cursor-blink">_</span>
+  }
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- System Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-6 h-auto md:h-[600px]">
+<!-- Performance -->
+<div class="col-span-1 md:col-span-1 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+                    System Performance
+                </span>
+<div>
+<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white flex items-baseline gap-1 tracking-tighter">
+                        100<span class="font-headline-lg text-2xl md:text-3xl text-gray-400">%</span>
+</div>
+<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">Lighthouse Score</span>
+</div>
+</div>
+<!-- Pipeline Throughput -->
+<div class="col-span-1 md:col-span-2 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden relative">
+<div class="flex justify-between items-start z-10 relative">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">route</span>
+                        Pipeline Throughput
+                    </span>
+<span class="font-code-sm text-xs text-primary dark:text-white bg-black/5 dark:bg-white/10 px-2 py-1 rounded">2.4 TB/s</span>
+</div>
+<p class="font-headline-lg text-2xl text-primary dark:text-white max-w-sm mt-4 z-10 relative">
+                    Data pipelines optimized for high-concurrency and minimal footprint.
+                </p>
+<!-- Sparkline -->
+<div class="absolute bottom-0 left-0 w-full h-32 opacity-20 dark:opacity-40 pointer-events-none">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 100">
+<path class="text-primary dark:text-white" d="M0,100 L0,50 Q20,40 40,60 T80,40 T120,70 T160,30 T200,60 T240,20 T280,50 T320,30 T360,60 T400,20 L400,100 Z" fill="currentColor"></path>
+<path class="text-primary dark:text-white sparkline" d="M0,50 Q20,40 40,60 T80,40 T120,70 T160,30 T200,60 T240,20 T280,50 T320,30 T360,60 T400,20" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Live Status -->
+<div class="col-span-1 md:col-span-1 md:row-span-2 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">sensors</span>
+                        Live Status
+                    </span>
+<div class="flex items-center gap-2 bg-green-500/10 px-2 py-1 rounded-full">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="font-code-sm text-[10px] text-green-600 dark:text-green-400 uppercase">Online</span>
+</div>
+</div>
+<div class="flex-grow flex flex-col justify-center">
+<div class="font-code-sm text-sm space-y-6">
+<div>
+<div class="text-gray-500 text-xs mb-1">Uptime</div>
+<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">99.999%</div>
+</div>
+<div>
+<div class="text-gray-500 text-xs mb-1">Last Deploy</div>
+<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">2m ago</div>
+</div>
+<div>
+<div class="text-gray-500 text-xs mb-1">Active Nodes</div>
+<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">14</div>
+</div>
+<div>
+<div class="text-gray-500 text-xs mb-1">Error Rate</div>
+<div class="text-primary dark:text-white text-xl tracking-tight">0.001%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Workflow Philosophy -->
+<div class="col-span-1 md:col-span-3 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-primary dark:bg-white text-white dark:text-black flex flex-col md:flex-row justify-between items-start md:items-end gap-6 overflow-hidden relative">
+<div class="absolute -right-20 -bottom-20 w-64 h-64 border border-white/10 dark:border-black/10 rounded-full"></div>
+<div class="absolute -right-10 -bottom-10 w-48 h-48 border border-white/10 dark:border-black/10 rounded-full"></div>
+<div class="z-10 max-w-2xl">
+<span class="font-label-caps text-label-caps text-white/50 dark:text-black/50 uppercase mb-4 block">Workflow Philosophy</span>
+<p class="font-headline-lg text-3xl md:text-4xl leading-tight">
+                        Challenge norms. Architect for scale. Flex absolute precision.
+                    </p>
+<p class="font-body-md text-white/70 dark:text-black/70 mt-2 max-w-xl">
+                        AI-native, high-efficiency development cycle integrating rigorous testing with rapid deployment pipelines.
+                    </p>
+</div>
+<div class="flex flex-wrap gap-2 z-10">
+<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">CI/CD</span>
+<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">Automated Testing</span>
+<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">TDD</span>
+</div>
+</div>
+</section>
+
+<!-- About + Projects -->
+<section class="py-16">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-headline-lg text-3xl mb-4">About</h2>
+    <p class="font-body-md text-gray-700 dark:text-gray-300 mb-6">
+       Software Developer focused on building high-performance web systems, cross-platform mobile apps, and automated data pipelines. Strong in Python, TypeScript, Rust. Practice TDD, automation, CI/CD.
+    </p>
+
+    <h3 class="font-label-caps text-sm uppercase text-gray-500 mb-4">Selected Projects</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/al-fazah-rentals" target="_blank" rel="noopener">
+        <div class="font-headline-lg text-xl">al-fazah-rentals</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Static HTML rental site.</div>
+      </a>
+      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/COURSE_SCHEDULER" target="_blank" rel="noopener">
+        <div class="font-headline-lg text-xl">COURSE_SCHEDULER</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Course scheduling app (Python).</div>
+      </a>
+      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/JapaneseTeacher" target="_blank" rel="noopener">
+        <div class="font-headline-lg text-xl">JapaneseTeacher</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Language learning tools (Python).</div>
+      </a>
+      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/MacroApp" target="_blank" rel="noopener">
+        <div class="font-headline-lg text-xl">MacroApp</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Desktop automation utility (Python).</div>
+      </a>
+    </div>
+
+    <div class="mt-8">
+      <a href="https://github.com/TarikTopalovic" class="px-4 py-2 bg-primary text-white rounded">View full GitHub profile</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 md:py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-6 bg-transparent border-t border-black/10 dark:border-white/10 mt-auto relative z-10">
+<div class="font-label-caps text-label-caps text-primary dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">copyright</span>
+            2024 SYSTEM_ARCHITECT. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">GITHUB</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">LINKEDIN</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">TERMINAL_SSH</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">RESUME_PDF</a>
+</div>
+</footer>
+<script>
+        document.getElementById('dev-mode-toggle').addEventListener('click', function() {
+            const html = document.documentElement;
+            const body = document.getElementById('app-body');
+            const label = document.getElementById('mode-label');
+            const isDark = html.classList.toggle('dark');
+            
+            this.setAttribute('aria-checked', isDark);
+            
+            if (isDark) {
+                label.textContent = 'DEV_MODE';
+            } else {
+                label.textContent = 'UI_MODE';
+            }
+        });
+    </script>
+</body></html>
