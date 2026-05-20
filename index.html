@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ENGINEER_CORE_OS - Command Center</title>
+<title>TarikTopalovic | GitHub Portfolio</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -204,6 +204,41 @@
         @keyframes drawLine {
             to { stroke-dashoffset: 0; }
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .repo-card {
+            min-height: 220px;
+        }
+
+        .language-bar {
+            height: 10px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .dark .language-bar {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .language-bar > span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+        .filter-chip.active {
+            background: #050505;
+            color: #fff;
+        }
+
+        .dark .filter-chip.active {
+            background: #fff;
+            color: #050505;
+        }
     </style>
 </head>
 <body class="bg-surface dark:bg-[#050505] text-on-surface dark:text-[#f8f8f8] antialiased min-h-screen flex flex-col pt-16 transition-colors duration-300 relative" id="app-body">
@@ -212,36 +247,45 @@
 <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/60 dark:bg-[#050505]/60 backdrop-blur-xl border-b border-black/5 dark:border-white/5">
 <div class="font-label-caps text-label-caps text-primary dark:text-on-primary flex items-center gap-2">
 <div class="w-2 h-2 bg-primary dark:bg-white rounded-sm"></div>
-            ENGINEER_CORE_OS
+            <span id="brand-name">TarikTopalovic</span>
         </div>
 <div class="hidden md:flex gap-12 h-full">
-<a class="h-full flex items-center text-primary dark:text-white border-b-2 border-primary dark:border-white pb-1" href="#">
-<span class="font-code-sm text-code-sm">Systems</span>
+<a class="h-full flex items-center text-primary dark:text-white border-b-2 border-primary dark:border-white pb-1" href="#overview">
+<span class="font-code-sm text-code-sm">Overview</span>
 </a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Architecture</a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Stack</a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#">Logs</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#projects">Projects</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#languages">Languages</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#github">GitHub</a>
 </div>
 <div class="flex items-center gap-3">
-<span class="font-code-sm text-[10px] text-gray-500 uppercase tracking-widest hidden md:inline-block" id="mode-label">UI_MODE</span>
+<span class="font-code-sm text-[10px] text-gray-500 uppercase tracking-widest hidden md:inline-block" id="mode-label">LIGHT</span>
 <div aria-checked="false" class="toggle-switch" id="dev-mode-toggle" role="switch">
 <div class="toggle-knob"></div>
 </div>
 </div>
 </nav>
 <main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-32 space-y-32 relative z-10">
-<!-- Hero Section -->
-<section class="space-y-16 relative">
-<div class="max-w-5xl">
-<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-primary dark:text-white leading-[0.95]">
-                    Software Developer building high-performance web systems, cross-platform mobile apps, and automated data pipelines.
-                </h1>
-<p class="mt-6 font-body-md text-gray-600 dark:text-gray-300 max-w-2xl">
-                    Hands-on: Python, TypeScript, Rust. Projects include web apps, automation tools, and mobile apps. TDD &amp; CI/CD focus.
-                </p>
+<section id="overview" class="space-y-10 relative scroll-mt-24">
+<div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-6 items-start">
+<div class="space-y-8">
+<div class="max-w-4xl">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase mb-5 block">GitHub profile</span>
+<div class="flex flex-col sm:flex-row sm:items-center gap-5">
+<img alt="GitHub avatar" class="w-20 h-20 rounded-2xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/60" id="profile-avatar" src=""/>
+<div>
+<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-primary dark:text-white leading-[0.95]" id="profile-login">TarikTopalovic</h1>
+<p class="mt-5 font-body-md text-gray-600 dark:text-gray-300 max-w-2xl" id="profile-bio">Loading GitHub data…</p>
+<div class="mt-5 flex flex-wrap gap-2" id="profile-meta"></div>
 </div>
-<!-- Terminal Window -->
-<div class="w-full max-w-4xl glass-panel rounded-xl overflow-hidden dev-terminal ml-auto -mt-8 md:-mt-24 relative z-20">
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<a class="px-4 py-2 bg-primary text-white rounded" href="https://github.com/TarikTopalovic" id="profile-link" target="_blank" rel="noopener">Open profile</a>
+<a class="px-4 py-2 rounded border border-black/10 dark:border-white/10" href="#projects">View repos</a>
+<a class="px-4 py-2 rounded border border-black/10 dark:border-white/10" href="#languages">View languages</a>
+</div>
+</div>
+<div class="w-full max-w-4xl glass-panel rounded-xl overflow-hidden dev-terminal ml-auto relative z-20">
 <div class="flex items-center justify-between px-4 py-3 border-b border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5">
 <div class="flex items-center gap-2">
 <div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
@@ -250,176 +294,382 @@
 </div>
 <span class="font-code-sm text-[11px] text-gray-500 flex items-center gap-2">
 <span class="material-symbols-outlined text-[14px]">terminal</span>
-                        core_stack.json — bash
+                        github-profile.json — live
                     </span>
-<div class="w-16"></div> <!-- Spacer for centering -->
+<div class="w-16"></div>
 </div>
 <div class="p-6 md:p-8 font-code-sm text-sm overflow-x-auto text-on-surface dark:text-[#e5e5e5] leading-relaxed">
-<pre><code>{
-  <span class="text-gray-500">"engineer"</span>: <span class="text-blue-600 dark:text-blue-400">"SYSTEM_ARCHITECT"</span>,
-  <span class="text-gray-500">"languages"</span>: [<span class="text-green-600 dark:text-green-400">"Python"</span>, <span class="text-green-600 dark:text-green-400">"TypeScript"</span>, <span class="text-green-600 dark:text-green-400">"Rust"</span>],
-  <span class="text-gray-500">"architectures"</span>: [<span class="text-green-600 dark:text-green-400">"Asynchronous"</span>, <span class="text-green-600 dark:text-green-400">"Microservices"</span>, <span class="text-green-600 dark:text-green-400">"Event-Driven"</span>],
-  <span class="text-gray-500">"mobile"</span>: [<span class="text-green-600 dark:text-green-400">"React Native"</span>, <span class="text-green-600 dark:text-green-400">"Swift"</span>, <span class="text-green-600 dark:text-green-400">"Kotlin"</span>],
-  <span class="text-gray-500">"data_pipelines"</span>: {
-    <span class="text-gray-500">"throughput"</span>: <span class="text-blue-600 dark:text-blue-400">"High-Concurrency"</span>,
-    <span class="text-gray-500">"memory_footprint"</span>: <span class="text-blue-600 dark:text-blue-400">"Minimal"</span>,
-    <span class="text-gray-500">"status"</span>: <span class="text-blue-600 dark:text-blue-400">"Operational"</span><span class="cursor-blink">_</span>
-  }
-}</code></pre>
+<pre class="whitespace-pre-wrap" id="profile-json">Loading GitHub profile…</pre>
 </div>
 </div>
 </section>
-<!-- System Metrics Bento Grid -->
-<section class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-6 h-auto md:h-[600px]">
-<!-- Performance -->
-<div class="col-span-1 md:col-span-1 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">speed</span>
-                    System Performance
-                </span>
+
+<section class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 scroll-mt-24" id="stats">
+<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">inventory_2</span>Public repos</span>
 <div>
-<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white flex items-baseline gap-1 tracking-tighter">
-                        100<span class="font-headline-lg text-2xl md:text-3xl text-gray-400">%</span>
-</div>
-<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">Lighthouse Score</span>
+<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white tracking-tighter" id="public-repos">—</div>
+<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">From GitHub profile</span>
 </div>
 </div>
-<!-- Pipeline Throughput -->
-<div class="col-span-1 md:col-span-2 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between overflow-hidden relative">
-<div class="flex justify-between items-start z-10 relative">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">route</span>
-                        Pipeline Throughput
-                    </span>
-<span class="font-code-sm text-xs text-primary dark:text-white bg-black/5 dark:bg-white/10 px-2 py-1 rounded">2.4 TB/s</span>
-</div>
-<p class="font-headline-lg text-2xl text-primary dark:text-white max-w-sm mt-4 z-10 relative">
-                    Data pipelines optimized for high-concurrency and minimal footprint.
-                </p>
-<!-- Sparkline -->
-<div class="absolute bottom-0 left-0 w-full h-32 opacity-20 dark:opacity-40 pointer-events-none">
-<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 100">
-<path class="text-primary dark:text-white" d="M0,100 L0,50 Q20,40 40,60 T80,40 T120,70 T160,30 T200,60 T240,20 T280,50 T320,30 T360,60 T400,20 L400,100 Z" fill="currentColor"></path>
-<path class="text-primary dark:text-white sparkline" d="M0,50 Q20,40 40,60 T80,40 T120,70 T160,30 T200,60 T240,20 T280,50 T320,30 T360,60 T400,20" fill="none" stroke="currentColor" stroke-width="2"></path>
-</svg>
-</div>
-</div>
-<!-- Live Status -->
-<div class="col-span-1 md:col-span-1 md:row-span-2 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col">
-<div class="flex justify-between items-center mb-8">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">sensors</span>
-                        Live Status
-                    </span>
-<div class="flex items-center gap-2 bg-green-500/10 px-2 py-1 rounded-full">
-<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-<span class="font-code-sm text-[10px] text-green-600 dark:text-green-400 uppercase">Online</span>
-</div>
-</div>
-<div class="flex-grow flex flex-col justify-center">
-<div class="font-code-sm text-sm space-y-6">
+<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">star</span>Total stars</span>
 <div>
-<div class="text-gray-500 text-xs mb-1">Uptime</div>
-<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">99.999%</div>
+<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white tracking-tighter" id="total-stars">—</div>
+<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">Across public repos</span>
 </div>
+</div>
+<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">language</span>Top language</span>
 <div>
-<div class="text-gray-500 text-xs mb-1">Last Deploy</div>
-<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">2m ago</div>
+<div class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white tracking-tight" id="top-language">—</div>
+<span class="font-code-sm text-[12px] text-gray-500 mt-2 block" id="top-language-bytes">From GitHub language bytes</span>
 </div>
+</div>
+<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">update</span>Last updated</span>
 <div>
-<div class="text-gray-500 text-xs mb-1">Active Nodes</div>
-<div class="text-primary dark:text-white text-xl tracking-tight border-b border-black/10 dark:border-white/10 pb-2">14</div>
-</div>
-<div>
-<div class="text-gray-500 text-xs mb-1">Error Rate</div>
-<div class="text-primary dark:text-white text-xl tracking-tight">0.001%</div>
+<div class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white tracking-tight" id="last-updated">—</div>
+<span class="font-code-sm text-[12px] text-gray-500 mt-2 block" id="last-updated-repo">Latest repo activity</span>
 </div>
 </div>
-</div>
-</div>
-<!-- Workflow Philosophy -->
-<div class="col-span-1 md:col-span-3 md:row-span-1 bento-card rounded-2xl p-6 md:p-8 bg-primary dark:bg-white text-white dark:text-black flex flex-col md:flex-row justify-between items-start md:items-end gap-6 overflow-hidden relative">
+<div class="col-span-1 md:col-span-4 bento-card rounded-2xl p-6 md:p-8 bg-primary dark:bg-white text-white dark:text-black flex flex-col md:flex-row justify-between items-start gap-6 overflow-hidden relative">
 <div class="absolute -right-20 -bottom-20 w-64 h-64 border border-white/10 dark:border-black/10 rounded-full"></div>
 <div class="absolute -right-10 -bottom-10 w-48 h-48 border border-white/10 dark:border-black/10 rounded-full"></div>
 <div class="z-10 max-w-2xl">
-<span class="font-label-caps text-label-caps text-white/50 dark:text-black/50 uppercase mb-4 block">Workflow Philosophy</span>
-<p class="font-headline-lg text-3xl md:text-4xl leading-tight">
-                        Challenge norms. Architect for scale. Flex absolute precision.
-                    </p>
-<p class="font-body-md text-white/70 dark:text-black/70 mt-2 max-w-xl">
-                        AI-native, high-efficiency development cycle integrating rigorous testing with rapid deployment pipelines.
-                    </p>
+<span class="font-label-caps text-label-caps text-white/50 dark:text-black/50 uppercase mb-4 block">GitHub summary</span>
+<p class="font-headline-lg text-3xl md:text-4xl leading-tight" id="summary-line">Loading repository graph…</p>
+<p class="font-body-md text-white/70 dark:text-black/70 mt-2 max-w-xl" id="summary-subline">All numbers here come from GitHub profile and repo APIs.</p>
 </div>
-<div class="flex flex-wrap gap-2 z-10">
-<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">CI/CD</span>
-<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">Automated Testing</span>
-<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">TDD</span>
+<div class="flex flex-wrap gap-2 z-10" id="summary-tags"></div>
+</div>
+</section>
+
+<section class="space-y-6 scroll-mt-24" id="projects">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-gray-500 uppercase block mb-3">Projects</span>
+<h2 class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white">Repos from GitHub</h2>
+<p class="font-body-md text-gray-600 dark:text-gray-300 mt-3 max-w-2xl">Cards update from public repositories, stars, forks, language data, and pushed_at timestamps.</p>
+</div>
+<div class="flex flex-wrap gap-2" id="language-filters"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6" id="repo-grid"></div>
+</section>
+
+<section class="space-y-6 scroll-mt-24" id="languages">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-gray-500 uppercase block mb-3">Languages</span>
+<h2 class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white">Language mix from GitHub</h2>
+<p class="font-body-md text-gray-600 dark:text-gray-300 mt-3 max-w-2xl">Aggregated from each public repo language endpoint.</p>
+</div>
+<div class="font-code-sm text-xs text-gray-500 uppercase tracking-wider" id="language-total">—</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">stacked_line_chart</span>Language share</span>
+<span class="font-code-sm text-xs text-gray-500" id="language-count">—</span>
+</div>
+<div class="space-y-4" id="language-bars"></div>
+</div>
+<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">code</span>Repo language tags</span>
+<span class="font-code-sm text-xs text-gray-500">Primary languages</span>
+</div>
+<div class="flex flex-wrap gap-2" id="repo-language-tags"></div>
 </div>
 </div>
 </section>
 
-<!-- About + Projects -->
-<section class="py-16">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="font-headline-lg text-3xl mb-4">About</h2>
-    <p class="font-body-md text-gray-700 dark:text-gray-300 mb-6">
-       Software Developer focused on building high-performance web systems, cross-platform mobile apps, and automated data pipelines. Strong in Python, TypeScript, Rust. Practice TDD, automation, CI/CD.
-    </p>
-
-    <h3 class="font-label-caps text-sm uppercase text-gray-500 mb-4">Selected Projects</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/al-fazah-rentals" target="_blank" rel="noopener">
-        <div class="font-headline-lg text-xl">al-fazah-rentals</div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">Static HTML rental site.</div>
-      </a>
-      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/COURSE_SCHEDULER" target="_blank" rel="noopener">
-        <div class="font-headline-lg text-xl">COURSE_SCHEDULER</div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">Course scheduling app (Python).</div>
-      </a>
-      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/JapaneseTeacher" target="_blank" rel="noopener">
-        <div class="font-headline-lg text-xl">JapaneseTeacher</div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">Language learning tools (Python).</div>
-      </a>
-      <a class="bento-card p-4 rounded-lg bg-white/50 dark:bg-black/50" href="https://github.com/TarikTopalovic/MacroApp" target="_blank" rel="noopener">
-        <div class="font-headline-lg text-xl">MacroApp</div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">Desktop automation utility (Python).</div>
-      </a>
-    </div>
-
-    <div class="mt-8">
-      <a href="https://github.com/TarikTopalovic" class="px-4 py-2 bg-primary text-white rounded">View full GitHub profile</a>
-    </div>
-  </div>
+<section class="space-y-6 scroll-mt-24" id="github">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm lg:col-span-1">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">groups</span>Profile stats</span>
+<div class="mt-6 space-y-4 text-sm font-code-sm">
+<div class="flex justify-between gap-4"><span class="text-gray-500">Followers</span><span class="text-primary dark:text-white" id="followers-count">—</span></div>
+<div class="flex justify-between gap-4"><span class="text-gray-500">Following</span><span class="text-primary dark:text-white" id="following-count">—</span></div>
+<div class="flex justify-between gap-4"><span class="text-gray-500">Joined</span><span class="text-primary dark:text-white" id="joined-date">—</span></div>
+<div class="flex justify-between gap-4"><span class="text-gray-500">Starred</span><span class="text-primary dark:text-white" id="starred-count">—</span></div>
+</div>
+</div>
+<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm lg:col-span-2">
+<div class="flex items-center justify-between gap-4">
+<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">terminal</span>GitHub data snapshot</span>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">Profile</a>
+</div>
+<pre class="mt-6 p-4 rounded-xl bg-black/5 dark:bg-white/5 overflow-x-auto font-code-sm text-xs md:text-sm whitespace-pre-wrap" id="github-snapshot">Loading GitHub snapshot…</pre>
+</div>
+</div>
 </section>
-
 </main>
-<!-- Footer -->
 <footer class="w-full py-8 md:py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-6 bg-transparent border-t border-black/10 dark:border-white/10 mt-auto relative z-10">
 <div class="font-label-caps text-label-caps text-primary dark:text-white flex items-center gap-2">
 <span class="material-symbols-outlined text-[14px]">copyright</span>
-            2024 SYSTEM_ARCHITECT. ALL RIGHTS RESERVED.
-        </div>
+            <span id="footer-copy">TarikTopalovic on GitHub</span>
+</div>
 <div class="flex flex-wrap justify-center gap-8">
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">GITHUB</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">LINKEDIN</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">TERMINAL_SSH</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="#">RESUME_PDF</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">GITHUB</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic?tab=repositories" target="_blank" rel="noopener">REPOS</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic?tab=stars" target="_blank" rel="noopener">STARRED</a>
+<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://api.github.com/users/TarikTopalovic" target="_blank" rel="noopener">API</a>
 </div>
 </footer>
 <script>
-        document.getElementById('dev-mode-toggle').addEventListener('click', function() {
-            const html = document.documentElement;
-            const body = document.getElementById('app-body');
-            const label = document.getElementById('mode-label');
-            const isDark = html.classList.toggle('dark');
-            
-            this.setAttribute('aria-checked', isDark);
-            
-            if (isDark) {
-                label.textContent = 'DEV_MODE';
-            } else {
-                label.textContent = 'UI_MODE';
+        const GITHUB_USER = 'TarikTopalovic';
+        const apiHeaders = { Accept: 'application/vnd.github+json' };
+        const elements = {
+            avatar: document.getElementById('profile-avatar'),
+            login: document.getElementById('profile-login'),
+            bio: document.getElementById('profile-bio'),
+            meta: document.getElementById('profile-meta'),
+            profileLink: document.getElementById('profile-link'),
+            profileJson: document.getElementById('profile-json'),
+            publicRepos: document.getElementById('public-repos'),
+            totalStars: document.getElementById('total-stars'),
+            topLanguage: document.getElementById('top-language'),
+            topLanguageBytes: document.getElementById('top-language-bytes'),
+            lastUpdated: document.getElementById('last-updated'),
+            lastUpdatedRepo: document.getElementById('last-updated-repo'),
+            summaryLine: document.getElementById('summary-line'),
+            summarySubline: document.getElementById('summary-subline'),
+            summaryTags: document.getElementById('summary-tags'),
+            languageFilters: document.getElementById('language-filters'),
+            repoGrid: document.getElementById('repo-grid'),
+            languageTotal: document.getElementById('language-total'),
+            languageCount: document.getElementById('language-count'),
+            languageBars: document.getElementById('language-bars'),
+            repoLanguageTags: document.getElementById('repo-language-tags'),
+            followersCount: document.getElementById('followers-count'),
+            followingCount: document.getElementById('following-count'),
+            joinedDate: document.getElementById('joined-date'),
+            starredCount: document.getElementById('starred-count'),
+            githubSnapshot: document.getElementById('github-snapshot'),
+            footerCopy: document.getElementById('footer-copy'),
+            modeLabel: document.getElementById('mode-label'),
+            toggle: document.getElementById('dev-mode-toggle')
+        };
+
+        const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value);
+        const formatDate = (value) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value));
+
+        function formatBytes(bytes) {
+            if (!bytes) return '0 B';
+            const units = ['B', 'KB', 'MB', 'GB'];
+            let value = bytes;
+            let unit = 0;
+            while (value >= 1024 && unit < units.length - 1) {
+                value /= 1024;
+                unit += 1;
             }
+            return `${value.toFixed(value >= 10 || unit === 0 ? 0 : 1)} ${units[unit]}`;
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        async function fetchJson(url) {
+            const response = await fetch(url, { headers: apiHeaders });
+            if (!response.ok) {
+                throw new Error(`GitHub request failed: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        }
+
+        function setTheme(isDark) {
+            document.documentElement.classList.toggle('dark', isDark);
+            elements.toggle.setAttribute('aria-checked', String(isDark));
+            elements.modeLabel.textContent = isDark ? 'DARK' : 'LIGHT';
+            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+        }
+
+        function repoLanguageList(repo) {
+            const languages = repo.languages || {};
+            const names = Object.keys(languages);
+            if (!names.length) return repo.language ? [repo.language] : ['Unknown'];
+            return names.slice(0, 3);
+        }
+
+        function repoCard(repo) {
+            const languages = repoLanguageList(repo);
+            const languageLabel = repo.language || 'Unknown';
+            const description = repo.description ? repo.description : 'No GitHub description.';
+            const updated = formatDate(repo.pushed_at);
+            const languageMarkup = languages.map((language) => `<span class="px-2 py-1 rounded border border-black/10 dark:border-white/10 text-[11px] uppercase tracking-wider">${escapeHtml(language)}</span>`).join('');
+            return `
+                <a class="repo-card bento-card rounded-2xl p-6 md:p-7 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between gap-5" href="${repo.html_url}" target="_blank" rel="noopener" data-language="${escapeHtml(languageLabel)}">
+                    <div class="space-y-3">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">folder</span>${escapeHtml(languageLabel)}
+                                </div>
+                                <h3 class="mt-2 font-headline-lg text-2xl text-primary dark:text-white leading-tight">${escapeHtml(repo.name)}</h3>
+                            </div>
+                            <span class="font-code-sm text-[11px] text-gray-500 uppercase tracking-wider">${escapeHtml(updated)}</span>
+                        </div>
+                        <p class="font-body-md text-gray-600 dark:text-gray-300">${escapeHtml(description)}</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2">${languageMarkup}</div>
+                        <div class="flex flex-wrap gap-4 font-code-sm text-xs text-gray-500">
+                            <span>★ ${formatNumber(repo.stargazers_count)}</span>
+                            <span>⑂ ${formatNumber(repo.forks_count)}</span>
+                            <span>Issues ${formatNumber(repo.open_issues_count)}</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function languageBarRow(language, bytes, totalBytes) {
+            const percent = totalBytes ? ((bytes / totalBytes) * 100) : 0;
+            return `
+                <div>
+                    <div class="flex justify-between gap-4 font-code-sm text-xs mb-2">
+                        <span class="text-primary dark:text-white uppercase tracking-wider">${escapeHtml(language)}</span>
+                        <span class="text-gray-500">${formatBytes(bytes)} · ${percent.toFixed(1)}%</span>
+                    </div>
+                    <div class="language-bar"><span style="width:${percent}%; background: linear-gradient(90deg, #050505, #6b7280);"></span></div>
+                </div>
+            `;
+        }
+
+        function snapshotJson(profile, repos, starred, totalBytes, totalStars, topLanguage) {
+            return JSON.stringify({
+                user: profile.login,
+                public_repos: profile.public_repos,
+                followers: profile.followers,
+                following: profile.following,
+                created_at: profile.created_at,
+                updated_at: profile.updated_at,
+                top_language: topLanguage,
+                total_language_bytes: totalBytes,
+                total_stars: totalStars,
+                latest_repo: repos[0] ? repos[0].name : null,
+                starred_repos: starred.length
+            }, null, 2);
+        }
+
+        function renderFilters(languages, activeLanguage) {
+            const chips = ['All', ...languages];
+            elements.languageFilters.innerHTML = chips.map((language) => `
+                <button class="filter-chip px-3 py-1.5 rounded border border-black/10 dark:border-white/10 font-code-sm text-xs uppercase tracking-wider ${language === activeLanguage ? 'active' : ''}" data-filter="${escapeHtml(language)}">${escapeHtml(language)}</button>
+            `).join('');
+        }
+
+        function applyFilter(language) {
+            document.querySelectorAll('[data-language]').forEach((card) => {
+                const cardLanguage = card.getAttribute('data-language');
+                const visible = language === 'All' || cardLanguage === language;
+                card.style.display = visible ? '' : 'none';
+            });
+
+            document.querySelectorAll('.filter-chip').forEach((chip) => {
+                chip.classList.toggle('active', chip.getAttribute('data-filter') === language);
+            });
+        }
+
+        async function loadGithub() {
+            try {
+                const [profile, repos, starred] = await Promise.all([
+                    fetchJson(`https://api.github.com/users/${GITHUB_USER}`),
+                    fetchJson(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`),
+                    fetchJson(`https://api.github.com/users/${GITHUB_USER}/starred?per_page=100`)
+                ]);
+
+                const repoLanguageResults = await Promise.allSettled(repos.map((repo) => fetchJson(repo.languages_url)));
+                const reposWithLanguages = repos.map((repo, index) => ({
+                    ...repo,
+                    languages: repoLanguageResults[index].status === 'fulfilled' ? repoLanguageResults[index].value : {}
+                }))
+                .filter((repo) => !repo.fork)
+                .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+
+                const languageTotals = new Map();
+                reposWithLanguages.forEach((repo) => {
+                    Object.entries(repo.languages || {}).forEach(([language, bytes]) => {
+                        languageTotals.set(language, (languageTotals.get(language) || 0) + bytes);
+                    });
+                });
+
+                const sortedLanguages = [...languageTotals.entries()].sort((a, b) => b[1] - a[1]);
+                const totalLanguageBytes = sortedLanguages.reduce((sum, [, bytes]) => sum + bytes, 0);
+                const totalStars = reposWithLanguages.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+                const totalForks = reposWithLanguages.reduce((sum, repo) => sum + repo.forks_count, 0);
+                const topLanguage = sortedLanguages[0] ? sortedLanguages[0][0] : 'Unknown';
+                const latestRepo = reposWithLanguages[0];
+                const featuredRepos = reposWithLanguages;
+
+                elements.avatar.src = profile.avatar_url;
+                elements.avatar.alt = `${profile.login} avatar`;
+                elements.login.textContent = profile.login;
+                elements.profileLink.href = profile.html_url;
+                elements.footerCopy.textContent = `${profile.login} on GitHub`;
+                elements.bio.textContent = profile.bio || `Public GitHub profile. ${profile.public_repos} public repos, ${profile.followers} followers, ${profile.following} following.`;
+                elements.meta.innerHTML = [
+                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Repos ${formatNumber(profile.public_repos)}</span>`,
+                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Followers ${formatNumber(profile.followers)}</span>`,
+                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Following ${formatNumber(profile.following)}</span>`,
+                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Joined ${formatDate(profile.created_at)}</span>`
+                ].join('');
+
+                elements.publicRepos.textContent = formatNumber(profile.public_repos);
+                elements.totalStars.textContent = formatNumber(totalStars);
+                elements.topLanguage.textContent = topLanguage;
+                elements.topLanguageBytes.textContent = `${formatBytes(sortedLanguages[0] ? sortedLanguages[0][1] : 0)} across public repos`;
+                elements.lastUpdated.textContent = latestRepo ? formatDate(latestRepo.pushed_at) : '—';
+                elements.lastUpdatedRepo.textContent = latestRepo ? latestRepo.name : 'Latest repo activity';
+                elements.followersCount.textContent = formatNumber(profile.followers);
+                elements.followingCount.textContent = formatNumber(profile.following);
+                elements.joinedDate.textContent = formatDate(profile.created_at);
+                elements.starredCount.textContent = formatNumber(starred.length);
+
+                const primaryLanguages = [...new Set(reposWithLanguages.map((repo) => repo.language).filter(Boolean))].sort();
+                renderFilters(primaryLanguages, 'All');
+
+                elements.repoGrid.innerHTML = featuredRepos.map(repoCard).join('');
+                elements.languageBars.innerHTML = sortedLanguages.map(([language, bytes]) => languageBarRow(language, bytes, totalLanguageBytes)).join('');
+                elements.repoLanguageTags.innerHTML = reposWithLanguages.map((repo) => `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">${escapeHtml(repo.name)} · ${escapeHtml(repo.language || 'Unknown')}</span>`).join('');
+                elements.languageTotal.textContent = `${formatNumber(totalLanguageBytes)} bytes tracked`;
+                elements.languageCount.textContent = `${sortedLanguages.length} languages`;
+                elements.summaryLine.textContent = `Repos: ${profile.public_repos} · Stars: ${totalStars} · Forks: ${totalForks}`;
+                elements.summarySubline.textContent = `Top languages: ${sortedLanguages.slice(0, 3).map(([language]) => language).join(', ') || 'Unknown'}.`;
+                elements.summaryTags.innerHTML = sortedLanguages.slice(0, 4).map(([language]) => `<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">${escapeHtml(language)}</span>`).join('');
+                elements.profileJson.textContent = JSON.stringify(profile, null, 2);
+                elements.githubSnapshot.textContent = snapshotJson(profile, reposWithLanguages, starred, totalLanguageBytes, totalStars, topLanguage);
+
+                const filterButtons = document.querySelectorAll('.filter-chip');
+                filterButtons.forEach((button) => {
+                    button.addEventListener('click', () => applyFilter(button.getAttribute('data-filter')));
+                });
+
+                applyFilter('All');
+            } catch (error) {
+                const message = `GitHub load failed: ${error.message}`;
+                elements.profileJson.textContent = message;
+                elements.githubSnapshot.textContent = message;
+                elements.summaryLine.textContent = 'GitHub data unavailable';
+                elements.summarySubline.textContent = message;
+            }
+        }
+
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+
+        elements.toggle.addEventListener('click', () => {
+            setTheme(!document.documentElement.classList.contains('dark'));
         });
+
+        loadGithub();
     </script>
 </body></html>
