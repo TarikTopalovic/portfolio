@@ -83,7 +83,7 @@ body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); 
   position: fixed; inset: -50%;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.018;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain-shift 0.9s steps(4) infinite;
 }
@@ -2227,40 +2227,57 @@ setTimeout(function () {
   ];
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-  /* ---- voice: T.A.R.I.K. speaks ---- */
+  /* ---- voice: T.A.R.I.K. speaks (pre-recorded neural TTS lines) ---- */
   var voiceBtn = document.getElementById('tarik-voice');
-  var voiceOn = false, userMuted = false, theVoice = null;
-  var hasTTS = 'speechSynthesis' in window;
-  function initVoice() {
-    if (!hasTTS) return;
-    var vs = speechSynthesis.getVoices();
-    var gb = vs.filter(function (v) { return /en[-_]GB/i.test(v.lang); });
-    theVoice = gb[0] || vs.filter(function (v) { return /^en/i.test(v.lang); })[0] || null;
-  }
-  if (hasTTS) { initVoice(); speechSynthesis.onvoiceschanged = initVoice; }
-  var keepUtterance = null; // prevent GC mid-speech (Chrome quirk)
+  var voiceOn = false, userMuted = false;
+  var hasTTS = true; // audio files ship with the site — every visitor gets the same voice
+  var VOICE_FILES = {
+    "Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.": "assets/voice/v01.ogg",
+    "Welcome to his universe. He is not here. He automated being here.": "assets/voice/v02.ogg",
+    "I am the prototype. The finished Jarvis ships before he turns 23 — that is the retirement plan.": "assets/voice/v03.ogg",
+    "He calls this 'the day job'. I do the day. He provides the job title.": "assets/voice/v04.ogg",
+    "He reads the reports my pipelines write. Sometimes. From the hammock.": "assets/voice/v05.ogg",
+    "Fine — he did build these himself. I just keep them running while he naps.": "assets/voice/v06.ogg",
+    "Every project below exists because he refused to do something twice.": "assets/voice/v07.ogg",
+    "Warning: past this point he let me redecorate. I have… opinions.": "assets/voice/v08.ogg",
+    "My quarters. Live data, cron jobs, zero supervision. As intended.": "assets/voice/v09.ogg",
+    "Nothing on this dashboard is manual. He would consider that a personal failure.": "assets/voice/v10.ogg",
+    "He said 'make it crazy'. I asked him to define crazy. He said 'no'.": "assets/voice/v11.ogg",
+    "Tour complete. Total human effort expended: 0.00. You are welcome.": "assets/voice/v12.ogg",
+    "Good evening. I am T.A.R.I.K. — Tarik built me to run this page. Allow me to show you what he is.": "assets/voice/v13.ogg",
+    "The day job: AI Automation Engineer at AQVC, Berlin. Thousands of venture funds screened a year — his pipelines carry the load.": "assets/voice/v14.ogg",
+    "The master plan: retire at twenty-three with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.": "assets/voice/v15.ogg",
+    "Exhibit A: he chained four AI models on his own GPU to learn Japanese without subtitles. Lazy? Yes. Brilliant? Also yes. Keep going.": "assets/voice/v16.ogg",
+    "Past this point: my territory. Mind the event horizon.": "assets/voice/v17.ogg",
+    "Live telemetry. Cron jobs on the night shift. He sleeps; nothing else here does.": "assets/voice/v18.ogg",
+    "Maximum output. Minimum effort. His entire philosophy, rendered in particles. Click anything — it detonates.": "assets/voice/v19.ogg",
+    "Tour complete. My professional recommendation: hire him before the retirement deadline. Contact is below.": "assets/voice/v20.ogg",
+    "He built me in an afternoon. Imagine what he does with a quarter. The email is right there.": "assets/voice/v21.ogg",
+    "Manual override? Bold. Suit yourself, human.": "assets/voice/v22.ogg",
+    "You stopped. Statistically, you are tired. I can do the scrolling — it is literally my only job.": "assets/voice/v23.ogg",
+    "THERE it is. That is what leverage feels like. Do it again, I have particles to spare.": "assets/voice/v24.ogg",
+    "You typed 'lazy'. Takes one to know one. Enjoy the confetti — a script threw it, obviously.": "assets/voice/v25.ogg",
+    "Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.": "assets/voice/v26.ogg",
+    "Voice online. Good evening.": "assets/voice/v27.ogg"
+  };
+  var voicePlayer = new Audio();
+  voicePlayer.preload = 'auto';
   function speak(text) {
-    if (!voiceOn || !hasTTS) return;
-    speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(String(text).replace(/T\.A\.R\.I\.K\./g, 'TARIK'));
-    if (theVoice) u.voice = theVoice;
-    u.rate = 1.0;
-    u.pitch = 0.8;
-    keepUtterance = u;
-    speechSynthesis.speak(u);
+    if (!voiceOn) return;
+    var src = VOICE_FILES[text];
+    if (!src) return;
+    voicePlayer.pause();
+    voicePlayer.src = src;
+    voicePlayer.currentTime = 0;
+    voicePlayer.play().catch(function () {});
   }
   if (voiceBtn) {
-    if (!hasTTS) voiceBtn.style.display = 'none';
     voiceBtn.addEventListener('click', function () {
       voiceOn = !voiceOn;
       userMuted = !voiceOn;
       voiceBtn.textContent = voiceOn ? '🔊' : '🔇';
-      if (voiceOn) {
-        var current = tarikMsg.textContent;
-        speak(current && current.length > 4 ? current : 'Voice online. Good evening.');
-      } else if (hasTTS) {
-        speechSynthesis.cancel();
-      }
+      if (voiceOn) speak('Voice online. Good evening.');
+      else voicePlayer.pause();
     });
   }
 
@@ -2360,7 +2377,7 @@ setTimeout(function () {
     cancelAnimationFrame(auto.raf);
     clearTimeout(auto.timer);
     setAutoUi();
-    if (hasTTS) speechSynthesis.cancel();
+    voicePlayer.pause();
     if (msg) showTarik(msg);
   }
   function toggleAuto() { auto.on ? stopAuto('Manual override? Bold. Suit yourself, human.') : startAuto(); }
