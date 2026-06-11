@@ -79,19 +79,7 @@ body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); 
   pointer-events: none;
 }
 
-.grain {
-  position: fixed; inset: -50%;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain-shift 0.9s steps(4) infinite;
-}
-@keyframes grain-shift {
-  0% { transform: translate(0,0); } 25% { transform: translate(-2%,3%); }
-  50% { transform: translate(3%,-2%); } 75% { transform: translate(-3%,-3%); }
-  100% { transform: translate(2%,2%); }
-}
+.grain { display: none; }
 
 /* custom cursor — grows + heats up with chaos */
 #cursor {
@@ -825,6 +813,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 }
 #boot.ready .boot-inner, #boot.welcome .boot-inner { display: none; }
 #boot.ready #board-btn { display: inline-block; }
+#boot.ready { cursor: pointer; }
 
 #welcome { display: none; position: relative; text-align: center; padding: 0 6vw; }
 #boot.welcome #board-btn { display: none; }
@@ -869,6 +858,20 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 @keyframes w-up {
   from { transform: translateY(46px); opacity: 0; }
   to { transform: none; opacity: 1; }
+}
+.w-choice {
+  margin-top: 40px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: w-up 0.7s ease 2s both;
+}
+.cue-btn.ghost { border-color: var(--line); color: var(--fg); opacity: 0.75; }
+.cue-btn.ghost:hover { background: var(--fg); color: var(--bg); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .w-line, .w-sub, .w-choice, .wring { opacity: 1 !important; transform: none !important; }
 }
 
 /* hold the hero entrance until the gate opens */
@@ -1158,6 +1161,31 @@ body.touring #tour-hud { display: flex; }
 .law .n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent); transition: color 0.9s; white-space: nowrap; }
 .law .t strong { font-weight: 700; }
 
+/* ============ mobile polish ============ */
+@media (max-width: 720px) {
+  #hero { padding-top: 15vh; }
+  .hero-kicker { gap: 10px; font-size: 10.5px; letter-spacing: 0.2em; }
+  .hero-sub { margin-top: 4vh; }
+  .hero-note { max-width: none; }
+  .scroll-cue { flex-wrap: wrap; row-gap: 12px; }
+  section { padding-left: 5vw; padding-right: 5vw; }
+  .work-grid { gap: 28px; }
+  .figures { margin-top: 6vh; }
+  .figure { padding: 22px 18px 18px; }
+  .mission { padding: 22px 18px; }
+  .mission::before { font-size: 110px; bottom: -6%; }
+  .build-head { padding-top: 22px; }
+  .build::before { font-size: 130px; top: -8%; }
+  .pipeline { font-size: 10.5px; }
+  .evo-line { grid-template-columns: 56px 1fr; gap: 12px; }
+  .evolution, .modules { margin-top: 8vh; }
+  .term-out { min-height: 240px; font-size: 12px; }
+  .strip { padding: 10px 0; }
+  .outro-title { max-width: none; padding: 0 2vw; }
+  .w-choice { flex-direction: column; align-items: center; }
+  .w-choice .cue-btn { width: 100%; max-width: 320px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01s !important; }
   body.stage-5 main { animation: none !important; }
@@ -1175,12 +1203,17 @@ body.touring #tour-hud { display: flex; }
     <div class="boot-bar"><i id="boot-fill"></i></div>
     <div id="boot-msg">initializing universe…</div>
   </div>
-  <button id="board-btn" type="button">⦿ come aboard</button>
+  <button id="board-btn" type="button">⦿ come aboard<span style="display:block; margin-top:10px; font-size:10px; opacity:0.55; letter-spacing:0.2em;">click anywhere</span></button>
   <div id="welcome">
     <i class="wring r1"></i><i class="wring r2"></i><i class="wring r3"></i>
     <div class="w-line">Welcome aboard,</div>
     <div class="w-line w2">Captain.</div>
     <div class="w-sub">all systems online</div>
+    <div class="w-choice">
+      <button class="cue-btn" id="w-guide" type="button">▶ let T.A.R.I.K. guide you — voice on</button>
+      <button class="cue-btn ghost" id="w-explore" type="button">explore alone</button>
+      <span style="flex-basis: 100%; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; opacity: 0.45; text-transform: uppercase;">no answer = you wander alone</span>
+    </div>
   </div>
 </div>
 <script>
@@ -2650,7 +2683,10 @@ setTimeout(function () {
       i++;
       setTimeout(step, reduceMotion ? 30 : 220);
     }
-    boardBtn.addEventListener('click', function () {
+    var boarded = false;
+    function board() {
+      if (boarded) return;
+      boarded = true;
       captainDone = true; // the ceremony IS the greeting
       if (!userMuted) {
         voiceOn = true;
@@ -2659,7 +2695,27 @@ setTimeout(function () {
       bootEl.classList.remove('ready');
       bootEl.classList.add('welcome');
       speak('Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.');
-      setTimeout(finishBoot, reduceMotion ? 400 : 3100);
+      // silence is an answer: default to exploring alone, voice keeps talking
+      autoChoice = setTimeout(finishBoot, 6500);
+    }
+    var autoChoice = 0;
+    document.getElementById('w-guide').addEventListener('click', function (e) {
+      e.stopPropagation();
+      clearTimeout(autoChoice);
+      finishBoot();
+      setTimeout(startAuto, 700);
+    });
+    document.getElementById('w-explore').addEventListener('click', function (e) {
+      e.stopPropagation();
+      clearTimeout(autoChoice);
+      finishBoot();
+    });
+    // the whole screen is the button — no pixel hunting
+    bootEl.addEventListener('click', function () {
+      if (bootEl.classList.contains('ready')) board();
+    });
+    window.addEventListener('keydown', function (e) {
+      if (bootEl.classList.contains('ready') && (e.key === 'Enter' || e.key === ' ')) board();
     });
     step();
   })();
