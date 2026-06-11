@@ -24,12 +24,12 @@
   --void: #07060a;
   --bone: #efeae0;
   --signal: #ff4d00;      /* act I–III accent */
-  --acid: #c8ff00;        /* dark-zone accent */
+  --acid: #b026ff;        /* dark-zone accent */
   --cyan: #00e5ff;
   --magenta: #ff2ea6;
   --bg: #0c0118;
   --fg: var(--bone);
-  --line: rgba(200, 255, 0, 0.18);
+  --line: rgba(176, 38, 255, 0.18);
   --accent: var(--acid);
   --font-display: 'Clash Display', 'Satoshi', sans-serif;
   --font-body: 'Satoshi', sans-serif;
@@ -38,7 +38,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; scrollbar-color: #c8ff00 #0a0112; }
+html { scroll-behavior: smooth; scrollbar-color: #b026ff #0a0112; }
 ::-webkit-scrollbar { width: 9px; }
 ::-webkit-scrollbar-track { background: #0a0112; }
 ::-webkit-scrollbar-thumb {
@@ -65,7 +65,7 @@ body {
 
 /* ---- stage palettes: body gets .stage-N from scroll position ----
    No white anywhere. The universe just keeps shifting hue. */
-body.stage-0 { --bg: #0c0118; --fg: var(--bone); --line: rgba(200,255,0,0.18); --accent: var(--acid); }
+body.stage-0 { --bg: #0c0118; --fg: var(--bone); --line: rgba(176,38,255,0.18); --accent: var(--acid); }
 body.stage-1 { --bg: #040812; --fg: var(--bone); --line: rgba(0,229,255,0.18); --accent: var(--cyan); }
 body.stage-2 { --bg: #0c0310; --fg: var(--bone); --line: rgba(255,46,166,0.2); --accent: var(--magenta); }
 body.stage-3, body.stage-4 { --bg: var(--void); --fg: var(--bone); --line: rgba(239,234,224,0.14); --accent: var(--acid); }
@@ -157,7 +157,7 @@ body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); 
   position: absolute; inset: 0;
   transform-origin: left;
   transform: scaleX(0);
-  background: linear-gradient(90deg, var(--signal), var(--magenta), var(--acid));
+  background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--acid));
 }
 .hud-bl { bottom: 20px; left: 24px; }
 .hud-br { bottom: 20px; right: 24px; opacity: 0.7; }
@@ -213,7 +213,7 @@ section { position: relative; padding: 0 6vw; }
   border-radius: 50%;
   background: radial-gradient(circle at 38% 35%, #120526 0%, #010003 58%);
   box-shadow:
-    0 0 70px 10px rgba(200, 255, 0, 0.4),
+    0 0 70px 10px rgba(176, 38, 255, 0.4),
     0 0 200px 50px rgba(255, 46, 166, 0.18),
     0 0 340px 90px rgba(0, 229, 255, 0.08),
     inset -18px -24px 70px rgba(0,0,0,0.85);
@@ -225,7 +225,7 @@ section { position: relative; padding: 0 6vw; }
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0 62%, rgba(255,46,166,0.9) 74%, rgba(200,255,0,0.9) 84%, transparent 95%);
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(255,46,166,0.9) 74%, rgba(176,38,255,0.9) 84%, transparent 95%);
   animation: corona 9s linear infinite;
   filter: blur(2px);
 }
@@ -234,7 +234,7 @@ section { position: relative; padding: 0 6vw; }
   position: absolute;
   inset: 8%;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, rgba(200,255,0,0.08), transparent 60%);
+  background: radial-gradient(circle at 40% 35%, rgba(176,38,255,0.08), transparent 60%);
 }
 #sun-gl {
   position: absolute;
@@ -280,7 +280,7 @@ section { position: relative; padding: 0 6vw; }
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--acid);
-  box-shadow: 0 0 12px 2px rgba(200,255,0,0.8);
+  box-shadow: 0 0 12px 2px rgba(176,38,255,0.8);
 }
 @keyframes orbit-a { from { transform: rotateX(64deg) rotateZ(0); } to { transform: rotateX(64deg) rotateZ(360deg); } }
 @keyframes orbit-b { from { transform: rotateX(70deg) rotateZ(0); } to { transform: rotateX(70deg) rotateZ(360deg); } }
@@ -293,7 +293,7 @@ section { position: relative; padding: 0 6vw; }
   bottom: -2vh;
   height: 34vh;
   background-image:
-    linear-gradient(to right, rgba(200,255,0,0.16) 1px, transparent 1px),
+    linear-gradient(to right, rgba(176,38,255,0.16) 1px, transparent 1px),
     linear-gradient(to top, rgba(0,229,255,0.12) 1px, transparent 1px);
   background-size: 56px 44px;
   transform: perspective(420px) rotateX(58deg);
@@ -784,7 +784,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 .boot-inner > div:first-child { letter-spacing: 0.18em; text-transform: uppercase; color: var(--acid); }
 .boot-bar {
   height: 5px;
-  border: 1px solid rgba(200,255,0,0.3);
+  border: 1px solid rgba(176,38,255,0.3);
   margin: 14px 0 12px;
 }
 .boot-bar i {
@@ -1121,7 +1121,7 @@ setTimeout(function () {
     <div class="scroll-cue">
       <span><span class="arrow">▼</span> scroll to destabilize <span class="arrow">▼</span></span>
       <span style="opacity:0.5">or</span>
-      <button class="cue-btn" id="hero-autopilot" type="button">too lazy? engage autopilot</button>
+      <button class="cue-btn" id="hero-autopilot" type="button">too lazy? let T.A.R.I.K. give the tour</button>
     </div>
   </section>
 
@@ -1395,6 +1395,7 @@ setTimeout(function () {
     <span class="led"></span>
     <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
     <span>T.A.R.I.K. — task automation &amp; relentless idleness kernel</span>
+    <button class="min" id="tarik-voice" type="button" aria-label="Toggle voice">🔇</button>
     <button class="min" id="tarik-min" type="button" aria-label="Minimize assistant">—</button>
   </div>
   <div class="tarik-msg" id="tarik-msg"></div>
@@ -1486,6 +1487,10 @@ setTimeout(function () {
       if (eclipseEl && currentStage === 0) {
         eclipseEl.style.translate = ((mx / W - 0.5) * -20) + 'px ' + ((my / H - 0.5) * -14) + 'px';
       }
+      // fast cursor sheds sparks
+      if (!reduceMotion && (Math.abs(e.movementX) + Math.abs(e.movementY)) > 46 && Math.random() < 0.3) {
+        spawnSpark(mx, my, 30 + Math.random() * 50);
+      }
     }, { passive: true });
   }
   function renderCursor() {
@@ -1510,7 +1515,45 @@ setTimeout(function () {
   var meteors = [];
   var bursts = [];
   var trail = [];
-  var warpStars = [];
+  var sparks = [];
+
+  /* electricity: jagged bolt from (x1,y1) outward */
+  function spawnSpark(x, y, len) {
+    if (sparks.length > 40) return;
+    var ang = Math.random() * 6.2832;
+    var L = len || (50 + Math.random() * 110);
+    var x2 = x + Math.cos(ang) * L, y2 = y + Math.sin(ang) * L;
+    var pts = [{ x: x, y: y }];
+    var segs = 7;
+    for (var i = 1; i < segs; i++) {
+      var t2 = i / segs;
+      pts.push({
+        x: x + (x2 - x) * t2 + (Math.random() - 0.5) * L * 0.36,
+        y: y + (y2 - y) * t2 + (Math.random() - 0.5) * L * 0.36
+      });
+    }
+    pts.push({ x: x2, y: y2 });
+    sparks.push({ pts: pts, life: 1, col: Math.random() < 0.55 ? '0,229,255' : '176,38,255' });
+  }
+
+  function drawSparks() {
+    for (var si = sparks.length - 1; si >= 0; si--) {
+      var sp = sparks[si];
+      sp.life -= 0.06;
+      if (sp.life <= 0) { sparks.splice(si, 1); continue; }
+      // wide soft glow pass + thin hot core pass
+      for (var pass = 0; pass < 2; pass++) {
+        ctx.strokeStyle = pass === 0
+          ? 'rgba(' + sp.col + ',' + (sp.life * 0.22).toFixed(3) + ')'
+          : 'rgba(239,234,224,' + (sp.life * 0.85).toFixed(3) + ')';
+        ctx.lineWidth = pass === 0 ? 4.5 : 1.2;
+        ctx.beginPath();
+        ctx.moveTo(sp.pts[0].x, sp.pts[0].y);
+        for (var pi = 1; pi < sp.pts.length; pi++) ctx.lineTo(sp.pts[pi].x, sp.pts[pi].y);
+        ctx.stroke();
+      }
+    }
+  }
 
   function resize() {
     W = window.innerWidth; H = window.innerHeight;
@@ -1533,16 +1576,16 @@ setTimeout(function () {
   }
   for (var i = 0; i < MAX_P; i++) particles.push(spawn());
 
-  var PALETTE_DARK = ['#c8ff00', '#00e5ff', '#ff2ea6', '#ff4d00'];
+  var PALETTE_DARK = ['#b026ff', '#00e5ff', '#ff2ea6', '#3b82ff'];
   // particle hue follows the stage accent — the dust changes universe with you
-  var STAGE_RGB = ['200,255,0', '0,229,255', '255,46,166', '200,255,0', '200,255,0', '200,255,0', '200,255,0'];
+  var STAGE_RGB = ['176,38,255', '0,229,255', '255,46,166', '176,38,255', '176,38,255', '176,38,255', '176,38,255'];
 
   function fieldFrame() {
     ctx.clearRect(0, 0, W, H);
     if (reduceMotion) return;
 
     var active = Math.floor(MAX_P * (0.18 + chaos * 0.82));
-    var rgb = STAGE_RGB[Math.max(0, currentStage)] || '200,255,0';
+    var rgb = STAGE_RGB[Math.max(0, currentStage)] || '176,38,255';
     var speed = 0.3 + chaos * 2.2 + Math.min(3, scrollVel * 0.04);
     var linkDist = chaos > 0.55 ? 110 + chaos * 40 : 0;
 
@@ -1625,7 +1668,7 @@ setTimeout(function () {
       mt.x += mt.vx; mt.y += mt.vy; mt.life -= 0.016;
       if (mt.life <= 0 || mt.x < -60) { meteors.splice(mi, 1); continue; }
       var tail = ctx.createLinearGradient(mt.x, mt.y, mt.x - mt.vx * 9, mt.y - mt.vy * 9);
-      tail.addColorStop(0, 'rgba(200,255,0,' + (0.85 * mt.life).toFixed(3) + ')');
+      tail.addColorStop(0, 'rgba(176,38,255,' + (0.85 * mt.life).toFixed(3) + ')');
       tail.addColorStop(1, 'rgba(255,46,166,0)');
       ctx.strokeStyle = tail;
       ctx.lineWidth = 1.6;
@@ -1650,6 +1693,13 @@ setTimeout(function () {
       ctx.globalAlpha = 1;
     }
 
+    // ambient electricity: arcs crackle off particles as entropy climbs
+    if (!reduceMotion && chaos > 0.45 && Math.random() < 0.015 + chaos * 0.045) {
+      var ep = particles[Math.floor(Math.random() * active)];
+      if (ep) spawnSpark(ep.x, ep.y);
+    }
+    drawSparks();
+
     // cursor comet trail
     if (!isCoarse && mx > 0) {
       trail.push({ x: mx, y: my });
@@ -1665,39 +1715,6 @@ setTimeout(function () {
       }
     }
 
-    // flip regime: hyperspace — stars streak past as you fall between universes
-    if (currentStage === 3) {
-      if (!warpStars.length) {
-        for (var ws = 0; ws < 90; ws++) {
-          warpStars.push({ a: Math.random() * 6.2832, d: Math.random() * Math.max(W, H) * 0.5 + 8, c: Math.random() });
-        }
-      }
-      var cx2 = W / 2, cy2 = H / 2;
-      var maxD = Math.sqrt(W * W + H * H) / 2;
-      for (var si = 0; si < warpStars.length; si++) {
-        var st = warpStars[si];
-        var d0 = st.d;
-        st.d *= 1.04 + chaos * 0.025;
-        var prog = Math.min(1, st.d / maxD);
-        ctx.strokeStyle = st.c < 0.7
-          ? 'rgba(239,234,224,' + (0.15 + prog * 0.6).toFixed(3) + ')'
-          : st.c < 0.86
-            ? 'rgba(200,255,0,' + (0.2 + prog * 0.65).toFixed(3) + ')'
-            : 'rgba(0,229,255,' + (0.2 + prog * 0.65).toFixed(3) + ')';
-        ctx.lineWidth = 0.7 + prog * 2.2;
-        ctx.beginPath();
-        ctx.moveTo(cx2 + Math.cos(st.a) * d0, cy2 + Math.sin(st.a) * d0);
-        ctx.lineTo(cx2 + Math.cos(st.a) * st.d, cy2 + Math.sin(st.a) * st.d);
-        ctx.stroke();
-        if (st.d > maxD * 1.08) {
-          st.a = Math.random() * 6.2832;
-          st.d = 8 + Math.random() * 40;
-          st.c = Math.random();
-        }
-      }
-    } else if (warpStars.length) {
-      warpStars.length = 0;
-    }
   }
 
   /* ================= WebGL accretion sun =================
@@ -1727,7 +1744,7 @@ setTimeout(function () {
       '  v += 0.5 * n(vec2(swirl * 4.6, d * 11.0 + t * 0.3));\n' +
       '  v *= 0.66;\n' +
       '  float disk = smoothstep(1.05, 0.5, d) * smoothstep(0.16, 0.5, d);\n' +
-      '  vec3 acid = vec3(0.78, 1.0, 0.0);\n' +
+      '  vec3 acid = vec3(0.69, 0.15, 1.0);\n' +
       '  vec3 mag = vec3(1.0, 0.18, 0.65);\n' +
       '  vec3 cyn = vec3(0.0, 0.9, 1.0);\n' +
       '  vec3 col = mix(mag, acid, smoothstep(0.2, 0.85, v));\n' +
@@ -1797,26 +1814,36 @@ setTimeout(function () {
       'float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n' +
       'float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);\n' +
       '  return mix(mix(h(i), h(i + vec2(1.0, 0.0)), f.x), mix(h(i + vec2(0.0, 1.0)), h(i + vec2(1.0, 1.0)), f.x), f.y); }\n' +
+      'float fbm(vec2 p){ float v = 0.0; float amp = 0.55;\n' +
+      '  for (int i = 0; i < 4; i++) { v += amp * n(p); p *= 2.17; amp *= 0.5; }\n' +
+      '  return v; }\n' +
       'void main(){\n' +
       '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y;\n' +
       '  float d = length(uv) + 0.0001;\n' +
       '  float a = atan(uv.y, uv.x);\n' +
-      '  float depth = 0.32 / d + t * 1.1;\n' +
-      '  float tw = a + depth * 0.30;\n' +
-      '  float ring = sin(depth * 6.2832) * 0.5 + 0.5;\n' +
-      '  float spokes = sin(tw * 10.0) * 0.5 + 0.5;\n' +
-      '  float tex = n(vec2(tw * 3.0, depth * 1.4));\n' +
-      '  float beams = pow(ring, 5.0) * 0.85 + pow(spokes, 9.0) * 0.45 + tex * 0.22;\n' +
-      '  vec3 acid = vec3(0.78, 1.0, 0.0);\n' +
-      '  vec3 cyn = vec3(0.0, 0.9, 1.0);\n' +
-      '  vec3 mag = vec3(1.0, 0.18, 0.65);\n' +
-      '  vec3 col = mix(cyn, acid, ring);\n' +
-      '  col = mix(col, mag, pow(spokes, 14.0) * 0.7);\n' +
-      '  col *= beams;\n' +
-      '  col *= smoothstep(0.02, 0.42, d);\n' +              // event horizon: dark core
-      '  col *= smoothstep(1.25, 0.5, length(uv) * 1.4);\n' + // vignette
-      '  float alpha = clamp(beams * 1.4, 0.0, 1.0) * smoothstep(0.02, 0.3, d);\n' +
-      '  gl_FragColor = vec4(col, alpha * 0.9);\n' +
+      '  float z = 0.22 / d + t * 0.42;\n' +          // log-ish tunnel depth, slow drift inward
+      '  float swirl = a + z * 0.85;\n' +              // twist tightens toward the core
+      // two volumetric dust layers, stretched along the flow for soft streaks
+      '  float v1 = fbm(vec2(swirl * 1.7, z * 0.8));\n' +
+      '  float v2 = fbm(vec2(swirl * 1.1 - 2.7, z * 0.45 + 13.0 - t * 0.1));\n' +
+      '  float val = v1 * 0.65 + v2 * 0.45;\n' +
+      '  float cloud = smoothstep(0.28, 0.78, val);\n' +
+      '  vec3 deep = vec3(0.045, 0.0, 0.11);\n' +      // ultraviolet base
+      '  vec3 cyn = vec3(0.0, 0.72, 1.0);\n' +
+      '  vec3 mag = vec3(1.0, 0.2, 0.62);\n' +
+      '  vec3 acid = vec3(0.69, 0.15, 1.0);\n' +
+      '  vec3 col = mix(deep, cyn, cloud * 0.85);\n' +
+      '  col = mix(col, mag, pow(val, 3.0) * 0.85);\n' +
+      // hot accretion rim hugging the event horizon
+      '  float rim = smoothstep(0.34, 0.155, d) * smoothstep(0.085, 0.15, d);\n' +
+      '  col += acid * rim * (0.45 + 0.55 * val);\n' +
+      '  col += cyn * rim * rim * 0.35;\n' +
+      // pure black core, soft outer fade
+      '  col *= smoothstep(0.045, 0.13, d);\n' +
+      '  col *= smoothstep(1.15, 0.3, d);\n' +
+      '  float alpha = clamp(cloud * 0.9 + rim + pow(val, 3.0) * 0.5, 0.0, 1.0);\n' +
+      '  alpha *= smoothstep(1.1, 0.45, d);\n' +
+      '  gl_FragColor = vec4(col, alpha);\n' +
       '}';
 
     function sh(type, src) {
@@ -1952,6 +1979,7 @@ setTimeout(function () {
   window.addEventListener('click', function (e) {
     if (reduceMotion || e.target.closest('a, button')) return;
     detonate(e.clientX, e.clientY, Math.round(22 + chaos * 38));
+    for (var sk = 0; sk < 5; sk++) spawnSpark(e.clientX, e.clientY, 70 + Math.random() * 130);
   });
 
   /* ================= reveals ================= */
@@ -2199,9 +2227,47 @@ setTimeout(function () {
   ];
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
+  /* ---- voice: T.A.R.I.K. speaks ---- */
+  var voiceBtn = document.getElementById('tarik-voice');
+  var voiceOn = false, userMuted = false, theVoice = null;
+  var hasTTS = 'speechSynthesis' in window;
+  function initVoice() {
+    if (!hasTTS) return;
+    var vs = speechSynthesis.getVoices();
+    var gb = vs.filter(function (v) { return /en[-_]GB/i.test(v.lang); });
+    theVoice = gb[0] || vs.filter(function (v) { return /^en/i.test(v.lang); })[0] || null;
+  }
+  if (hasTTS) { initVoice(); speechSynthesis.onvoiceschanged = initVoice; }
+  var keepUtterance = null; // prevent GC mid-speech (Chrome quirk)
+  function speak(text) {
+    if (!voiceOn || !hasTTS) return;
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(String(text).replace(/T\.A\.R\.I\.K\./g, 'TARIK'));
+    if (theVoice) u.voice = theVoice;
+    u.rate = 1.0;
+    u.pitch = 0.8;
+    keepUtterance = u;
+    speechSynthesis.speak(u);
+  }
+  if (voiceBtn) {
+    if (!hasTTS) voiceBtn.style.display = 'none';
+    voiceBtn.addEventListener('click', function () {
+      voiceOn = !voiceOn;
+      userMuted = !voiceOn;
+      voiceBtn.textContent = voiceOn ? '🔊' : '🔇';
+      if (voiceOn) {
+        var current = tarikMsg.textContent;
+        speak(current && current.length > 4 ? current : 'Voice online. Good evening.');
+      } else if (hasTTS) {
+        speechSynthesis.cancel();
+      }
+    });
+  }
+
   var typeTimer = null;
   function say(text) {
     if (typeTimer) clearInterval(typeTimer);
+    speak(text);
     if (reduceMotion) { tarikMsg.textContent = text; return; }
     var i = 0;
     tarikMsg.textContent = '';
@@ -2230,37 +2296,71 @@ setTimeout(function () {
   tarikMin.addEventListener('click', hideTarik);
   tarikRestore.addEventListener('click', function () { showTarik(pick(STAGE_MSGS[Math.min(currentStage, 6)])); });
 
-  /* ---- autopilot ---- */
-  var auto = { on: false, raf: 0 };
+  /* ---- the guided tour: T.A.R.I.K. shows him off ---- */
+  var TOUR = [
+    { sel: '#hero', text: 'Good evening. I am T.A.R.I.K. — Tarik built me to run this page. Allow me to show you what he is.' },
+    { sel: '#work', text: 'The day job: AI Automation Engineer at AQVC, Berlin. Thousands of venture funds screened a year — his pipelines carry the load.' },
+    { sel: '#mission', text: 'The master plan: retire at twenty-three with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.' },
+    { sel: '#builds', text: 'Exhibit A: he chained four AI models on his own GPU to learn Japanese without subtitles. Lazy? Yes. Brilliant? Also yes. Keep going.' },
+    { sel: '#flip', text: 'Past this point: my territory. Mind the event horizon.' },
+    { sel: '#machine', text: 'Live telemetry. Cron jobs on the night shift. He sleeps; nothing else here does.' },
+    { sel: '#overload', text: 'Maximum output. Minimum effort. His entire philosophy, rendered in particles. Click anything — it detonates.' },
+    { sel: '#outro', text: 'Tour complete. My professional recommendation: hire him before the retirement deadline. Contact is below.' }
+  ];
+  var auto = { on: false, idx: 0, raf: 0, timer: 0 };
   function setAutoUi() {
-    tarikAuto.textContent = auto.on ? 'disengage autopilot' : 'engage autopilot';
+    tarikAuto.textContent = auto.on ? 'end the tour' : 'start the tour';
     tarikAuto.classList.toggle('engaged', auto.on);
-    if (heroAuto) heroAuto.textContent = auto.on ? 'disengage autopilot' : 'too lazy? engage autopilot';
+    if (heroAuto) heroAuto.textContent = auto.on ? 'end the tour' : 'too lazy? let T.A.R.I.K. give the tour';
   }
-  function autoStep() {
+  function glideTo(y, ms, done) {
+    var y0 = window.scrollY, t0 = performance.now();
+    (function g() {
+      if (!auto.on) return;
+      var p = Math.min(1, (performance.now() - t0) / ms);
+      var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      window.scrollTo(0, y0 + (y - y0) * e);
+      if (p < 1) auto.raf = requestAnimationFrame(g);
+      else if (done) done();
+    })();
+  }
+  function tourStop() {
     if (!auto.on) return;
-    var max = docHeight();
-    var y = window.scrollY;
-    var speed = 2.2 + chaos * 3.6;
-    if (y >= max - 2) {
-      stopAuto('Bottom reached. Tour delivered, zero effort required. My work here is done — like always.');
+    if (auto.idx >= TOUR.length) {
+      auto.on = false;
+      setAutoUi();
+      showTarik('He built me in an afternoon. Imagine what he does with a quarter. The email is right there.');
       return;
     }
-    window.scrollTo({ top: y + speed, left: 0, behavior: 'instant' });
-    auto.raf = requestAnimationFrame(autoStep);
+    var stop = TOUR[auto.idx];
+    var el = document.querySelector(stop.sel);
+    if (!el) { auto.idx++; tourStop(); return; }
+    var target = Math.max(0, Math.min(el.offsetTop - 30, docHeight()));
+    glideTo(target, 1700, function () {
+      showTarik(stop.text);
+      auto.idx++;
+      auto.timer = setTimeout(tourStop, 2200 + stop.text.length * 52);
+    });
   }
   function startAuto() {
     if (auto.on) return;
     auto.on = true;
+    auto.idx = 0;
+    // the tour talks — button click is the user gesture browsers need for TTS
+    if (hasTTS && !userMuted) {
+      voiceOn = true;
+      if (voiceBtn) voiceBtn.textContent = '🔊';
+    }
     setAutoUi();
-    showTarik('Autopilot engaged. Sit back — touching anything returns control to you, regrettably.');
-    auto.raf = requestAnimationFrame(autoStep);
+    tourStop();
   }
   function stopAuto(msg) {
     if (!auto.on) return;
     auto.on = false;
     cancelAnimationFrame(auto.raf);
+    clearTimeout(auto.timer);
     setAutoUi();
+    if (hasTTS) speechSynthesis.cancel();
     if (msg) showTarik(msg);
   }
   function toggleAuto() { auto.on ? stopAuto('Manual override? Bold. Suit yourself, human.') : startAuto(); }
@@ -2298,10 +2398,28 @@ setTimeout(function () {
 
   /* ---- commentary as you descend ---- */
   stageHooks.push(function (stage) {
-    if (!tarikShown || tarikMinimized) return;
+    if (!tarikShown || tarikMinimized || auto.on) return; // tour narration owns the mic
     say(pick(STAGE_MSGS[Math.min(stage, STAGE_MSGS.length - 1)]));
     tarikEl.classList.remove('alert');
   });
+
+  /* ---- welcome aboard, captain ----
+     Browsers block audio before the first gesture; the first
+     click or keypress unlocks the PDA greeting. */
+  var captainDone = false;
+  function captainGreeting() {
+    if (captainDone) return;
+    captainDone = true;
+    if (hasTTS && !userMuted) {
+      voiceOn = true;
+      if (voiceBtn) voiceBtn.textContent = '🔊';
+      showTarik('Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.');
+    }
+    window.removeEventListener('pointerdown', captainGreeting);
+    window.removeEventListener('keydown', captainGreeting);
+  }
+  window.addEventListener('pointerdown', captainGreeting);
+  window.addEventListener('keydown', captainGreeting);
 
   // first appearance: after a bit of scrolling, or shortly after load
   var introDone = false;
@@ -2396,7 +2514,7 @@ setTimeout(function () {
   document.addEventListener('visibilitychange', function () {
     document.title = document.hidden ? '⚙ still running. unlike you.' : realTitle;
   });
-  console.log('%cTOPALOVIC.SYS v3.0', 'color:#c8ff00; font-size:22px; font-family:monospace; font-weight:bold;');
+  console.log('%cTOPALOVIC.SYS v3.0', 'color:#b026ff; font-size:22px; font-family:monospace; font-weight:bold;');
   console.log('%cYou opened the console. Excellent instincts — that is exactly the kind of person he wants to hear from.\n→ github.com/TarikTopalovic', 'color:#ff2ea6; font-family:monospace;');
 
   onScroll();
