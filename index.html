@@ -1,675 +1,1727 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>TarikTopalovic | GitHub Portfolio</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface": "#f8f8f8",
-                        "primary-fixed": "#e2e2e2",
-                        "surface-container-high": "#e9e8e7",
-                        "inverse-on-surface": "#f2f0f0",
-                        "surface-tint": "#5e5e5e",
-                        "on-primary": "#ffffff",
-                        "on-secondary-fixed": "#001a43",
-                        "secondary-container": "#006ff0",
-                        "on-error-container": "#93000a",
-                        "primary-fixed-dim": "#c6c6c6",
-                        "tertiary-fixed": "#efdbff",
-                        "primary": "#050505",
-                        "surface-container": "#efeded",
-                        "on-surface": "#050505",
-                        "surface-container-highest": "#e4e2e2",
-                        "on-primary-fixed": "#1b1b1b",
-                        "surface-variant": "#e4e2e2",
-                        "primary-container": "#1b1b1b",
-                        "secondary-fixed-dim": "#aec6ff",
-                        "on-tertiary-container": "#a75dfa",
-                        "tertiary-container": "#2b0052",
-                        "surface-container-low": "#f5f3f3",
-                        "on-primary-container": "#848484",
-                        "secondary": "#0057c0",
-                        "inverse-primary": "#c6c6c6",
-                        "error": "#ba1a1a",
-                        "tertiary-fixed-dim": "#dbb8ff",
-                        "on-secondary": "#ffffff",
-                        "surface-dim": "#dbdad9",
-                        "error-container": "#ffdad6",
-                        "surface-bright": "#fbf9f8",
-                        "on-error": "#ffffff",
-                        "secondary-fixed": "#d8e2ff",
-                        "on-surface-variant": "#4c4546",
-                        "outline-variant": "#cfc4c5",
-                        "on-secondary-fixed-variant": "#004397",
-                        "on-secondary-container": "#fefcff",
-                        "surface-container-lowest": "#ffffff",
-                        "background": "#f8f8f8",
-                        "on-tertiary-fixed": "#2b0052",
-                        "on-tertiary-fixed-variant": "#6600b7",
-                        "tertiary": "#000000",
-                        "on-tertiary": "#ffffff",
-                        "on-background": "#050505",
-                        "on-primary-fixed-variant": "#474747",
-                        "outline": "#d1d1d1",
-                        "inverse-surface": "#303031"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "margin-mobile": "24px",
-                        "gutter": "32px",
-                        "unit": "4px",
-                        "margin-desktop": "80px",
-                        "container-max": "1440px"
-                    },
-                    "fontFamily": {
-                        "display-xl-mobile": ["Geist"],
-                        "code-sm": ["JetBrains Mono"],
-                        "headline-lg": ["Geist"],
-                        "body-md": ["Inter"],
-                        "label-caps": ["JetBrains Mono"],
-                        "display-xl": ["Geist"]
-                    },
-                    "fontSize": {
-                        "display-xl-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
-                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "headline-lg": ["36px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "label-caps": ["11px", { "lineHeight": "16px", "fontWeight": "600", "letterSpacing": "0.1em" }],
-                        "display-xl": ["88px", { "lineHeight": "0.95", "letterSpacing": "-0.05em", "fontWeight": "800" }]
-                    }
-                }
-            }
-        }
-    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tarik Topalovic — AI Automation Engineer</title>
+<meta name="description" content="Tarik Topalovic. AI Automation Engineer at AQVC. I build pipelines that turn chaos into structure. This page does the opposite."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>▚</text></svg>"/>
+<link rel="preconnect" href="https://api.fontshare.com"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-        body {
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-        
-        .grid-bg {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        }
-        .dark .grid-bg {
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
+/* ============================================================
+   ENTROPY ENGINE — the further you scroll, the less stable
+   everything gets. One variable rules it all: --chaos (0 → 1).
+   ============================================================ */
+:root {
+  --chaos: 0;
+  --paper: #f1ede2;
+  --paper-warm: #ece5d3;
+  --ink: #161412;
+  --void: #07060a;
+  --bone: #efeae0;
+  --signal: #ff4d00;      /* act I–III accent */
+  --acid: #c8ff00;        /* dark-zone accent */
+  --cyan: #00e5ff;
+  --magenta: #ff2ea6;
+  --bg: #0c0118;
+  --fg: var(--bone);
+  --line: rgba(200, 255, 0, 0.18);
+  --accent: var(--acid);
+  --font-display: 'Clash Display', 'Satoshi', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-mono: 'Spline Sans Mono', monospace;
+}
 
-        .dev-mode-active {
-            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-        .dark .dev-mode-active {
-            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-        }
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-        }
-        .dark .glass-panel {
-            background: rgba(13, 17, 23, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-        
-        .bento-card {
-            border: 1px solid rgba(0,0,0,0.08);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .dark .bento-card {
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .bento-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.1);
-            border-color: rgba(0,0,0,0.2);
-        }
-        .dark .bento-card:hover {
-            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5);
-            border-color: rgba(255,255,255,0.2);
-        }
-        
-        .toggle-switch {
-            position: relative;
-            width: 44px;
-            height: 24px;
-            background-color: #e5e5e5;
-            border-radius: 12px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        .dark .toggle-switch {
-            background-color: #333;
-            border-color: rgba(255,255,255,0.1);
-        }
-        .toggle-knob {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            background-color: white;
-            border-radius: 50%;
-            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.55);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        .dark .toggle-knob {
-            transform: translateX(20px);
-            background-color: #f8f8f8;
-        }
+html { scroll-behavior: smooth; }
 
-        .sparkline {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawLine 2s ease-out forwards;
-        }
-        @keyframes drawLine {
-            to { stroke-dashoffset: 0; }
-        }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1), color 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: none;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+}
 
-        .repo-card {
-            min-height: 220px;
-        }
+::selection { background: var(--accent); color: var(--bg); }
 
-        .language-bar {
-            height: 10px;
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 9999px;
-            overflow: hidden;
-        }
+/* ---- stage palettes: body gets .stage-N from scroll position ----
+   No white anywhere. The universe just keeps shifting hue. */
+body.stage-0 { --bg: #0c0118; --fg: var(--bone); --line: rgba(200,255,0,0.18); --accent: var(--acid); }
+body.stage-1 { --bg: #040812; --fg: var(--bone); --line: rgba(0,229,255,0.18); --accent: var(--cyan); }
+body.stage-2 { --bg: #0c0310; --fg: var(--bone); --line: rgba(255,46,166,0.2); --accent: var(--magenta); }
+body.stage-3, body.stage-4 { --bg: var(--void); --fg: var(--bone); --line: rgba(239,234,224,0.14); --accent: var(--acid); }
+body.stage-5 { --bg: #040308; --fg: var(--bone); --line: rgba(239,234,224,0.18); --accent: var(--magenta); }
+body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); --accent: var(--acid); }
 
-        .dark .language-bar {
-            background: rgba(255, 255, 255, 0.08);
-        }
+/* ============ fixed layers ============ */
+#field {
+  position: fixed; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
 
-        .language-bar > span {
-            display: block;
-            height: 100%;
-            border-radius: inherit;
-        }
+.grain {
+  position: fixed; inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0,0); } 25% { transform: translate(-2%,3%); }
+  50% { transform: translate(3%,-2%); } 75% { transform: translate(-3%,-3%); }
+  100% { transform: translate(2%,2%); }
+}
 
-        .filter-chip.active {
-            background: #050505;
-            color: #fff;
-        }
+/* custom cursor — grows + heats up with chaos */
+#cursor {
+  position: fixed; top: 0; left: 0;
+  z-index: 70;
+  width: 12px; height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transform: translate(-100px, -100px);
+  transition: width 0.25s, height 0.25s, margin 0.25s;
+}
+@media (hover: none), (pointer: coarse) { #cursor { display: none; } }
 
-        .dark .filter-chip.active {
-            background: #fff;
-            color: #050505;
-        }
-    </style>
+/* ============ HUD ============ */
+.hud {
+  position: fixed;
+  z-index: 50;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: color 0.9s;
+}
+.hud-tl { top: 20px; left: 24px; display: flex; align-items: center; gap: 10px; }
+.hud-tl .dot { width: 8px; height: 8px; background: var(--accent); transition: background 0.9s; animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+.hud-tr { top: 20px; right: 24px; text-align: right; }
+.hud-tr .meter {
+  width: 140px; height: 4px;
+  border: 1px solid var(--line);
+  margin-top: 6px;
+  margin-left: auto;
+  position: relative;
+  overflow: hidden;
+}
+.hud-tr .meter-fill {
+  position: absolute; inset: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--signal), var(--magenta), var(--acid));
+}
+.hud-bl { bottom: 20px; left: 24px; }
+.hud-br { bottom: 20px; right: 24px; opacity: 0.7; }
+
+@media (max-width: 720px) {
+  .hud-bl, .hud-br { display: none; }
+  .hud-tl { left: 16px; } .hud-tr { right: 16px; }
+  .hud-tr .meter { width: 90px; }
+}
+
+/* ============ layout primitives ============ */
+main { position: relative; z-index: 2; }
+
+section { position: relative; padding: 0 6vw; }
+
+.act-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 38px;
+  transition: color 0.9s;
+}
+.act-label::after { content: ''; height: 1px; flex: 1; max-width: 180px; background: var(--accent); opacity: 0.5; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.08s; } .reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; } .reveal.d4 { transition-delay: 0.32s; }
+
+/* ============ ACT 0 — HERO (another universe) ============ */
+#hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10vh;
+  overflow: hidden;
+}
+.cosmos { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+
+/* the black sun — automated away */
+.eclipse {
+  position: absolute;
+  top: 6vh;
+  right: 8vw;
+  width: clamp(220px, 30vw, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #120526 0%, #010003 58%);
+  box-shadow:
+    0 0 70px 10px rgba(200, 255, 0, 0.4),
+    0 0 200px 50px rgba(255, 46, 166, 0.18),
+    0 0 340px 90px rgba(0, 229, 255, 0.08),
+    inset -18px -24px 70px rgba(0,0,0,0.85);
+  animation: breathe 7s ease-in-out infinite;
+  will-change: transform;
+}
+.eclipse::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(255,46,166,0.9) 74%, rgba(200,255,0,0.9) 84%, transparent 95%);
+  animation: corona 9s linear infinite;
+  filter: blur(2px);
+}
+.eclipse::after {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(200,255,0,0.08), transparent 60%);
+}
+@keyframes breathe { 50% { transform: scale(1.025); } }
+@keyframes corona { to { transform: rotate(360deg); } }
+
+.eclipse-tag {
+  position: absolute;
+  top: calc(6vh + clamp(220px, 30vw, 460px) + 18px);
+  right: 8vw;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  opacity: 0.55;
+  text-align: right;
+}
+
+/* orbital rings around the dead sun */
+.orbit {
+  position: absolute;
+  top: calc(6vh + clamp(110px, 15vw, 230px));
+  right: calc(8vw + clamp(110px, 15vw, 230px));
+  width: 0; height: 0;
+}
+.orbit i {
+  position: absolute;
+  top: 50%; left: 50%;
+  border: 1px solid rgba(0,229,255,0.3);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.orbit i:nth-child(1) { width: clamp(300px, 42vw, 640px); height: clamp(300px, 42vw, 640px); margin: calc(clamp(300px, 42vw, 640px) / -2) 0 0 calc(clamp(300px, 42vw, 640px) / -2); animation: orbit-a 26s linear infinite; }
+.orbit i:nth-child(2) { width: clamp(380px, 54vw, 820px); height: clamp(380px, 54vw, 820px); margin: calc(clamp(380px, 54vw, 820px) / -2) 0 0 calc(clamp(380px, 54vw, 820px) / -2); border-style: dashed; border-color: rgba(255,46,166,0.35); animation: orbit-b 40s linear infinite reverse; }
+.orbit i:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  top: -4px; left: 50%;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 12px 2px rgba(200,255,0,0.8);
+}
+@keyframes orbit-a { from { transform: rotateX(64deg) rotateZ(0); } to { transform: rotateX(64deg) rotateZ(360deg); } }
+@keyframes orbit-b { from { transform: rotateX(70deg) rotateZ(0); } to { transform: rotateX(70deg) rotateZ(360deg); } }
+
+/* perspective floor — the ground of this universe is graph paper */
+.floor {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -2vh;
+  height: 34vh;
+  background-image:
+    linear-gradient(to right, rgba(200,255,0,0.16) 1px, transparent 1px),
+    linear-gradient(to top, rgba(0,229,255,0.12) 1px, transparent 1px);
+  background-size: 56px 44px;
+  transform: perspective(420px) rotateX(58deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent 85%);
+  animation: floor-slide 5s linear infinite;
+}
+@keyframes floor-slide { from { background-position: 0 0; } to { background-position: 0 44px; } }
+
+/* drifting glyph debris */
+.debris {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  opacity: 0.45;
+  animation: drift var(--dur, 14s) ease-in-out infinite alternate;
+  color: var(--cyan);
+}
+.debris.hot { color: var(--magenta); }
+@keyframes drift {
+  from { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+  to { transform: translate(var(--dx, 30px), var(--dy, -40px)) rotate(calc(var(--rot, 0deg) + 18deg)); }
+}
+
+/* warp-in: arriving from the previous universe */
+.hero-name .row { animation: warp-in 1.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-name .row:nth-child(2) { animation-delay: 0.18s; }
+.hero-sub, .scroll-cue { animation: warp-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both; }
+@keyframes warp-in {
+  from { opacity: 0; transform: translateY(6vh) scale(0.94); filter: blur(14px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@media (max-width: 760px) {
+  .eclipse { top: 3vh; right: -14vw; width: 56vw; }
+  .eclipse-tag { top: calc(3vh + 56vw + 12px); right: 6vw; }
+  .orbit { top: calc(3vh + 28vw); right: calc(-14vw + 28vw); }
+}
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 4vh;
+  display: flex; gap: 18px; flex-wrap: wrap;
+}
+.hero-kicker .ok { color: var(--accent); }
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(56px, 13.5vw, 200px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.hero-name .row { display: block; }
+.hero-name .outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--fg);
+}
+.hero-sub {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.hero-role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 2.4vw, 30px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.hero-role em { font-style: normal; color: var(--accent); transition: color 0.9s; }
+.hero-note { max-width: 360px; font-size: 15px; opacity: 0.75; }
+.scroll-cue {
+  margin-top: 7vh;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0.7;
+}
+.scroll-cue .arrow { display: inline-block; animation: drop 1.6s ease-in-out infinite; color: var(--accent); }
+@keyframes drop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+/* ============ marquee strips ============ */
+.strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 14px 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(16px, 2vw, 24px);
+  letter-spacing: 0.06em;
+  user-select: none;
+}
+.strip .track { display: inline-block; animation: marquee var(--mspd, 28s) linear infinite; }
+.strip .track span { margin: 0 1.6em; }
+.strip .track .hot { color: var(--accent); transition: color 0.9s; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ============ ACT I — THE DAY JOB ============ */
+#work { padding-top: 18vh; padding-bottom: 14vh; }
+.work-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6vw; align-items: start; }
+@media (max-width: 900px) { .work-grid { grid-template-columns: 1fr; } }
+.work-statement {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.4vw, 58px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.work-statement .x { color: var(--accent); transition: color 0.9s; }
+.work-copy p { margin-bottom: 1.2em; opacity: 0.85; }
+.work-copy strong { font-weight: 700; }
+
+.figures {
+  margin-top: 9vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+}
+@media (max-width: 760px) { .figures { grid-template-columns: 1fr; } }
+.figure {
+  padding: 30px 26px 26px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.figure:last-child { border-right: 0; }
+@media (max-width: 760px) { .figure { border-right: 0; border-bottom: 1px solid var(--line); } .figure:last-child { border-bottom: 0; } }
+.figure .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 64px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.figure .num sup { font-size: 0.45em; color: var(--accent); transition: color 0.9s; }
+.figure .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.65; margin-top: 12px; display: block; }
+.figure::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1.1s cubic-bezier(0.22,1,0.36,1) 0.2s, background 0.9s;
+}
+.figure.in::after { transform: scaleX(1); }
+.figures-note { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; opacity: 0.55; margin-top: 14px; }
+
+/* ============ ACT II — BUILDS ============ */
+#builds { padding-top: 16vh; padding-bottom: 10vh; }
+.build {
+  border: 1px solid var(--line);
+  margin-bottom: 5vh;
+  background: color-mix(in srgb, var(--bg) 92%, var(--fg) 8%);
+  transform-style: preserve-3d;
+  transition: border-color 0.4s, box-shadow 0.4s, background-color 0.9s;
+  will-change: transform;
+}
+.build:hover { border-color: var(--accent); box-shadow: 0 30px 80px -40px color-mix(in srgb, var(--accent) 60%, transparent); }
+.build-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px 34px 0;
+}
+.build-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 4.6vw, 60px);
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+.build-index { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--accent); transition: color 0.9s; }
+.build-body { padding: 18px 34px 30px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+@media (max-width: 860px) { .build-body { grid-template-columns: 1fr; gap: 22px; } .build-head, .build-body { padding-left: 22px; padding-right: 22px; } }
+.build-desc { font-size: 16px; opacity: 0.85; max-width: 56ch; }
+.build-desc .hl { color: var(--accent); font-weight: 700; transition: color 0.9s; }
+.build-facts { font-family: var(--font-mono); font-size: 12.5px; line-height: 2.1; letter-spacing: 0.02em; }
+.build-facts li { list-style: none; display: flex; gap: 10px; }
+.build-facts li::before { content: '▸'; color: var(--accent); transition: color 0.9s; }
+
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 34px 30px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 860px) { .pipeline { padding-left: 22px; padding-right: 22px; } }
+.pipe-node {
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  position: relative;
+  background: var(--bg);
+  transition: background-color 0.9s, border-color 0.3s, transform 0.3s;
+}
+.pipe-node:hover { border-color: var(--accent); transform: translateY(-3px); }
+.pipe-arrow { align-self: center; color: var(--accent); transition: color 0.9s; }
+.build-links { padding: 0 34px 30px; }
+@media (max-width: 860px) { .build-links { padding-left: 22px; padding-right: 22px; } }
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  padding: 12px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, border-color 0.3s;
+  z-index: 1;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  z-index: -1;
+}
+.btn:hover { color: var(--bg); border-color: var(--accent); }
+.btn:hover::before { transform: translateY(0); }
+
+/* ============ THE FLIP ============ */
+#flip {
+  min-height: 70svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 14vh;
+  padding-bottom: 14vh;
+}
+.flip-inner { max-width: 900px; }
+.flip-warn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 26px;
+  transition: color 0.9s;
+}
+.flip-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 8vw, 110px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.flip-sub { margin-top: 26px; opacity: 0.7; font-size: 16px; }
+
+/* ============ ACT III — MACHINE ROOM (terminal + telemetry) ============ */
+#machine { padding-top: 8vh; padding-bottom: 12vh; }
+.machine-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 30px; align-items: start; }
+@media (max-width: 980px) { .machine-grid { grid-template-columns: 1fr; } }
+
+.term {
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,0.45);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.9;
+}
+.term-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.8;
+}
+.term-bar .led { width: 9px; height: 9px; border-radius: 50%; background: var(--acid); animation: pulse 1.8s infinite; }
+.term-out { padding: 18px 20px; min-height: 320px; white-space: pre-wrap; word-break: break-word; }
+.term-out .p { color: var(--acid); }
+.term-out .c { color: var(--cyan); }
+.term-out .m { color: var(--magenta); }
+.term-out .dim { opacity: 0.55; }
+.caret { display: inline-block; width: 8px; height: 15px; background: var(--acid); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.telemetry { display: flex; flex-direction: column; gap: 16px; }
+.tele-card { border: 1px solid var(--line); padding: 20px 22px; background: rgba(0,0,0,0.35); }
+.tele-card h3 { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 14px; }
+.tele-row { display: flex; justify-content: space-between; gap: 14px; font-family: var(--font-mono); font-size: 12.5px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+.tele-row:last-child { border-bottom: 0; }
+.tele-row .v { color: var(--cyan); }
+.langbar { margin: 9px 0; }
+.langbar .lab { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; margin-bottom: 5px; opacity: 0.85; }
+.langbar .bar { height: 5px; background: rgba(239,234,224,0.1); overflow: hidden; }
+.langbar .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--acid), var(--cyan)); transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
+.langbar.in .bar i { transform: scaleX(1); }
+
+/* evolution log */
+.evolution { margin-top: 12vh; }
+.evo-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.evo-line .yr { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; color: var(--acid); padding-top: 3px; }
+.evo-line .what strong { font-family: var(--font-display); font-weight: 600; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; display: block; margin-bottom: 2px; }
+.evo-line .what span { opacity: 0.7; font-size: 14.5px; }
+.evo-line:hover .yr { color: var(--magenta); }
+
+/* skills modules */
+.modules { margin-top: 12vh; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+.module {
+  border: 1px solid var(--line);
+  padding: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  background: rgba(0,0,0,0.3);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.module:hover { transform: translateY(-4px); border-color: var(--acid); }
+.module .mod-name { color: var(--acid); font-size: 13px; display: block; margin-bottom: 7px; }
+.module .mod-desc { opacity: 0.65; line-height: 1.7; }
+
+/* ============ ACT IV — OVERLOAD ============ */
+#overload {
+  min-height: 200svh;
+  position: relative;
+}
+.overload-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+.mega {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(54px, 14vw, 220px);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+.mega .gl { position: relative; display: block; }
+body.stage-5 .mega .gl::before,
+body.stage-5 .mega .gl::after {
+  content: attr(data-txt);
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+body.stage-5 .mega .gl::before {
+  color: var(--cyan);
+  transform: translate(-4px, -2px);
+  clip-path: polygon(0 12%, 100% 12%, 100% 44%, 0 44%);
+  animation: glitch-a 2.1s steps(2) infinite;
+  opacity: 0.85;
+}
+body.stage-5 .mega .gl::after {
+  color: var(--magenta);
+  transform: translate(4px, 2px);
+  clip-path: polygon(0 58%, 100% 58%, 100% 88%, 0 88%);
+  animation: glitch-b 1.7s steps(2) infinite;
+  opacity: 0.85;
+}
+@keyframes glitch-a {
+  0%,88% { transform: translate(-4px,-2px); } 90% { transform: translate(8px,1px) skewX(4deg); }
+  94% { transform: translate(-9px,2px); } 98% { transform: translate(3px,-3px) skewX(-6deg); }
+}
+@keyframes glitch-b {
+  0%,84% { transform: translate(4px,2px); } 87% { transform: translate(-7px,-1px) skewX(-5deg); }
+  92% { transform: translate(9px,3px); } 97% { transform: translate(-4px,1px) skewX(5deg); }
+}
+.overload-tag {
+  margin-top: 5vh;
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.4vw, 14px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--acid);
+}
+.diag-strip {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  padding: 10px 0;
+  background: var(--accent);
+  color: var(--void);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.6s, background-color 0.9s;
+}
+body.stage-5 .diag-strip { opacity: 1; }
+.diag-strip .track { display: inline-block; animation: marquee var(--mspd, 16s) linear infinite; }
+.diag-strip .track span { margin: 0 2em; }
+.ds-1 { top: 14%; transform: rotate(-7deg); background: var(--magenta); }
+.ds-2 { bottom: 18%; transform: rotate(5deg); background: var(--acid); animation-direction: reverse; }
+.ds-2 .track { animation-direction: reverse; }
+.ds-3 { top: 48%; transform: rotate(-2deg); background: var(--cyan); --mspd: 11s; }
+
+/* ============ OUTRO — silence ============ */
+#outro {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4vh;
+}
+.outro-line {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.outro-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 5.5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+.outro-title em { font-style: normal; color: var(--acid); }
+.outro-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.outro-foot {
+  position: absolute;
+  bottom: 22px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* screen shake at max chaos */
+body.stage-5 main { animation: tremor 0.18s infinite; }
+@keyframes tremor {
+  0% { transform: translate(0,0); } 25% { transform: translate(0.7px,-0.6px); }
+  50% { transform: translate(-0.6px,0.5px); } 75% { transform: translate(0.5px,0.7px); }
+  100% { transform: translate(0,0); }
+}
+
+/* ============ T.A.R.I.K. — the butler ============ */
+#tarik {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 55;
+  width: min(340px, calc(100vw - 32px));
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, var(--fg) 12%);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: background-color 0.9s, border-color 0.4s, transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s;
+  transform: translateY(0);
+}
+#tarik.hidden { transform: translateY(calc(100% + 24px)); opacity: 0; pointer-events: none; }
+#tarik.alert { border-color: var(--accent); }
+.tarik-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.tarik-bar .led { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s infinite; transition: background 0.9s; }
+.tarik-bar .min {
+  margin-left: auto; cursor: pointer; border: 0; background: none;
+  color: var(--fg); font-family: inherit; font-size: 13px; line-height: 1; padding: 2px 6px;
+  opacity: 0.6;
+}
+.tarik-bar .min:hover { opacity: 1; }
+.tarik-msg { padding: 13px 14px; min-height: 58px; line-height: 1.75; opacity: 0.9; }
+.tarik-actions { padding: 0 14px 13px; display: flex; gap: 8px; }
+.tarik-btn {
+  flex: 1;
+  border: 1px solid var(--accent);
+  background: none;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 9px 10px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.9s;
+}
+.tarik-btn:hover { background: var(--accent); color: var(--bg); }
+.tarik-btn.engaged { background: var(--accent); color: var(--bg); }
+#tarik-restore {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 55;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 85%, var(--fg) 15%);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: none;
+}
+#tarik-restore.show { display: block; }
+@media (max-width: 720px) {
+  #tarik { right: 12px; bottom: 12px; }
+}
+
+.cue-btn {
+  border: 1px solid var(--accent);
+  background: none;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.cue-btn:hover { background: var(--accent); color: var(--bg); }
+
+/* lazy manifesto */
+.manifesto { margin-top: 10vh; }
+.manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5vw; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .manifesto-grid { grid-template-columns: 1fr; } }
+.law {
+  display: flex; gap: 18px; align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15.5px;
+}
+.law .n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent); transition: color 0.9s; white-space: nowrap; }
+.law .t strong { font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01s !important; }
+  body.stage-5 main { animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
 </head>
-<body class="bg-surface dark:bg-[#050505] text-on-surface dark:text-[#f8f8f8] antialiased min-h-screen flex flex-col pt-16 transition-colors duration-300 relative" id="app-body">
-<div class="absolute inset-0 grid-bg z-0 pointer-events-none"></div>
-<!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/60 dark:bg-[#050505]/60 backdrop-blur-xl border-b border-black/5 dark:border-white/5">
-<div class="font-label-caps text-label-caps text-primary dark:text-on-primary flex items-center gap-2">
-<div class="w-2 h-2 bg-primary dark:bg-white rounded-sm"></div>
-            <span id="brand-name">TarikTopalovic</span>
+<body class="stage-0">
+<noscript><style>.reveal { opacity: 1; transform: none; } body { cursor: auto; }</style></noscript>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div id="cursor" aria-hidden="true"></div>
+
+<!-- HUD -->
+<div class="hud hud-tl"><span class="dot"></span><span>TOPALOVIC.SYS</span></div>
+<div class="hud hud-tr">
+  <span>ENTROPY <span id="chaos-pct">000%</span></span>
+  <div class="meter"><div class="meter-fill" id="chaos-bar"></div></div>
+  <span style="display:block; margin-top:7px; opacity:0.75">EFFORT <span id="effort-pct">000%</span></span>
+</div>
+<div class="hud hud-bl" id="act-label">ACT 0 — SIGNAL</div>
+<div class="hud hud-br">TIME SAVED THIS VISIT <span id="saved-ticker">00:00</span></div>
+
+<main>
+
+  <!-- ════════ ACT 0 · HERO ════════ -->
+  <section id="hero" data-stage="0">
+    <div class="cosmos" aria-hidden="true">
+      <div class="floor"></div>
+      <div class="orbit"><i></i><i></i></div>
+      <div class="eclipse" id="eclipse"></div>
+      <div class="eclipse-tag">sun.service — automated. it rises itself now.</div>
+      <span class="debris" style="top:18%; left:8%; --dur:16s; --dx:40px; --dy:-30px; --rot:8deg">∞</span>
+      <span class="debris hot" style="top:64%; left:14%; --dur:12s; --dx:-30px; --dy:-50px">自動</span>
+      <span class="debris" style="top:30%; left:38%; --dur:19s; --dx:50px; --dy:20px">{ }</span>
+      <span class="debris hot" style="top:75%; right:30%; --dur:14s; --dx:-40px; --dy:-20px">cron</span>
+      <span class="debris" style="top:12%; right:36%; --dur:17s; --dx:24px; --dy:36px">01</span>
+    </div>
+    <div class="hero-kicker reveal in">
+      <span class="ok">● SYSTEM NOMINAL</span>
+      <span>HUMAN EFFORT: 0% (BY DESIGN)</span>
+      <span id="hero-clock">--:--:--</span>
+    </div>
+    <h1 class="hero-name">
+      <span class="row">Tarik</span>
+      <span class="row outline" data-scramble>Topalovic</span>
+    </h1>
+    <div class="hero-sub">
+      <div class="hero-role">AI Automation Engineer <em>@ AQVC</em></div>
+      <p class="hero-note">Professionally lazy. I don't do tasks — I build the thing that does the task, then supervise. Loosely. This page even comes with a butler.</p>
+    </div>
+    <div class="scroll-cue">
+      <span><span class="arrow">▼</span> scroll to destabilize <span class="arrow">▼</span></span>
+      <span style="opacity:0.5">or</span>
+      <button class="cue-btn" id="hero-autopilot" type="button">too lazy? engage autopilot</button>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="track" id="strip-1"></div>
+  </div>
+
+  <!-- ════════ ACT I · THE DAY JOB ════════ -->
+  <section id="work" data-stage="1">
+    <div class="act-label reveal">Act I — The Day Job</div>
+    <div class="work-grid">
+      <h2 class="work-statement reveal">Venture capital runs on documents, data and grunt work. I was far too lazy to do the grunt work — so I taught the <span class="x">machines</span> to.</h2>
+      <div class="work-copy reveal d2">
+        <p>AQVC is a Berlin-based, tech-enabled asset manager — a VC fund-of-funds that screens thousands of venture funds to back the best of them.</p>
+        <p>That volume doesn't scale with headcount. It scales with <strong>automation</strong>: LLM pipelines, document intelligence, data enrichment and internal tooling that compress weeks of analyst work into minutes.</p>
+        <p>Title says <strong>AI Automation Engineer</strong>. Translation: I spend ten hours automating a one-hour task, because that task had the audacity to happen twice.</p>
+      </div>
+    </div>
+    <div class="figures">
+      <div class="figure reveal"><span class="num">2,000<sup>+</sup></span><span class="lbl">VC funds screened per year</span></div>
+      <div class="figure reveal d1"><span class="num">50<sup>+</sup></span><span class="lbl">top-tier fund allocations</span></div>
+      <div class="figure reveal d2"><span class="num">1,200<sup>+</sup></span><span class="lbl">startups in the underlying portfolio</span></div>
+    </div>
+    <p class="figures-note reveal d3">// AQVC platform scale — the surface area my automation has to cover.</p>
+
+    <div class="manifesto">
+      <div class="act-label reveal">The Lazy Manifesto</div>
+      <div class="manifesto-grid">
+        <div class="law reveal"><span class="n">LAW 01</span><span class="t">Anything done twice gets a <strong>script</strong>.</span></div>
+        <div class="law reveal d1"><span class="n">LAW 02</span><span class="t">Any script run twice gets a <strong>pipeline</strong>.</span></div>
+        <div class="law reveal d2"><span class="n">LAW 03</span><span class="t">Never do at 2pm what a <strong>cron job</strong> can do at 3am.</span></div>
+        <div class="law reveal d3"><span class="n">LAW 04</span><span class="t">Effort is a <strong>bug</strong>, not a feature.</span></div>
+        <div class="law reveal d4"><span class="n">LAW 05</span><span class="t">Build the Jarvis first. <strong>Then</strong> take the nap.</span></div>
+        <div class="law reveal d4"><span class="n">LAW 06</span><span class="t">The goal isn't doing more. It's doing <strong>nothing, better</strong>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true" style="--mspd: 22s">
+    <div class="track" id="strip-2"></div>
+  </div>
+
+  <!-- ════════ ACT II · BUILDS ════════ -->
+  <section id="builds" data-stage="2">
+    <div class="act-label reveal">Act II — Things I Built</div>
+
+    <article class="build reveal" data-tilt>
+      <div class="build-head">
+        <h3 class="build-title" data-scramble>Hayaku Pro</h3>
+        <span class="build-index">BUILD 01 / LOCAL AI PIPELINE</span>
+      </div>
+      <div class="build-body">
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: learning Japanese so I never have to read subtitles again</span>Drop in any YouTube video or audio file → get a word-by-word annotated Japanese transcript. <span class="hl">Four AI models chained on local GPU</span> — speech recognition, speaker diarization, morphological analysis, neural translation — zero paid APIs. Hover any word: reading + meaning. Every word feeds a frequency-ranked vocab bank with one-click Anki export.</p>
+        <ul class="build-facts">
+          <li>4 ML models, one orchestrated pipeline</li>
+          <li>background jobs, progressive streaming UI</li>
+          <li>GPU fallback chain: fp16 → int8 → CPU</li>
+          <li>graceful degradation at every layer</li>
+        </ul>
+      </div>
+      <div class="pipeline" aria-label="Hayaku Pro pipeline">
+        <span class="pipe-node">yt-dlp</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">Whisper ASR</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">pyannote diarization</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">Sudachi NLP</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">JMdict lookup</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">neural MT</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">SQLite vocab bank</span>
+      </div>
+      <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/JapaneseTeacher" target="_blank" rel="noopener">View source ↗</a></div>
+    </article>
+
+    <article class="build reveal" data-tilt>
+      <div class="build-head">
+        <h3 class="build-title" data-scramble>UniPlan Pro</h3>
+        <span class="build-index">BUILD 02 / CONSTRAINT SOLVER</span>
+      </div>
+      <div class="build-body">
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: picking classes by hand once was already once too many</span>University publishes timetables as garbage PDFs — times like <code>1500-17::50</code>, multi-course rows, broken tables. UniPlan parses the mess, then <span class="hl">enumerates every valid lecture + tutorial combination</span>, counts conflicts, and renders the best schedules on a hand-drawn canvas. One click → .ics with recurrence rules, straight into your phone calendar. Shipped as a double-click .exe to classmates who've never seen a terminal.</p>
+        <ul class="build-facts">
+          <li>regex parser hardened on real dirty data</li>
+          <li>combinatorial search, best-first ranking</li>
+          <li>custom canvas timetable renderer</li>
+          <li>.ics export with timezone + RRULE</li>
+        </ul>
+      </div>
+      <div class="pipeline" aria-label="UniPlan pipeline">
+        <span class="pipe-node">dirty PDF</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">pdfplumber + regex</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">course catalog</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">cartesian search</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">conflict ranking</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">.ics calendar</span>
+      </div>
+      <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/COURSE_SCHEDULER" target="_blank" rel="noopener">View source ↗</a></div>
+    </article>
+
+    <article class="build reveal" data-tilt>
+      <div class="build-head">
+        <h3 class="build-title" data-scramble>OLX Sniper</h3>
+        <span class="build-index">BUILD 03 / DEAL HUNTER · PRIVATE</span>
+      </div>
+      <div class="build-body">
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: refreshing OLX by hand to catch deals is unpaid labor</span>A bot that watches OLX listings around the clock so I don't have to. New listings get pulled the moment they appear, run through <span class="hl">price rules that flag underpriced finds</span>, and fired to my phone in seconds — while everyone else is still hitting refresh. The best deals are gone in minutes; the sniper is never late, never bored, never asleep.</p>
+        <ul class="build-facts">
+          <li>24/7 listing watch, zero human refreshes</li>
+          <li>price-rule filtering, instant alerts</li>
+          <li>first in line while humans scroll</li>
+          <li>private build — it works too well</li>
+        </ul>
+      </div>
+      <div class="pipeline" aria-label="OLX Sniper pipeline">
+        <span class="pipe-node">scheduled poll</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">new listings</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">price rules</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">deal score</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">phone buzzes</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">deal secured</span>
+      </div>
+    </article>
+
+    <article class="build reveal" data-tilt>
+      <div class="build-head">
+        <h3 class="build-title" data-scramble>Macro Studio</h3>
+        <span class="build-index">BUILD 04 / INPUT AUTOMATION</span>
+      </div>
+      <div class="build-body">
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: clicking the same buttons every day is a job for the computer</span>Desktop macro engine that records every mouse move and keystroke, then <span class="hl">replays them with DirectInput-level injection</span> — adjustable speed, infinite loops, global hotkeys. A quick-actions panel covers the classics: auto-clicker, key spammer, type-this-text, launch-that-app. A humanizer layer adds micro-delays and pixel jitter so the playback doesn't feel robotic. The computer clicks. I supervise. Loosely.</p>
+        <ul class="build-facts">
+          <li>global input hooks + timestamped replay</li>
+          <li>threaded, interruptible playback engine</li>
+          <li>custom multi-key hotkey capture</li>
+          <li>stuck-key safety: releases everything on stop</li>
+        </ul>
+      </div>
+      <div class="pipeline" aria-label="Macro Studio pipeline">
+        <span class="pipe-node">record hooks</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">event log</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">humanizer</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">DirectInput replay</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">hands off keyboard</span>
+      </div>
+      <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/MacroApp" target="_blank" rel="noopener">View source ↗</a></div>
+    </article>
+
+    <article class="build reveal" data-tilt>
+      <div class="build-head">
+        <h3 class="build-title" data-scramble>Al-Fazah</h3>
+        <span class="build-index">BUILD 05 / CLIENT WORK</span>
+      </div>
+      <div class="build-body">
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: client was tired of answering the same WhatsApp question — now a button answers it</span>Production site for an industrial equipment rental business in Medina, Saudi Arabia. <span class="hl">Arabic-first with live RTL ⇄ LTR switching</span>, zero-backend booking that deep-links into WhatsApp with a pre-filled message in the customer's language, and a print-optimized bilingual rental contract. Real business, real customers, no framework bloat.</p>
+        <ul class="build-facts">
+          <li>full bilingual AR/EN + RTL handling</li>
+          <li>WhatsApp deep-link booking flow</li>
+          <li>printable legal contract w/ @media print</li>
+          <li>~200 lines of dependency-free JS</li>
+        </ul>
+      </div>
+      <div class="pipeline" aria-label="Al-Fazah stack">
+        <span class="pipe-node">catalog data</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">client-side render</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">language engine</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">wa.me deep link</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">booked ✓</span>
+      </div>
+      <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/al-fazah-rentals" target="_blank" rel="noopener">View source ↗</a></div>
+    </article>
+  </section>
+
+  <!-- ════════ THE FLIP ════════ -->
+  <section id="flip" data-stage="3">
+    <div class="flip-inner">
+      <div class="flip-warn reveal">⚠ entropy threshold exceeded — containment failing</div>
+      <h2 class="flip-title reveal d1" data-scramble>Entering the machine</h2>
+      <p class="flip-sub reveal d2">Past this point the page stops pretending to be a document.</p>
+    </div>
+  </section>
+
+  <!-- ════════ ACT III · MACHINE ROOM ════════ -->
+  <section id="machine" data-stage="4">
+    <div class="act-label reveal">Act III — Machine Room</div>
+    <div class="machine-grid">
+      <div class="term reveal">
+        <div class="term-bar"><span class="led"></span><span>tarik@aqvc — /usr/bin/leverage</span></div>
+        <div class="term-out" id="term-out"></div>
+      </div>
+      <div class="telemetry reveal d1">
+        <div class="tele-card">
+          <h3>// live github telemetry</h3>
+          <div id="tele-stats">
+            <div class="tele-row"><span>status</span><span class="v">polling api.github.com…</span></div>
+          </div>
         </div>
-<div class="hidden md:flex gap-12 h-full">
-<a class="h-full flex items-center text-primary dark:text-white border-b-2 border-primary dark:border-white pb-1" href="#overview">
-<span class="font-code-sm text-code-sm">Overview</span>
-</a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#projects">Projects</a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#languages">Languages</a>
-<a class="h-full flex items-center text-on-surface-variant dark:text-gray-400 font-code-sm text-code-sm hover:text-primary dark:hover:text-white transition-colors" href="#github">GitHub</a>
-</div>
-<div class="flex items-center gap-3">
-<span class="font-code-sm text-[10px] text-gray-500 uppercase tracking-widest hidden md:inline-block" id="mode-label">LIGHT</span>
-<div aria-checked="false" class="toggle-switch" id="dev-mode-toggle" role="switch">
-<div class="toggle-knob"></div>
-</div>
-</div>
-</nav>
-<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-32 space-y-32 relative z-10">
-<section id="overview" class="space-y-10 relative scroll-mt-24">
-<div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-6 items-start">
-<div class="space-y-8">
-<div class="max-w-4xl">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase mb-5 block">GitHub profile</span>
-<div class="flex flex-col sm:flex-row sm:items-center gap-5">
-<img alt="GitHub avatar" class="w-20 h-20 rounded-2xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/60" id="profile-avatar" src=""/>
-<div>
-<h1 class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-primary dark:text-white leading-[0.95]" id="profile-login">TarikTopalovic</h1>
-<p class="mt-5 font-body-md text-gray-600 dark:text-gray-300 max-w-2xl" id="profile-bio">Loading GitHub data…</p>
-<div class="mt-5 flex flex-wrap gap-2" id="profile-meta"></div>
-</div>
-</div>
-</div>
-<div class="flex flex-wrap gap-3">
-<a class="px-4 py-2 bg-primary text-white rounded" href="https://github.com/TarikTopalovic" id="profile-link" target="_blank" rel="noopener">Open profile</a>
-<a class="px-4 py-2 rounded border border-black/10 dark:border-white/10" href="#projects">View repos</a>
-<a class="px-4 py-2 rounded border border-black/10 dark:border-white/10" href="#languages">View languages</a>
-</div>
-</div>
-<div class="w-full max-w-4xl glass-panel rounded-xl overflow-hidden dev-terminal ml-auto relative z-20">
-<div class="flex items-center justify-between px-4 py-3 border-b border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5">
-<div class="flex items-center gap-2">
-<div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
-<div class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
-<div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
-</div>
-<span class="font-code-sm text-[11px] text-gray-500 flex items-center gap-2">
-<span class="material-symbols-outlined text-[14px]">terminal</span>
-                        github-profile.json — live
-                    </span>
-<div class="w-16"></div>
-</div>
-<div class="p-6 md:p-8 font-code-sm text-sm overflow-x-auto text-on-surface dark:text-[#e5e5e5] leading-relaxed">
-<pre class="whitespace-pre-wrap" id="profile-json">Loading GitHub profile…</pre>
-</div>
-</div>
-</section>
+        <div class="tele-card">
+          <h3>// language mass</h3>
+          <div id="tele-langs"><div class="tele-row"><span>scanning repos</span><span class="v">…</span></div></div>
+        </div>
+      </div>
+    </div>
 
-<section class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 scroll-mt-24" id="stats">
-<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">inventory_2</span>Public repos</span>
-<div>
-<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white tracking-tighter" id="public-repos">—</div>
-<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">From GitHub profile</span>
-</div>
-</div>
-<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">star</span>Total stars</span>
-<div>
-<div class="font-display-xl text-5xl md:text-7xl text-primary dark:text-white tracking-tighter" id="total-stars">—</div>
-<span class="font-code-sm text-[12px] text-gray-500 mt-2 block">Across public repos</span>
-</div>
-</div>
-<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">language</span>Top language</span>
-<div>
-<div class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white tracking-tight" id="top-language">—</div>
-<span class="font-code-sm text-[12px] text-gray-500 mt-2 block" id="top-language-bytes">From GitHub language bytes</span>
-</div>
-</div>
-<div class="col-span-1 bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">update</span>Last updated</span>
-<div>
-<div class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white tracking-tight" id="last-updated">—</div>
-<span class="font-code-sm text-[12px] text-gray-500 mt-2 block" id="last-updated-repo">Latest repo activity</span>
-</div>
-</div>
-<div class="col-span-1 md:col-span-4 bento-card rounded-2xl p-6 md:p-8 bg-primary dark:bg-white text-white dark:text-black flex flex-col md:flex-row justify-between items-start gap-6 overflow-hidden relative">
-<div class="absolute -right-20 -bottom-20 w-64 h-64 border border-white/10 dark:border-black/10 rounded-full"></div>
-<div class="absolute -right-10 -bottom-10 w-48 h-48 border border-white/10 dark:border-black/10 rounded-full"></div>
-<div class="z-10 max-w-2xl">
-<span class="font-label-caps text-label-caps text-white/50 dark:text-black/50 uppercase mb-4 block">GitHub summary</span>
-<p class="font-headline-lg text-3xl md:text-4xl leading-tight" id="summary-line">Loading repository graph…</p>
-<p class="font-body-md text-white/70 dark:text-black/70 mt-2 max-w-xl" id="summary-subline">All numbers here come from GitHub profile and repo APIs.</p>
-</div>
-<div class="flex flex-wrap gap-2 z-10" id="summary-tags"></div>
-</div>
-</section>
+    <div class="evolution">
+      <div class="act-label reveal">Evolution Log</div>
+      <div class="evo-line reveal"><span class="yr">2023</span><div class="what"><strong>First HTML ever</strong><span>A five-page Kuwait tourism site. Duplicate IDs, copy-paste bugs, zero shame. Everyone starts somewhere.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">2024</span><div class="what"><strong>UNO in Pygame</strong><span>Hot-seat card game with custom art and a hide-your-hand mechanic. First OOP, first game loop.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">2025</span><div class="what"><strong>Macro Studio</strong><span>Input automation engine — global hooks, DirectInput injection, threaded playback. Built so the computer could click for him. The laziness was the point.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">2026</span><div class="what"><strong>Playwright E2E + CI</strong><span>Tests that run themselves on every push — because clicking through a site manually, twice, is unacceptable.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">2026</span><div class="what"><strong>UniPlan · Al-Fazah · Hayaku</strong><span>Parsers, solvers, multilingual client work, multi-model local AI pipelines. The curve goes vertical.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">NOW</span><div class="what"><strong>AI Automation @ AQVC</strong><span>Pointing all of the above at venture capital's paperwork problem. From a hammock, ideally.</span></div></div>
+    </div>
 
-<section class="space-y-6 scroll-mt-24" id="projects">
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-<div>
-<span class="font-label-caps text-label-caps text-gray-500 uppercase block mb-3">Projects</span>
-<h2 class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white">Repos from GitHub</h2>
-<p class="font-body-md text-gray-600 dark:text-gray-300 mt-3 max-w-2xl">Cards update from public repositories, stars, forks, language data, and pushed_at timestamps.</p>
-</div>
-<div class="flex flex-wrap gap-2" id="language-filters"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6" id="repo-grid"></div>
-</section>
+    <div class="modules">
+      <div class="module reveal"><span class="mod-name">python.core</span><span class="mod-desc">FastAPI · threading · ETL · pdfplumber · the language everything else bolts onto</span></div>
+      <div class="module reveal d1"><span class="mod-name">ai.local</span><span class="mod-desc">Whisper · pyannote · Argos MT · Sudachi — multi-model pipelines on own hardware</span></div>
+      <div class="module reveal d2"><span class="mod-name">llm.api</span><span class="mod-desc">prompt pipelines · structured extraction · document intelligence for fund data</span></div>
+      <div class="module reveal d3"><span class="mod-name">automation.sys</span><span class="mod-desc">input injection · job queues · schedulers · if it happens twice, it's a script</span></div>
+      <div class="module reveal d4"><span class="mod-name">web.front</span><span class="mod-desc">vanilla JS · canvas · RTL/i18n · this page (no framework was harmed)</span></div>
+      <div class="module reveal d4"><span class="mod-name">qa.ci</span><span class="mod-desc">Playwright E2E · page objects · GitHub Actions on every push</span></div>
+    </div>
+  </section>
 
-<section class="space-y-6 scroll-mt-24" id="languages">
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-<div>
-<span class="font-label-caps text-label-caps text-gray-500 uppercase block mb-3">Languages</span>
-<h2 class="font-headline-lg text-3xl md:text-4xl text-primary dark:text-white">Language mix from GitHub</h2>
-<p class="font-body-md text-gray-600 dark:text-gray-300 mt-3 max-w-2xl">Aggregated from each public repo language endpoint.</p>
-</div>
-<div class="font-code-sm text-xs text-gray-500 uppercase tracking-wider" id="language-total">—</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
-<div class="flex items-center justify-between mb-6">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">stacked_line_chart</span>Language share</span>
-<span class="font-code-sm text-xs text-gray-500" id="language-count">—</span>
-</div>
-<div class="space-y-4" id="language-bars"></div>
-</div>
-<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
-<div class="flex items-center justify-between mb-6">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">code</span>Repo language tags</span>
-<span class="font-code-sm text-xs text-gray-500">Primary languages</span>
-</div>
-<div class="flex flex-wrap gap-2" id="repo-language-tags"></div>
-</div>
-</div>
-</section>
+  <!-- ════════ ACT IV · OVERLOAD ════════ -->
+  <section id="overload" data-stage="5">
+    <div class="overload-sticky">
+      <div class="diag-strip ds-1"><div class="track" id="strip-d1"></div></div>
+      <div class="diag-strip ds-3"><div class="track" id="strip-d3"></div></div>
+      <h2 class="mega">
+        <span class="gl" data-txt="AUTOMATE">AUTOMATE</span>
+        <span class="gl" data-txt="EVERYTHING">EVERYTHING</span>
+      </h2>
+      <div class="overload-tag" id="overload-tag">ENTROPY 100% — HOLD ON</div>
+      <div class="diag-strip ds-2"><div class="track" id="strip-d2"></div></div>
+    </div>
+  </section>
 
-<section class="space-y-6 scroll-mt-24" id="github">
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm lg:col-span-1">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">groups</span>Profile stats</span>
-<div class="mt-6 space-y-4 text-sm font-code-sm">
-<div class="flex justify-between gap-4"><span class="text-gray-500">Followers</span><span class="text-primary dark:text-white" id="followers-count">—</span></div>
-<div class="flex justify-between gap-4"><span class="text-gray-500">Following</span><span class="text-primary dark:text-white" id="following-count">—</span></div>
-<div class="flex justify-between gap-4"><span class="text-gray-500">Joined</span><span class="text-primary dark:text-white" id="joined-date">—</span></div>
-<div class="flex justify-between gap-4"><span class="text-gray-500">Starred</span><span class="text-primary dark:text-white" id="starred-count">—</span></div>
-</div>
-</div>
-<div class="bento-card rounded-2xl p-6 md:p-8 bg-white/50 dark:bg-black/50 backdrop-blur-sm lg:col-span-2">
-<div class="flex items-center justify-between gap-4">
-<span class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">terminal</span>GitHub data snapshot</span>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors uppercase tracking-wider" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">Profile</a>
-</div>
-<pre class="mt-6 p-4 rounded-xl bg-black/5 dark:bg-white/5 overflow-x-auto font-code-sm text-xs md:text-sm whitespace-pre-wrap" id="github-snapshot">Loading GitHub snapshot…</pre>
-</div>
-</div>
-</section>
+  <!-- ════════ OUTRO · SILENCE ════════ -->
+  <section id="outro" data-stage="6">
+    <div class="outro-line reveal">entropy released · system cooling · human still idle</div>
+    <h2 class="outro-title reveal d1">Maximum output. Minimum me. Now imagine that pointed at <em>your</em> busywork.</h2>
+    <p class="outro-line reveal d2" style="text-transform: none; letter-spacing: 0.06em;">replying to email is one of the few things I haven't automated. yet.</p>
+    <div class="outro-links reveal d2">
+      <a class="btn" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/tarik-topalovic" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="mailto:data-team@aqvc.com">Email ↗</a>
+    </div>
+    <div class="outro-foot">© <span id="yr"></span> Tarik Topalovic · built once, runs forever · human effort: 0.00</div>
+  </section>
+
 </main>
-<footer class="w-full py-8 md:py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-6 bg-transparent border-t border-black/10 dark:border-white/10 mt-auto relative z-10">
-<div class="font-label-caps text-label-caps text-primary dark:text-white flex items-center gap-2">
-<span class="material-symbols-outlined text-[14px]">copyright</span>
-            <span id="footer-copy">TarikTopalovic on GitHub</span>
-</div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">GITHUB</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic?tab=repositories" target="_blank" rel="noopener">REPOS</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://github.com/TarikTopalovic?tab=stars" target="_blank" rel="noopener">STARRED</a>
-<a class="font-code-sm text-xs text-gray-500 hover:text-primary dark:hover:text-white transition-colors duration-200 uppercase tracking-wider" href="https://api.github.com/users/TarikTopalovic" target="_blank" rel="noopener">API</a>
-</div>
-</footer>
+
+<!-- T.A.R.I.K. — the butler this page comes with -->
+<aside id="tarik" class="hidden" role="status" aria-live="polite">
+  <div class="tarik-bar">
+    <span class="led"></span>
+    <span>T.A.R.I.K. — task automation &amp; relentless idleness kernel</span>
+    <button class="min" id="tarik-min" type="button" aria-label="Minimize assistant">—</button>
+  </div>
+  <div class="tarik-msg" id="tarik-msg"></div>
+  <div class="tarik-actions">
+    <button class="tarik-btn" id="tarik-auto" type="button">engage autopilot</button>
+  </div>
+</aside>
+<button id="tarik-restore" type="button">☰ T.A.R.I.K.</button>
+
 <script>
-        const GITHUB_USER = 'TarikTopalovic';
-        const apiHeaders = { Accept: 'application/vnd.github+json' };
-        const elements = {
-            avatar: document.getElementById('profile-avatar'),
-            login: document.getElementById('profile-login'),
-            bio: document.getElementById('profile-bio'),
-            meta: document.getElementById('profile-meta'),
-            profileLink: document.getElementById('profile-link'),
-            profileJson: document.getElementById('profile-json'),
-            publicRepos: document.getElementById('public-repos'),
-            totalStars: document.getElementById('total-stars'),
-            topLanguage: document.getElementById('top-language'),
-            topLanguageBytes: document.getElementById('top-language-bytes'),
-            lastUpdated: document.getElementById('last-updated'),
-            lastUpdatedRepo: document.getElementById('last-updated-repo'),
-            summaryLine: document.getElementById('summary-line'),
-            summarySubline: document.getElementById('summary-subline'),
-            summaryTags: document.getElementById('summary-tags'),
-            languageFilters: document.getElementById('language-filters'),
-            repoGrid: document.getElementById('repo-grid'),
-            languageTotal: document.getElementById('language-total'),
-            languageCount: document.getElementById('language-count'),
-            languageBars: document.getElementById('language-bars'),
-            repoLanguageTags: document.getElementById('repo-language-tags'),
-            followersCount: document.getElementById('followers-count'),
-            followingCount: document.getElementById('following-count'),
-            joinedDate: document.getElementById('joined-date'),
-            starredCount: document.getElementById('starred-count'),
-            githubSnapshot: document.getElementById('github-snapshot'),
-            footerCopy: document.getElementById('footer-copy'),
-            modeLabel: document.getElementById('mode-label'),
-            toggle: document.getElementById('dev-mode-toggle')
-        };
+(function () {
+  'use strict';
 
-        const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value);
-        const formatDate = (value) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value));
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isCoarse = window.matchMedia('(pointer: coarse)').matches;
 
-        function formatBytes(bytes) {
-            if (!bytes) return '0 B';
-            const units = ['B', 'KB', 'MB', 'GB'];
-            let value = bytes;
-            let unit = 0;
-            while (value >= 1024 && unit < units.length - 1) {
-                value /= 1024;
-                unit += 1;
-            }
-            return `${value.toFixed(value >= 10 || unit === 0 ? 0 : 1)} ${units[unit]}`;
+  /* ================= entropy core ================= */
+  var chaos = 0;          // smoothed 0..1
+  var chaosTarget = 0;
+  var scrollVel = 0;
+  var lastScrollY = window.scrollY;
+  var outroVisible = false;
+
+  var chaosPct = document.getElementById('chaos-pct');
+  var chaosBar = document.getElementById('chaos-bar');
+  var actLabel = document.getElementById('act-label');
+  var body = document.body;
+
+  var ACTS = [
+    'ACT 0 — IDLE', 'ACT I — DELEGATION', 'ACT II — THE EXCUSES',
+    'ACT III — THE FLIP', 'ACT III — MACHINE ROOM', 'ACT IV — OVERLOAD', 'OUTRO — NAP TIME'
+  ];
+
+  function docHeight() {
+    return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+
+  function computeStage() {
+    // stage = the data-stage of the section currently dominating the viewport
+    var sections = document.querySelectorAll('[data-stage]');
+    var mid = window.scrollY + window.innerHeight * 0.5;
+    var stage = 0;
+    sections.forEach(function (s) {
+      if (s.offsetTop <= mid) stage = parseInt(s.getAttribute('data-stage'), 10);
+    });
+    return stage;
+  }
+
+  var currentStage = -1;
+  var stageHooks = [];
+  function applyStage(stage) {
+    if (stage === currentStage) return;
+    currentStage = stage;
+    body.className = 'stage-' + stage;
+    if (actLabel) actLabel.textContent = ACTS[stage] || ACTS[0];
+    stageHooks.forEach(function (fn) { fn(stage); });
+  }
+
+  function onScroll() {
+    var y = window.scrollY;
+    scrollVel = scrollVel * 0.8 + Math.abs(y - lastScrollY) * 0.2;
+    lastScrollY = y;
+    var frac = y / docHeight();
+    // entropy climbs to 1 by ~88% of the page, holds, then outro forces calm
+    chaosTarget = outroVisible ? 0 : Math.min(1, frac / 0.82);
+    applyStage(computeStage());
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ================= HUD ================= */
+  var effortPct = document.getElementById('effort-pct');
+  function renderHud() {
+    var pct = Math.round(chaos * 100);
+    var label = (pct < 10 ? '00' : pct < 100 ? '0' : '') + pct + '%';
+    if (outroVisible && pct < 2) label = 'RELEASED';
+    chaosPct.textContent = label;
+    chaosBar.style.transform = 'scaleX(' + chaos + ')';
+    effortPct.textContent = outroVisible ? '0% FOREVER' : chaos > 0.9 ? 'STILL 000%' : '000%';
+  }
+
+  /* ================= custom cursor ================= */
+  var cursor = document.getElementById('cursor');
+  var mx = -100, my = -100;
+  var eclipseEl = document.getElementById('eclipse');
+  if (!isCoarse) {
+    window.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+      if (eclipseEl && currentStage === 0) {
+        eclipseEl.style.translate = ((mx / W - 0.5) * -20) + 'px ' + ((my / H - 0.5) * -14) + 'px';
+      }
+    }, { passive: true });
+  }
+  function renderCursor() {
+    if (isCoarse) return;
+    var size = 12 + chaos * 26;
+    cursor.style.width = size + 'px';
+    cursor.style.height = size + 'px';
+    cursor.style.margin = (-size / 2) + 'px 0 0 ' + (-size / 2) + 'px';
+  }
+
+  /* ================= particle field =================
+     One canvas, four regimes, all driven by chaos:
+       < 0.25  dust        — sparse drifting motes
+       < 0.55  current     — motes + horizontal streaks
+       < 0.85  network     — neural net: nodes + proximity links
+       >= 0.85 storm       — fast, colored, velocity-kicked        */
+  var canvas = document.getElementById('field');
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
+  var particles = [];
+  var MAX_P = isCoarse ? 70 : 150;
+
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function spawn() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: 1 + Math.random() * 1.8,
+      hue: Math.random()
+    };
+  }
+  for (var i = 0; i < MAX_P; i++) particles.push(spawn());
+
+  var PALETTE_DARK = ['#c8ff00', '#00e5ff', '#ff2ea6', '#ff4d00'];
+  // particle hue follows the stage accent — the dust changes universe with you
+  var STAGE_RGB = ['200,255,0', '0,229,255', '255,46,166', '200,255,0', '200,255,0', '200,255,0', '200,255,0'];
+
+  function fieldFrame() {
+    ctx.clearRect(0, 0, W, H);
+    if (reduceMotion) return;
+
+    var active = Math.floor(MAX_P * (0.18 + chaos * 0.82));
+    var rgb = STAGE_RGB[Math.max(0, currentStage)] || '200,255,0';
+    var speed = 0.3 + chaos * 2.2 + Math.min(3, scrollVel * 0.04);
+    var linkDist = chaos > 0.55 ? 110 + chaos * 40 : 0;
+
+    for (var i = 0; i < active; i++) {
+      var p = particles[i];
+      p.x += p.vx * speed;
+      p.y += p.vy * speed;
+
+      // storm regime: velocity kicks + slight mouse gravity
+      if (chaos > 0.85 && !isCoarse) {
+        var dx = mx - p.x, dy = my - p.y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < 40000 && d2 > 1) {
+          p.vx -= dx / d2 * 6;
+          p.vy -= dy / d2 * 6;
         }
+        p.vx = Math.max(-1.4, Math.min(1.4, p.vx));
+        p.vy = Math.max(-1.4, Math.min(1.4, p.vy));
+      }
 
-        function escapeHtml(value) {
-            return String(value)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
+      if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20;
+
+      var col;
+      if (chaos > 0.85) {
+        col = PALETTE_DARK[Math.floor(p.hue * PALETTE_DARK.length)];
+      } else {
+        col = 'rgba(' + rgb + ',' + (0.28 + chaos * 0.4) + ')';
+      }
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * (0.7 + chaos), 0, 6.2832);
+      ctx.fill();
+
+      // current regime: horizontal streaks
+      if (chaos > 0.25 && chaos <= 0.55 && i % 7 === 0) {
+        ctx.strokeStyle = 'rgba(' + rgb + ',' + (0.08 + chaos * 0.18) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(p.x - 18 - chaos * 50, p.y);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+      }
+    }
+
+    // network regime: proximity links
+    if (linkDist > 0) {
+      var alpha = 0.16;
+      for (var a = 0; a < active; a++) {
+        for (var b = a + 1; b < active; b++) {
+          var pa = particles[a], pb = particles[b];
+          var ddx = pa.x - pb.x, ddy = pa.y - pb.y;
+          if (Math.abs(ddx) > linkDist || Math.abs(ddy) > linkDist) continue;
+          var dist = Math.sqrt(ddx * ddx + ddy * ddy);
+          if (dist < linkDist) {
+            var fade = (1 - dist / linkDist) * alpha;
+            ctx.strokeStyle = 'rgba(' + rgb + ',' + fade + ')';
+            ctx.lineWidth = chaos > 0.85 ? 1.2 : 0.7;
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
+            ctx.stroke();
+          }
         }
+      }
+    }
+  }
 
-        async function fetchJson(url) {
-            const response = await fetch(url, { headers: apiHeaders });
-            if (!response.ok) {
-                throw new Error(`GitHub request failed: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        }
+  /* ================= main loop ================= */
+  function loop() {
+    chaos += (chaosTarget - chaos) * 0.06;
+    if (Math.abs(chaosTarget - chaos) < 0.001) chaos = chaosTarget;
+    scrollVel *= 0.95;
+    renderHud();
+    renderCursor();
+    fieldFrame();
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
 
-        function setTheme(isDark) {
-            document.documentElement.classList.toggle('dark', isDark);
-            elements.toggle.setAttribute('aria-checked', String(isDark));
-            elements.modeLabel.textContent = isDark ? 'DARK' : 'LIGHT';
-            localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
-        }
+  /* ================= reveals ================= */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .figure, .langbar').forEach(function (el) { io.observe(el); });
 
-        function repoLanguageList(repo) {
-            const languages = repo.languages || {};
-            const names = Object.keys(languages);
-            if (!names.length) return repo.language ? [repo.language] : ['Unknown'];
-            return names.slice(0, 3);
-        }
+  var outroIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { outroVisible = e.isIntersecting; onScroll(); });
+  }, { threshold: 0.35 });
+  outroIo.observe(document.getElementById('outro'));
 
-        function repoCard(repo) {
-            const languages = repoLanguageList(repo);
-            const languageLabel = repo.language || 'Unknown';
-            const description = repo.description ? repo.description : 'No GitHub description.';
-            const updated = formatDate(repo.pushed_at);
-            const languageMarkup = languages.map((language) => `<span class="px-2 py-1 rounded border border-black/10 dark:border-white/10 text-[11px] uppercase tracking-wider">${escapeHtml(language)}</span>`).join('');
-            return `
-                <a class="repo-card bento-card rounded-2xl p-6 md:p-7 bg-white/50 dark:bg-black/50 backdrop-blur-sm flex flex-col justify-between gap-5" href="${repo.html_url}" target="_blank" rel="noopener" data-language="${escapeHtml(languageLabel)}">
-                    <div class="space-y-3">
-                        <div class="flex items-start justify-between gap-4">
-                            <div>
-                                <div class="font-label-caps text-label-caps text-gray-500 uppercase flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[16px]">folder</span>${escapeHtml(languageLabel)}
-                                </div>
-                                <h3 class="mt-2 font-headline-lg text-2xl text-primary dark:text-white leading-tight">${escapeHtml(repo.name)}</h3>
-                            </div>
-                            <span class="font-code-sm text-[11px] text-gray-500 uppercase tracking-wider">${escapeHtml(updated)}</span>
-                        </div>
-                        <p class="font-body-md text-gray-600 dark:text-gray-300">${escapeHtml(description)}</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex flex-wrap gap-2">${languageMarkup}</div>
-                        <div class="flex flex-wrap gap-4 font-code-sm text-xs text-gray-500">
-                            <span>★ ${formatNumber(repo.stargazers_count)}</span>
-                            <span>⑂ ${formatNumber(repo.forks_count)}</span>
-                            <span>Issues ${formatNumber(repo.open_issues_count)}</span>
-                        </div>
-                    </div>
-                </a>
-            `;
-        }
+  /* ================= marquee content ================= */
+  function fillStrip(id, words, hotEvery) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var html = '';
+    // duplicate once for seamless -50% loop
+    for (var rep = 0; rep < 2; rep++) {
+      words.forEach(function (w, i) {
+        html += '<span class="' + (i % hotEvery === 0 ? 'hot' : '') + '">' + w + '</span>';
+      });
+    }
+    el.innerHTML = html;
+  }
+  var W1 = ['Automate', '✦', 'Orchestrate', '✦', 'Parse', '✦', 'Extract', '✦', 'Enrich', '✦', 'Ship', '✦'];
+  fillStrip('strip-1', W1, 2);
+  fillStrip('strip-2', ['Whisper', '→', 'pyannote', '→', 'Sudachi', '→', 'FastAPI', '→', 'SQLite', '→', 'Playwright', '→', 'pdfplumber', '→'], 2);
+  fillStrip('strip-d1', ['SIGNAL LOST', '//', 'ENTROPY MAX', '//', 'ALL SYSTEMS LOUD', '//'], 1);
+  fillStrip('strip-d2', ['AUTOMATE EVERYTHING', '⚠', 'HUMAN OPTIONAL', '⚠', 'PIPELINE ONLINE', '⚠'], 1);
+  fillStrip('strip-d3', ['01001000 01001001', '·', 'TOPALOVIC.SYS', '·', 'NO BRAKES', '·'], 1);
 
-        function languageBarRow(language, bytes, totalBytes) {
-            const percent = totalBytes ? ((bytes / totalBytes) * 100) : 0;
-            return `
-                <div>
-                    <div class="flex justify-between gap-4 font-code-sm text-xs mb-2">
-                        <span class="text-primary dark:text-white uppercase tracking-wider">${escapeHtml(language)}</span>
-                        <span class="text-gray-500">${formatBytes(bytes)} · ${percent.toFixed(1)}%</span>
-                    </div>
-                    <div class="language-bar"><span style="width:${percent}%; background: linear-gradient(90deg, #050505, #6b7280);"></span></div>
-                </div>
-            `;
-        }
-
-        function snapshotJson(profile, repos, starred, totalBytes, totalStars, topLanguage) {
-            return JSON.stringify({
-                user: profile.login,
-                public_repos: profile.public_repos,
-                followers: profile.followers,
-                following: profile.following,
-                created_at: profile.created_at,
-                updated_at: profile.updated_at,
-                top_language: topLanguage,
-                total_language_bytes: totalBytes,
-                total_stars: totalStars,
-                latest_repo: repos[0] ? repos[0].name : null,
-                starred_repos: starred.length
-            }, null, 2);
-        }
-
-        function renderFilters(languages, activeLanguage) {
-            const chips = ['All', ...languages];
-            elements.languageFilters.innerHTML = chips.map((language) => `
-                <button class="filter-chip px-3 py-1.5 rounded border border-black/10 dark:border-white/10 font-code-sm text-xs uppercase tracking-wider ${language === activeLanguage ? 'active' : ''}" data-filter="${escapeHtml(language)}">${escapeHtml(language)}</button>
-            `).join('');
-        }
-
-        function applyFilter(language) {
-            document.querySelectorAll('[data-language]').forEach((card) => {
-                const cardLanguage = card.getAttribute('data-language');
-                const visible = language === 'All' || cardLanguage === language;
-                card.style.display = visible ? '' : 'none';
-            });
-
-            document.querySelectorAll('.filter-chip').forEach((chip) => {
-                chip.classList.toggle('active', chip.getAttribute('data-filter') === language);
-            });
-        }
-
-        async function loadGithub() {
-            try {
-                const [profile, repos, starred] = await Promise.all([
-                    fetchJson(`https://api.github.com/users/${GITHUB_USER}`),
-                    fetchJson(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`),
-                    fetchJson(`https://api.github.com/users/${GITHUB_USER}/starred?per_page=100`)
-                ]);
-
-                const repoLanguageResults = await Promise.allSettled(repos.map((repo) => fetchJson(repo.languages_url)));
-                const reposWithLanguages = repos.map((repo, index) => ({
-                    ...repo,
-                    languages: repoLanguageResults[index].status === 'fulfilled' ? repoLanguageResults[index].value : {}
-                }))
-                .filter((repo) => !repo.fork)
-                .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
-
-                const languageTotals = new Map();
-                reposWithLanguages.forEach((repo) => {
-                    Object.entries(repo.languages || {}).forEach(([language, bytes]) => {
-                        languageTotals.set(language, (languageTotals.get(language) || 0) + bytes);
-                    });
-                });
-
-                const sortedLanguages = [...languageTotals.entries()].sort((a, b) => b[1] - a[1]);
-                const totalLanguageBytes = sortedLanguages.reduce((sum, [, bytes]) => sum + bytes, 0);
-                const totalStars = reposWithLanguages.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-                const totalForks = reposWithLanguages.reduce((sum, repo) => sum + repo.forks_count, 0);
-                const topLanguage = sortedLanguages[0] ? sortedLanguages[0][0] : 'Unknown';
-                const latestRepo = reposWithLanguages[0];
-                const featuredRepos = reposWithLanguages;
-
-                elements.avatar.src = profile.avatar_url;
-                elements.avatar.alt = `${profile.login} avatar`;
-                elements.login.textContent = profile.login;
-                elements.profileLink.href = profile.html_url;
-                elements.footerCopy.textContent = `${profile.login} on GitHub`;
-                elements.bio.textContent = profile.bio || `Public GitHub profile. ${profile.public_repos} public repos, ${profile.followers} followers, ${profile.following} following.`;
-                elements.meta.innerHTML = [
-                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Repos ${formatNumber(profile.public_repos)}</span>`,
-                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Followers ${formatNumber(profile.followers)}</span>`,
-                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Following ${formatNumber(profile.following)}</span>`,
-                    `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">Joined ${formatDate(profile.created_at)}</span>`
-                ].join('');
-
-                elements.publicRepos.textContent = formatNumber(profile.public_repos);
-                elements.totalStars.textContent = formatNumber(totalStars);
-                elements.topLanguage.textContent = topLanguage;
-                elements.topLanguageBytes.textContent = `${formatBytes(sortedLanguages[0] ? sortedLanguages[0][1] : 0)} across public repos`;
-                elements.lastUpdated.textContent = latestRepo ? formatDate(latestRepo.pushed_at) : '—';
-                elements.lastUpdatedRepo.textContent = latestRepo ? latestRepo.name : 'Latest repo activity';
-                elements.followersCount.textContent = formatNumber(profile.followers);
-                elements.followingCount.textContent = formatNumber(profile.following);
-                elements.joinedDate.textContent = formatDate(profile.created_at);
-                elements.starredCount.textContent = formatNumber(starred.length);
-
-                const primaryLanguages = [...new Set(reposWithLanguages.map((repo) => repo.language).filter(Boolean))].sort();
-                renderFilters(primaryLanguages, 'All');
-
-                elements.repoGrid.innerHTML = featuredRepos.map(repoCard).join('');
-                elements.languageBars.innerHTML = sortedLanguages.map(([language, bytes]) => languageBarRow(language, bytes, totalLanguageBytes)).join('');
-                elements.repoLanguageTags.innerHTML = reposWithLanguages.map((repo) => `<span class="px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 font-code-sm text-xs">${escapeHtml(repo.name)} · ${escapeHtml(repo.language || 'Unknown')}</span>`).join('');
-                elements.languageTotal.textContent = `${formatNumber(totalLanguageBytes)} bytes tracked`;
-                elements.languageCount.textContent = `${sortedLanguages.length} languages`;
-                elements.summaryLine.textContent = `Repos: ${profile.public_repos} · Stars: ${totalStars} · Forks: ${totalForks}`;
-                elements.summarySubline.textContent = `Top languages: ${sortedLanguages.slice(0, 3).map(([language]) => language).join(', ') || 'Unknown'}.`;
-                elements.summaryTags.innerHTML = sortedLanguages.slice(0, 4).map(([language]) => `<span class="px-3 py-1.5 border border-white/20 dark:border-black/20 rounded font-code-sm text-xs bg-white/5 dark:bg-black/5">${escapeHtml(language)}</span>`).join('');
-                elements.profileJson.textContent = JSON.stringify(profile, null, 2);
-                elements.githubSnapshot.textContent = snapshotJson(profile, reposWithLanguages, starred, totalLanguageBytes, totalStars, topLanguage);
-
-                const filterButtons = document.querySelectorAll('.filter-chip');
-                filterButtons.forEach((button) => {
-                    button.addEventListener('click', () => applyFilter(button.getAttribute('data-filter')));
-                });
-
-                applyFilter('All');
-            } catch (error) {
-                const message = `GitHub load failed: ${error.message}`;
-                elements.profileJson.textContent = message;
-                elements.githubSnapshot.textContent = message;
-                elements.summaryLine.textContent = 'GitHub data unavailable';
-                elements.summarySubline.textContent = message;
-            }
-        }
-
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
-
-        elements.toggle.addEventListener('click', () => {
-            setTheme(!document.documentElement.classList.contains('dark'));
+  /* ================= text scramble ================= */
+  var GLYPHS = '!<>-_\\/[]{}—=+*^?#░▒▓01';
+  function scramble(el) {
+    var original = el.dataset.original || el.textContent;
+    el.dataset.original = original;
+    var frame = 0, total = 14;
+    var timer = setInterval(function () {
+      frame++;
+      var out = '';
+      for (var i = 0; i < original.length; i++) {
+        var settle = (frame / total) * original.length;
+        out += i < settle ? original[i]
+          : original[i] === ' ' ? ' '
+          : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      }
+      el.textContent = out;
+      if (frame >= total) { el.textContent = original; clearInterval(timer); }
+    }, 38);
+  }
+  if (!reduceMotion) {
+    document.querySelectorAll('[data-scramble]').forEach(function (el) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { scramble(el); sio.unobserve(el); }
         });
+      }, { threshold: 0.5 });
+      sio.observe(el);
+    });
+    // periodic re-scramble, probability scales with chaos
+    setInterval(function () {
+      if (chaos < 0.35) return;
+      var els = document.querySelectorAll('[data-scramble]');
+      var el = els[Math.floor(Math.random() * els.length)];
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0 && Math.random() < chaos * 0.7) scramble(el);
+    }, 2400);
+  }
 
-        loadGithub();
-    </script>
-</body></html>
+  /* ================= card tilt ================= */
+  if (!isCoarse && !reduceMotion) {
+    document.querySelectorAll('[data-tilt]').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        var amp = 3 + chaos * 7;
+        card.style.transform = 'perspective(1100px) rotateX(' + (-py * amp) + 'deg) rotateY(' + (px * amp) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(1100px) rotateX(0) rotateY(0)';
+      });
+    });
+  }
+
+  /* ================= terminal ================= */
+  var TERM_LINES = [
+    { t: '$ whoami', c: 'p' },
+    { t: 'tarik — ai automation engineer @ aqvc (berlin)', c: '' },
+    { t: '$ crontab -l', c: 'p' },
+    { t: '03:00 parse_decks.py      # works while he sleeps', c: 'dim' },
+    { t: '03:30 enrich_funds.py     # he is still asleep', c: 'dim' },
+    { t: '04:00 build_reports.py    # you get the idea', c: 'dim' },
+    { t: '$ systemctl status grunt-work', c: 'p' },
+    { t: '● grunt-work.service — inactive (dead). good riddance.', c: 'm' },
+    { t: '$ python orchestrate.py --models whisper,pyannote,sudachi,argos', c: 'p' },
+    { t: '[ok] 4 models loaded · 0 paid APIs · 0 human effort', c: 'c' },
+    { t: '$ ./parse_the_unparseable --input "1500-17::50" --trust-no-pdf', c: 'p' },
+    { t: '[ok] 312 courses extracted from hostile documents', c: 'c' },
+    { t: '$ effort --audit', c: 'p' },
+    { t: 'minimal. as designed. ▰▱▱▱▱▱▱▱▱▱ 4%', c: 'm' },
+    { t: '$ echo "$PHILOSOPHY"', c: 'p' },
+    { t: 'why do it yourself when you can spend 10x longer automating it once?', c: 'dim' }
+  ];
+  var termOut = document.getElementById('term-out');
+  var termStarted = false;
+  function runTerm() {
+    if (termStarted) return;
+    termStarted = true;
+    var li = 0, ci = 0;
+    var caret = document.createElement('span');
+    caret.className = 'caret';
+    termOut.appendChild(caret);
+    function step() {
+      if (li >= TERM_LINES.length) return;
+      var line = TERM_LINES[li];
+      if (ci === 0) {
+        var span = document.createElement('span');
+        if (line.c) span.className = line.c;
+        termOut.insertBefore(span, caret);
+        line.el = span;
+      }
+      ci++;
+      line.el.textContent = line.t.slice(0, ci);
+      if (ci >= line.t.length) {
+        termOut.insertBefore(document.createTextNode('\n'), caret);
+        li++; ci = 0;
+        setTimeout(step, line.t[0] === '$' ? 140 : 320);
+      } else {
+        setTimeout(step, reduceMotion ? 0 : 10 + Math.random() * 22);
+      }
+    }
+    step();
+  }
+  var termIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { runTerm(); termIo.disconnect(); } });
+  }, { threshold: 0.3 });
+  termIo.observe(termOut);
+
+  /* ================= live github telemetry ================= */
+  var FALLBACK = {
+    repos: 8, langs: [['Python', 62], ['HTML', 28], ['JavaScript', 10]],
+    latest: 'portfolio', pushed: '2026'
+  };
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function teleRow(k, v) {
+    return '<div class="tele-row"><span>' + esc(k) + '</span><span class="v">' + esc(v) + '</span></div>';
+  }
+  function renderLangs(pairs) {
+    var max = pairs[0] ? pairs[0][1] : 1;
+    document.getElementById('tele-langs').innerHTML = pairs.map(function (p) {
+      return '<div class="langbar"><div class="lab"><span>' + esc(p[0]) + '</span><span>' + p[1].toFixed(1) + '%</span></div>' +
+        '<div class="bar"><i style="transform: scaleX(' + (p[1] / max) + ')"></i></div></div>';
+    }).join('');
+    document.querySelectorAll('.langbar .bar i').forEach(function (el) {
+      el.style.transition = 'none';
+    });
+  }
+  function renderStats(o) {
+    document.getElementById('tele-stats').innerHTML =
+      teleRow('public repos', o.repos) +
+      teleRow('latest push', o.latest) +
+      teleRow('top language', o.langs[0] ? o.langs[0][0] : '—') +
+      teleRow('source', o.live ? 'api.github.com · live' : 'cached snapshot') +
+      teleRow('automation level', 'unreasonable');
+  }
+  function loadGithub() {
+    Promise.all([
+      fetch('https://api.github.com/users/TarikTopalovic').then(function (r) { if (!r.ok) throw 0; return r.json(); }),
+      fetch('https://api.github.com/users/TarikTopalovic/repos?per_page=100&sort=pushed').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    ]).then(function (res) {
+      var profile = res[0], repos = res[1].filter(function (r) { return !r.fork; });
+      var byLang = {};
+      repos.forEach(function (r) { if (r.language) byLang[r.language] = (byLang[r.language] || 0) + 1; });
+      var totalCount = repos.length || 1;
+      var pairs = Object.keys(byLang).map(function (k) {
+        return [k, (byLang[k] / totalCount) * 100];
+      }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 5);
+      renderStats({
+        repos: profile.public_repos,
+        latest: repos[0] ? repos[0].name : '—',
+        langs: pairs,
+        live: true
+      });
+      renderLangs(pairs);
+    }).catch(function () {
+      renderStats(FALLBACK);
+      renderLangs(FALLBACK.langs.map(function (p) { return [p[0], p[1]]; }));
+    });
+  }
+  loadGithub();
+
+  /* ================= misc ================= */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var clock = document.getElementById('hero-clock');
+  var savedTicker = document.getElementById('saved-ticker');
+  var t0 = Date.now();
+  function tick() {
+    clock.textContent = new Date().toTimeString().slice(0, 8) + ' LOCAL';
+    // 7× leverage multiplier: every second here, automation saves seven elsewhere
+    var saved = Math.floor((Date.now() - t0) / 1000) * 7;
+    var m = Math.floor(saved / 60), s = saved % 60;
+    savedTicker.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  var tags = ['ENTROPY 100% — HOLD ON', 'MAXIMUM OUTPUT — MINIMUM EFFORT', 'EVERY PARTICLE IS A SCRIPT', 'THE HUMAN IS AFK', 'THIS SECTION RUNS ITSELF'];
+  var ti = 0;
+  setInterval(function () {
+    if (currentStage === 5) {
+      ti = (ti + 1) % tags.length;
+      document.getElementById('overload-tag').textContent = tags[ti];
+    }
+  }, 2600);
+
+  /* ================= T.A.R.I.K. — the butler =================
+     He scrolls so you don't have to. He also has opinions.     */
+  var tarikEl = document.getElementById('tarik');
+  var tarikMsg = document.getElementById('tarik-msg');
+  var tarikAuto = document.getElementById('tarik-auto');
+  var tarikMin = document.getElementById('tarik-min');
+  var tarikRestore = document.getElementById('tarik-restore');
+  var heroAuto = document.getElementById('hero-autopilot');
+
+  var STAGE_MSGS = [
+    'Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.',
+    "He calls this 'the day job'. I do the day. He provides the job title.",
+    'Fine — he did build these himself. I just keep them running while he naps.',
+    'Warning: past this point he let me redecorate. I have… opinions.',
+    'My quarters. Live data, cron jobs, zero supervision. As intended.',
+    "He said 'make it crazy'. I asked him to define crazy. He said 'no'.",
+    'Tour complete. Total human effort expended: 0.00. You are welcome.'
+  ];
+
+  var typeTimer = null;
+  function say(text) {
+    if (typeTimer) clearInterval(typeTimer);
+    if (reduceMotion) { tarikMsg.textContent = text; return; }
+    var i = 0;
+    tarikMsg.textContent = '';
+    typeTimer = setInterval(function () {
+      i += 2;
+      tarikMsg.textContent = text.slice(0, i);
+      if (i >= text.length) { clearInterval(typeTimer); typeTimer = null; }
+    }, 14);
+  }
+
+  var tarikShown = false;
+  var tarikMinimized = false;
+  function showTarik(text, alert) {
+    tarikShown = true;
+    tarikMinimized = false;
+    tarikEl.classList.remove('hidden');
+    tarikRestore.classList.remove('show');
+    tarikEl.classList.toggle('alert', !!alert);
+    if (text) say(text);
+  }
+  function hideTarik() {
+    tarikMinimized = true;
+    tarikEl.classList.add('hidden');
+    tarikRestore.classList.add('show');
+  }
+  tarikMin.addEventListener('click', hideTarik);
+  tarikRestore.addEventListener('click', function () { showTarik(STAGE_MSGS[Math.min(currentStage, 6)]); });
+
+  /* ---- autopilot ---- */
+  var auto = { on: false, raf: 0 };
+  function setAutoUi() {
+    tarikAuto.textContent = auto.on ? 'disengage autopilot' : 'engage autopilot';
+    tarikAuto.classList.toggle('engaged', auto.on);
+    if (heroAuto) heroAuto.textContent = auto.on ? 'disengage autopilot' : 'too lazy? engage autopilot';
+  }
+  function autoStep() {
+    if (!auto.on) return;
+    var max = docHeight();
+    var y = window.scrollY;
+    var speed = 2.2 + chaos * 3.6;
+    if (y >= max - 2) {
+      stopAuto('Bottom reached. Tour delivered, zero effort required. My work here is done — like always.');
+      return;
+    }
+    window.scrollTo({ top: y + speed, left: 0, behavior: 'instant' });
+    auto.raf = requestAnimationFrame(autoStep);
+  }
+  function startAuto() {
+    if (auto.on) return;
+    auto.on = true;
+    setAutoUi();
+    showTarik('Autopilot engaged. Sit back — touching anything returns control to you, regrettably.');
+    auto.raf = requestAnimationFrame(autoStep);
+  }
+  function stopAuto(msg) {
+    if (!auto.on) return;
+    auto.on = false;
+    cancelAnimationFrame(auto.raf);
+    setAutoUi();
+    if (msg) showTarik(msg);
+  }
+  function toggleAuto() { auto.on ? stopAuto('Manual override? Bold. Suit yourself, human.') : startAuto(); }
+  tarikAuto.addEventListener('click', toggleAuto);
+  if (heroAuto) heroAuto.addEventListener('click', toggleAuto);
+
+  // any real human input cancels autopilot
+  ['wheel', 'touchmove'].forEach(function (ev) {
+    window.addEventListener(ev, function () {
+      if (auto.on) stopAuto('Manual override? Bold. Suit yourself, human.');
+      poke();
+    }, { passive: true });
+  });
+  window.addEventListener('keydown', function (e) {
+    if (auto.on && ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].indexOf(e.key) !== -1) {
+      stopAuto('Manual override? Bold. Suit yourself, human.');
+    }
+    poke();
+  });
+  ['mousemove', 'mousedown', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, poke, { passive: true });
+  });
+
+  /* ---- idle detection: the page offers to do your scrolling ---- */
+  var lastActive = Date.now();
+  var idlePrompted = false;
+  function poke() { lastActive = Date.now(); idlePrompted = false; }
+  setInterval(function () {
+    if (auto.on || outroVisible || idlePrompted || document.hidden) return;
+    if (Date.now() - lastActive > 13000) {
+      idlePrompted = true;
+      showTarik('You stopped. Statistically, you are tired. I can do the scrolling — it is literally my only job.', true);
+    }
+  }, 1000);
+
+  /* ---- commentary as you descend ---- */
+  stageHooks.push(function (stage) {
+    if (!tarikShown || tarikMinimized) return;
+    say(STAGE_MSGS[Math.min(stage, STAGE_MSGS.length - 1)]);
+    tarikEl.classList.remove('alert');
+  });
+
+  // first appearance: after a bit of scrolling, or shortly after load
+  var introDone = false;
+  function intro() {
+    if (introDone || tarikMinimized) return;
+    introDone = true;
+    showTarik(STAGE_MSGS[0]);
+  }
+  setTimeout(intro, 6000);
+  window.addEventListener('scroll', function onFirstScroll() {
+    if (window.scrollY > 250) { intro(); window.removeEventListener('scroll', onFirstScroll); }
+  }, { passive: true });
+
+  setAutoUi();
+  onScroll();
+})();
+</script>
+</body>
+</html>
