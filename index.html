@@ -106,6 +106,27 @@ body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); 
   transform: translate(-100px, -100px);
   transition: width 0.25s, height 0.25s, margin 0.25s;
 }
+/* targeting reticle — the HUD watches where you point */
+#cursor::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border: 1px solid transparent;
+  border-top-color: var(--accent);
+  border-bottom-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 7s linear infinite reverse;
+}
+#cursor::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px dashed var(--accent);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: spin 5s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 @media (hover: none), (pointer: coarse) { #cursor { display: none; } }
 
 /* ============ HUD ============ */
@@ -777,6 +798,45 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 /* magnetic hero letters */
 .hero-name .ch { display: inline-block; will-change: transform; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
 
+/* holo corner brackets — everything is a HUD panel */
+.hud-frame {
+  --hc: color-mix(in srgb, var(--accent) 75%, transparent);
+  background-image:
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc)),
+    linear-gradient(var(--hc), var(--hc));
+  background-repeat: no-repeat;
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+  background-size: 20px 2px, 2px 20px, 20px 2px, 2px 20px, 20px 2px, 2px 20px, 20px 2px, 2px 20px;
+}
+
+/* butler voice waveform */
+.wave { display: inline-flex; gap: 2px; align-items: center; height: 12px; }
+.wave i {
+  width: 2px; height: 3px;
+  background: var(--accent);
+  animation: wv 0.9s ease-in-out infinite;
+}
+.wave i:nth-child(2) { animation-delay: 0.15s; }
+.wave i:nth-child(3) { animation-delay: 0.3s; }
+.wave i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes wv { 50% { height: 11px; } }
+
+/* wormhole shader canvas */
+#warp-gl {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.flip-inner { position: relative; z-index: 1; }
+
 /* animated gradient text for the money words */
 .grad-text {
   background: linear-gradient(90deg, var(--acid), var(--cyan), var(--magenta), var(--acid));
@@ -1099,7 +1159,7 @@ setTimeout(function () {
       </div>
     </div>
 
-    <div class="mission reveal" id="mission">
+    <div class="mission reveal hud-frame" id="mission">
       <div class="act-label">The Master Plan</div>
       <h3 class="mission-title">Retire at <span class="grad-text">23</span>. Let Jarvis run everything.</h3>
       <p class="mission-sub">Retirement doesn't mean stopping — it means the systems work so I don't have to. Pipelines earning the keep, a butler running operations, me supervising from a hammock. Every project on this page is a brick in that machine. This is not a joke. It is a roadmap.</p>
@@ -1124,7 +1184,7 @@ setTimeout(function () {
   <section id="builds" data-stage="2">
     <div class="act-label reveal">Act II — Things I Built</div>
 
-    <article class="build reveal" data-tilt data-num="01">
+    <article class="build reveal hud-frame" data-tilt data-num="01">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Hayaku Pro</h3>
         <span class="build-index">BUILD 01 / LOCAL AI PIPELINE</span>
@@ -1150,7 +1210,7 @@ setTimeout(function () {
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/JapaneseTeacher" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt data-num="02">
+    <article class="build reveal hud-frame" data-tilt data-num="02">
       <div class="build-head">
         <h3 class="build-title" data-scramble>UniPlan Pro</h3>
         <span class="build-index">BUILD 02 / CONSTRAINT SOLVER</span>
@@ -1175,7 +1235,7 @@ setTimeout(function () {
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/COURSE_SCHEDULER" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt data-num="03">
+    <article class="build reveal hud-frame" data-tilt data-num="03">
       <div class="build-head">
         <h3 class="build-title" data-scramble>OLX Sniper</h3>
         <span class="build-index">BUILD 03 / DEAL HUNTER · PRIVATE</span>
@@ -1199,7 +1259,7 @@ setTimeout(function () {
       </div>
     </article>
 
-    <article class="build reveal" data-tilt data-num="04">
+    <article class="build reveal hud-frame" data-tilt data-num="04">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Macro Studio</h3>
         <span class="build-index">BUILD 04 / INPUT AUTOMATION</span>
@@ -1223,7 +1283,7 @@ setTimeout(function () {
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/MacroApp" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt data-num="05">
+    <article class="build reveal hud-frame" data-tilt data-num="05">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Al-Fazah</h3>
         <span class="build-index">BUILD 05 / CLIENT WORK</span>
@@ -1250,6 +1310,7 @@ setTimeout(function () {
 
   <!-- ════════ THE FLIP ════════ -->
   <section id="flip" data-stage="3">
+    <canvas id="warp-gl" aria-hidden="true"></canvas>
     <div class="flip-inner">
       <div class="flip-warn reveal">⚠ entropy threshold exceeded — containment failing</div>
       <h2 class="flip-title reveal d1" data-scramble>Entering the machine</h2>
@@ -1261,18 +1322,18 @@ setTimeout(function () {
   <section id="machine" data-stage="4">
     <div class="act-label reveal">Act III — Machine Room</div>
     <div class="machine-grid">
-      <div class="term reveal">
+      <div class="term reveal hud-frame">
         <div class="term-bar"><span class="led"></span><span>tarik@aqvc — /usr/bin/leverage</span></div>
         <div class="term-out" id="term-out"></div>
       </div>
       <div class="telemetry reveal d1">
-        <div class="tele-card">
+        <div class="tele-card hud-frame">
           <h3>// live github telemetry</h3>
           <div id="tele-stats">
             <div class="tele-row"><span>status</span><span class="v">polling api.github.com…</span></div>
           </div>
         </div>
-        <div class="tele-card">
+        <div class="tele-card hud-frame">
           <h3>// language mass</h3>
           <div id="tele-langs"><div class="tele-row"><span>scanning repos</span><span class="v">…</span></div></div>
         </div>
@@ -1329,9 +1390,10 @@ setTimeout(function () {
 </main>
 
 <!-- T.A.R.I.K. — the butler this page comes with -->
-<aside id="tarik" class="hidden" role="status" aria-live="polite">
+<aside id="tarik" class="hidden hud-frame" role="status" aria-live="polite">
   <div class="tarik-bar">
     <span class="led"></span>
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
     <span>T.A.R.I.K. — task automation &amp; relentless idleness kernel</span>
     <button class="min" id="tarik-min" type="button" aria-label="Minimize assistant">—</button>
   </div>
@@ -1708,6 +1770,89 @@ setTimeout(function () {
     (function draw() {
       // only burn fuel while the sun is on screen
       if (window.scrollY < window.innerHeight * 1.3) {
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniform1f(uT, (performance.now() - start) / 1000);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  /* ================= WebGL wormhole =================
+     The flip section is a real tunnel shader, not a metaphor. */
+  (function warpGL() {
+    var c = document.getElementById('warp-gl');
+    if (!c || reduceMotion) return;
+    var gl = c.getContext('webgl', { alpha: true, antialias: true });
+    if (!gl) return;
+    var BW = 960, BH = 540;
+    c.width = BW; c.height = BH;
+    gl.viewport(0, 0, BW, BH);
+
+    var fsrc =
+      'precision mediump float;\n' +
+      'uniform float t;\n' +
+      'uniform vec2 r;\n' +
+      'float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n' +
+      'float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);\n' +
+      '  return mix(mix(h(i), h(i + vec2(1.0, 0.0)), f.x), mix(h(i + vec2(0.0, 1.0)), h(i + vec2(1.0, 1.0)), f.x), f.y); }\n' +
+      'void main(){\n' +
+      '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y;\n' +
+      '  float d = length(uv) + 0.0001;\n' +
+      '  float a = atan(uv.y, uv.x);\n' +
+      '  float depth = 0.32 / d + t * 1.1;\n' +
+      '  float tw = a + depth * 0.30;\n' +
+      '  float ring = sin(depth * 6.2832) * 0.5 + 0.5;\n' +
+      '  float spokes = sin(tw * 10.0) * 0.5 + 0.5;\n' +
+      '  float tex = n(vec2(tw * 3.0, depth * 1.4));\n' +
+      '  float beams = pow(ring, 5.0) * 0.85 + pow(spokes, 9.0) * 0.45 + tex * 0.22;\n' +
+      '  vec3 acid = vec3(0.78, 1.0, 0.0);\n' +
+      '  vec3 cyn = vec3(0.0, 0.9, 1.0);\n' +
+      '  vec3 mag = vec3(1.0, 0.18, 0.65);\n' +
+      '  vec3 col = mix(cyn, acid, ring);\n' +
+      '  col = mix(col, mag, pow(spokes, 14.0) * 0.7);\n' +
+      '  col *= beams;\n' +
+      '  col *= smoothstep(0.02, 0.42, d);\n' +              // event horizon: dark core
+      '  col *= smoothstep(1.25, 0.5, length(uv) * 1.4);\n' + // vignette
+      '  float alpha = clamp(beams * 1.4, 0.0, 1.0) * smoothstep(0.02, 0.3, d);\n' +
+      '  gl_FragColor = vec4(col, alpha * 0.9);\n' +
+      '}';
+
+    function sh(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+    }
+    var vs = sh(gl.VERTEX_SHADER, 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }');
+    var fs = sh(gl.FRAGMENT_SHADER, fsrc);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uT = gl.getUniformLocation(prog, 't');
+    gl.uniform2f(gl.getUniformLocation(prog, 'r'), BW, BH);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    var visible = false;
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible = e.isIntersecting; });
+    }, { threshold: 0.02 }).observe(c);
+
+    var start = performance.now();
+    (function draw() {
+      if (visible) {
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.uniform1f(uT, (performance.now() - start) / 1000);
@@ -2182,7 +2327,7 @@ setTimeout(function () {
       [37, 'calibrating black sun…'],
       [58, 'hiring butler…'],
       [81, 'automating the loading screen…'],
-      [100, 'done. effort spent: 0.00']
+      [100, 'T.A.R.I.K. online. Good evening.']
     ];
     var i = 0;
     document.documentElement.style.overflow = 'hidden';
