@@ -795,6 +795,87 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 }
 #boot-msg { opacity: 0.6; min-height: 1.6em; }
 
+/* the boarding gate + welcome ceremony */
+#board-btn {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--acid);
+  background: none;
+  border: 1px solid var(--acid);
+  padding: 18px 38px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+}
+#board-btn:hover { background: var(--acid); color: #0c0118; }
+#board-btn::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--acid);
+  animation: gate-pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes gate-pulse {
+  0% { transform: scale(0.94); opacity: 0.7; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+#boot.ready .boot-inner, #boot.welcome .boot-inner { display: none; }
+#boot.ready #board-btn { display: inline-block; }
+
+#welcome { display: none; position: relative; text-align: center; padding: 0 6vw; }
+#boot.welcome #board-btn { display: none; }
+#boot.welcome #welcome { display: block; }
+.wring {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 12px; height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 1px solid var(--acid);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ring-exp 2.4s ease-out both;
+}
+.wring.r2 { animation-delay: 0.35s; border-color: var(--cyan); }
+.wring.r3 { animation-delay: 0.7s; border-color: var(--magenta); }
+@keyframes ring-exp {
+  0% { transform: scale(1); opacity: 0.75; }
+  100% { transform: scale(90); opacity: 0; }
+}
+.w-line {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 7vw, 96px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transform: translateY(46px);
+  opacity: 0;
+  animation: w-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+.w-line.w2 { animation-delay: 0.5s; color: var(--acid); }
+.w-sub {
+  margin-top: 26px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: w-up 0.7s ease 1.25s both;
+}
+@keyframes w-up {
+  from { transform: translateY(46px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* hold the hero entrance until the gate opens */
+body.preboot .hero-name .row,
+body.preboot .hero-sub,
+body.preboot .scroll-cue { animation-play-state: paused; }
+
 /* magnetic hero letters */
 .hero-name .ch { display: inline-block; will-change: transform; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
 
@@ -814,6 +895,37 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
   background-size: 20px 2px, 2px 20px, 20px 2px, 2px 20px, 20px 2px, 2px 20px, 20px 2px, 2px 20px;
 }
+
+/* guided tour: spotlight + progress HUD */
+.tour-focus {
+  outline: 1px solid var(--accent);
+  outline-offset: 10px;
+  box-shadow: 0 0 80px -24px var(--accent);
+  transition: outline-color 0.5s, box-shadow 0.5s;
+}
+#tour-hud {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 56;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(8px);
+  padding: 9px 16px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+#tour-hud .tnum { color: var(--accent); }
+body.touring #tour-hud { display: flex; }
+@media (max-width: 720px) { #tour-hud { top: auto; bottom: 84px; font-size: 9.5px; } }
 
 /* butler voice waveform */
 .wave { display: inline-flex; gap: 2px; align-items: center; height: 12px; }
@@ -1054,7 +1166,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 }
 </style>
 </head>
-<body class="stage-0">
+<body class="stage-0 preboot">
 <noscript><style>.reveal { opacity: 1; transform: none; } body { cursor: auto; } #boot { display: none; }</style></noscript>
 
 <div id="boot" aria-hidden="true">
@@ -1063,14 +1175,22 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
     <div class="boot-bar"><i id="boot-fill"></i></div>
     <div id="boot-msg">initializing universe…</div>
   </div>
+  <button id="board-btn" type="button">⦿ come aboard</button>
+  <div id="welcome">
+    <i class="wring r1"></i><i class="wring r2"></i><i class="wring r3"></i>
+    <div class="w-line">Welcome aboard,</div>
+    <div class="w-line w2">Captain.</div>
+    <div class="w-sub">all systems online</div>
+  </div>
 </div>
 <script>
-// failsafe: if anything downstream breaks, never strand the visitor on the boot screen
+// failsafe: if the script dies before the gate renders, never strand the visitor
 setTimeout(function () {
   var b = document.getElementById('boot');
-  if (b && !b.classList.contains('out')) {
+  if (b && !b.classList.contains('out') && !b.classList.contains('ready') && !b.classList.contains('welcome')) {
     b.classList.add('out');
     document.documentElement.style.overflow = '';
+    document.body.classList.remove('preboot');
   }
 }, 4000);
 </script>
@@ -1381,8 +1501,8 @@ setTimeout(function () {
     <p class="outro-line reveal d2" style="text-transform: none; letter-spacing: 0.06em;">replying to email is one of the few things I haven't automated. yet.</p>
     <div class="outro-links reveal d2">
       <a class="btn" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn" href="https://www.linkedin.com/in/tarik-topalovic" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="mailto:data-team@aqvc.com">Email ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/tarik-topalovic-a83770263/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="mailto:topalovictarik8@gmail.com">Email ↗</a>
     </div>
     <div class="outro-foot">© <span id="yr"></span> Tarik Topalovic · built once, runs forever · human effort: 0.00</div>
   </section>
@@ -1404,6 +1524,7 @@ setTimeout(function () {
   </div>
 </aside>
 <button id="tarik-restore" type="button">☰ T.A.R.I.K.</button>
+<div id="tour-hud" aria-hidden="true"><span class="tnum" id="tour-step">01/14</span><span>GUIDED TOUR — interact to take control</span></div>
 
 <script>
 (function () {
@@ -1448,8 +1569,9 @@ setTimeout(function () {
   var stageHooks = [];
   function applyStage(stage) {
     if (stage === currentStage) return;
+    if (currentStage >= 0) body.classList.remove('stage-' + currentStage);
     currentStage = stage;
-    body.className = 'stage-' + stage;
+    body.classList.add('stage-' + stage); // preserves preboot/touring classes
     if (actLabel) actLabel.textContent = ACTS[stage] || ACTS[0];
     stageHooks.forEach(function (fn) { fn(stage); });
   }
@@ -2258,7 +2380,14 @@ setTimeout(function () {
     "THERE it is. That is what leverage feels like. Do it again, I have particles to spare.": "assets/voice/v24.ogg",
     "You typed 'lazy'. Takes one to know one. Enjoy the confetti — a script threw it, obviously.": "assets/voice/v25.ogg",
     "Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.": "assets/voice/v26.ogg",
-    "Voice online. Good evening.": "assets/voice/v27.ogg"
+    "Voice online. Good evening.": "assets/voice/v27.ogg",
+    "Now — the evidence. Five machines. Five excuses to never work again.": "assets/voice/v28.ogg",
+    "Build one: Hayaku. Four AI models chained on his own GPU — transcription, speaker detection, grammar, translation. He built an entire studio because subtitles annoyed him.": "assets/voice/v29.ogg",
+    "Build two: UniPlan. The university published unreadable PDFs. He taught a parser to read them and an algorithm to assemble the perfect schedule. One click, straight to your calendar.": "assets/voice/v30.ogg",
+    "Build three: the OLX Sniper. It watches marketplace listings around the clock and flags underpriced deals before any human can refresh. Private build. It works too well.": "assets/voice/v31.ogg",
+    "Build four: Macro Studio. It records every click and keystroke, then replays them forever. The computer does the clicking. He supervises. Loosely.": "assets/voice/v32.ogg",
+    "Build five: Al-Fazah. Real client, real business. Arabic and English, bookings straight into WhatsApp. No backend, no receptionist, no problem.": "assets/voice/v33.ogg",
+    "His laws. Anything done twice gets a script. Any script run twice gets a pipeline. Effort is a bug, not a feature.": "assets/voice/v34.ogg"
   };
   var voicePlayer = new Audio();
   voicePlayer.preload = 'auto';
@@ -2317,18 +2446,31 @@ setTimeout(function () {
   var TOUR = [
     { sel: '#hero', text: 'Good evening. I am T.A.R.I.K. — Tarik built me to run this page. Allow me to show you what he is.' },
     { sel: '#work', text: 'The day job: AI Automation Engineer at AQVC, Berlin. Thousands of venture funds screened a year — his pipelines carry the load.' },
+    { sel: '.manifesto', text: 'His laws. Anything done twice gets a script. Any script run twice gets a pipeline. Effort is a bug, not a feature.' },
     { sel: '#mission', text: 'The master plan: retire at twenty-three with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.' },
-    { sel: '#builds', text: 'Exhibit A: he chained four AI models on his own GPU to learn Japanese without subtitles. Lazy? Yes. Brilliant? Also yes. Keep going.' },
+    { sel: '#builds', text: 'Now — the evidence. Five machines. Five excuses to never work again.' },
+    { sel: '.build[data-num="01"]', text: 'Build one: Hayaku. Four AI models chained on his own GPU — transcription, speaker detection, grammar, translation. He built an entire studio because subtitles annoyed him.' },
+    { sel: '.build[data-num="02"]', text: 'Build two: UniPlan. The university published unreadable PDFs. He taught a parser to read them and an algorithm to assemble the perfect schedule. One click, straight to your calendar.' },
+    { sel: '.build[data-num="03"]', text: 'Build three: the OLX Sniper. It watches marketplace listings around the clock and flags underpriced deals before any human can refresh. Private build. It works too well.' },
+    { sel: '.build[data-num="04"]', text: 'Build four: Macro Studio. It records every click and keystroke, then replays them forever. The computer does the clicking. He supervises. Loosely.' },
+    { sel: '.build[data-num="05"]', text: 'Build five: Al-Fazah. Real client, real business. Arabic and English, bookings straight into WhatsApp. No backend, no receptionist, no problem.' },
     { sel: '#flip', text: 'Past this point: my territory. Mind the event horizon.' },
     { sel: '#machine', text: 'Live telemetry. Cron jobs on the night shift. He sleeps; nothing else here does.' },
     { sel: '#overload', text: 'Maximum output. Minimum effort. His entire philosophy, rendered in particles. Click anything — it detonates.' },
     { sel: '#outro', text: 'Tour complete. My professional recommendation: hire him before the retirement deadline. Contact is below.' }
   ];
-  var auto = { on: false, idx: 0, raf: 0, timer: 0 };
+  var auto = { on: false, idx: 0, raf: 0, timer: 0, safety: 0 };
+  var tourHud = document.getElementById('tour-hud');
+  var tourStep = document.getElementById('tour-step');
   function setAutoUi() {
     tarikAuto.textContent = auto.on ? 'end the tour' : 'start the tour';
     tarikAuto.classList.toggle('engaged', auto.on);
     if (heroAuto) heroAuto.textContent = auto.on ? 'end the tour' : 'too lazy? let T.A.R.I.K. give the tour';
+    body.classList.toggle('touring', auto.on);
+  }
+  function focusEl(el) {
+    document.querySelectorAll('.tour-focus').forEach(function (e) { e.classList.remove('tour-focus'); });
+    if (el) el.classList.add('tour-focus');
   }
   function glideTo(y, ms, done) {
     var y0 = window.scrollY, t0 = performance.now();
@@ -2341,22 +2483,44 @@ setTimeout(function () {
       else if (done) done();
     })();
   }
+  function tourAdvance() {
+    if (!auto.on) return;
+    auto.idx++;
+    tourStop();
+  }
   function tourStop() {
     if (!auto.on) return;
+    clearTimeout(auto.timer);
+    clearTimeout(auto.safety);
     if (auto.idx >= TOUR.length) {
       auto.on = false;
       setAutoUi();
+      focusEl(null);
       showTarik('He built me in an afternoon. Imagine what he does with a quarter. The email is right there.');
       return;
     }
     var stop = TOUR[auto.idx];
     var el = document.querySelector(stop.sel);
     if (!el) { auto.idx++; tourStop(); return; }
-    var target = Math.max(0, Math.min(el.offsetTop - 30, docHeight()));
-    glideTo(target, 1700, function () {
+    if (tourStep) {
+      tourStep.textContent = (auto.idx + 1 < 10 ? '0' : '') + (auto.idx + 1) + '/' + TOUR.length;
+    }
+    var rect = el.getBoundingClientRect();
+    var target = Math.max(0, Math.min(rect.top + window.scrollY - 80, docHeight()));
+    var dist = Math.abs(target - window.scrollY);
+    glideTo(target, Math.max(700, Math.min(2200, dist * 0.9)), function () {
+      focusEl(el);
       showTarik(stop.text);
-      auto.idx++;
-      auto.timer = setTimeout(tourStop, 2200 + stop.text.length * 52);
+      // advance when the voice line finishes; fall back to a read-time timer
+      if (voiceOn && VOICE_FILES[stop.text]) {
+        voicePlayer.onended = function () {
+          voicePlayer.onended = null;
+          auto.timer = setTimeout(tourAdvance, 900);
+        };
+        auto.safety = setTimeout(tourAdvance, 26000);
+      } else {
+        auto.timer = setTimeout(tourAdvance, 2200 + stop.text.length * 52);
+      }
     });
   }
   function startAuto() {
@@ -2376,6 +2540,9 @@ setTimeout(function () {
     auto.on = false;
     cancelAnimationFrame(auto.raf);
     clearTimeout(auto.timer);
+    clearTimeout(auto.safety);
+    voicePlayer.onended = null;
+    focusEl(null);
     setAutoUi();
     voicePlayer.pause();
     if (msg) showTarik(msg);
@@ -2424,13 +2591,14 @@ setTimeout(function () {
      Browsers block audio before the first gesture; the first
      click or keypress unlocks the PDA greeting. */
   var captainDone = false;
-  function captainGreeting() {
+  function captainGreeting(e) {
     if (captainDone) return;
     captainDone = true;
+    var startsTour = e && e.target && e.target.closest && e.target.closest('#hero-autopilot, #tarik-auto');
     if (hasTTS && !userMuted) {
       voiceOn = true;
       if (voiceBtn) voiceBtn.textContent = '🔊';
-      showTarik('Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.');
+      if (!startsTour) showTarik('Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.');
     }
     window.removeEventListener('pointerdown', captainGreeting);
     window.removeEventListener('keydown', captainGreeting);
@@ -2452,26 +2620,29 @@ setTimeout(function () {
 
   setAutoUi();
 
-  /* ================= boot sequence ================= */
+  /* ================= boot sequence + boarding ceremony ================= */
   (function boot() {
     var bootEl = document.getElementById('boot');
     var fill = document.getElementById('boot-fill');
     var bootMsg = document.getElementById('boot-msg');
+    var boardBtn = document.getElementById('board-btn');
     var steps = [
       [12, 'initializing universe…'],
       [37, 'calibrating black sun…'],
       [58, 'hiring butler…'],
       [81, 'automating the loading screen…'],
-      [100, 'T.A.R.I.K. online. Good evening.']
+      [100, 'T.A.R.I.K. online.']
     ];
     var i = 0;
     document.documentElement.style.overflow = 'hidden';
+    function finishBoot() {
+      bootEl.classList.add('out');
+      document.documentElement.style.overflow = '';
+      body.classList.remove('preboot');
+    }
     function step() {
       if (i >= steps.length) {
-        setTimeout(function () {
-          bootEl.classList.add('out');
-          document.documentElement.style.overflow = '';
-        }, 280);
+        bootEl.classList.add('ready'); // the gate: waits for the captain
         return;
       }
       fill.style.width = steps[i][0] + '%';
@@ -2479,6 +2650,17 @@ setTimeout(function () {
       i++;
       setTimeout(step, reduceMotion ? 30 : 220);
     }
+    boardBtn.addEventListener('click', function () {
+      captainDone = true; // the ceremony IS the greeting
+      if (!userMuted) {
+        voiceOn = true;
+        if (voiceBtn) voiceBtn.textContent = '🔊';
+      }
+      bootEl.classList.remove('ready');
+      bootEl.classList.add('welcome');
+      speak('Welcome aboard, Captain. All systems online. T.A.R.I.K. at your service.');
+      setTimeout(finishBoot, reduceMotion ? 400 : 3100);
+    });
     step();
   })();
 
