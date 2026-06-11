@@ -417,7 +417,7 @@ section { position: relative; padding: 0 6vw; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ============ ACT I — THE DAY JOB ============ */
-#work { padding-top: 18vh; padding-bottom: 14vh; }
+#work { padding-top: 16vh; padding-bottom: 14vh; }
 .work-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6vw; align-items: start; }
 @media (max-width: 900px) { .work-grid { grid-template-columns: 1fr; } }
 .work-statement {
@@ -469,7 +469,7 @@ section { position: relative; padding: 0 6vw; }
 #builds { padding-top: 16vh; padding-bottom: 10vh; }
 .build {
   border: 1px solid var(--line);
-  margin-bottom: 5vh;
+  margin-bottom: 6vh;
   background: color-mix(in srgb, var(--bg) 92%, var(--fg) 8%);
   transform-style: preserve-3d;
   transition: border-color 0.4s, box-shadow 0.4s, background-color 0.9s;
@@ -513,7 +513,7 @@ section { position: relative; padding: 0 6vw; }
 @media (max-width: 860px) { .pipeline { padding-left: 22px; padding-right: 22px; } }
 .pipe-node {
   border: 1px solid var(--line);
-  padding: 7px 12px;
+  padding: 8px 13px;
   position: relative;
   background: var(--bg);
   transition: background-color 0.9s, border-color 0.3s, transform 0.3s;
@@ -532,7 +532,7 @@ section { position: relative; padding: 0 6vw; }
   text-decoration: none;
   color: var(--fg);
   border: 1px solid var(--fg);
-  padding: 12px 22px;
+  padding: 13px 24px;
   position: relative;
   overflow: hidden;
   transition: color 0.3s, border-color 0.3s;
@@ -585,7 +585,7 @@ section { position: relative; padding: 0 6vw; }
 .flip-sub { margin-top: 26px; opacity: 0.7; font-size: 16px; }
 
 /* ============ ACT III — MACHINE ROOM (terminal + telemetry) ============ */
-#machine { padding-top: 8vh; padding-bottom: 12vh; }
+#machine { padding-top: 14vh; padding-bottom: 14vh; }
 .machine-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 30px; align-items: start; }
 @media (max-width: 980px) { .machine-grid { grid-template-columns: 1fr; } }
 
@@ -624,7 +624,7 @@ section { position: relative; padding: 0 6vw; }
 .langbar.in .bar i { transform: scaleX(1); }
 
 /* evolution log */
-.evolution { margin-top: 12vh; }
+.evolution { margin-top: 10vh; }
 .evo-line {
   display: grid;
   grid-template-columns: 90px 1fr;
@@ -639,7 +639,7 @@ section { position: relative; padding: 0 6vw; }
 .evo-line:hover .yr { color: var(--magenta); }
 
 /* skills modules */
-.modules { margin-top: 12vh; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+.modules { margin-top: 10vh; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
 .module {
   border: 1px solid var(--line);
   padding: 18px;
@@ -1082,7 +1082,63 @@ body.touring #tour-hud { display: flex; }
   mask-image: radial-gradient(ellipse 80% 72% at 50% 48%, black 50%, transparent 98%);
   -webkit-mask-image: radial-gradient(ellipse 80% 72% at 50% 48%, black 50%, transparent 98%);
 }
-.flip-inner { position: relative; z-index: 1; }
+.flip-inner { position: relative; z-index: 1; will-change: transform, opacity; }
+
+/* the crossing: scroll-staged text layers + live readouts */
+.flip-data {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  color: var(--accent);
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.4s;
+}
+.fd-tl { top: 86px; left: 6vw; }
+.fd-br { bottom: 86px; right: 6vw; }
+.flip-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  padding: 0 6vw;
+  will-change: transform, opacity;
+}
+.fl2-big {
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 2.6vw, 30px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-shadow: 0 2px 24px rgba(2, 4, 15, 0.9);
+}
+.fl2-sub {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+.fl3-big {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(54px, 10vw, 150px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 30px rgba(2, 4, 15, 0.8);
+}
+@media (max-width: 760px) {
+  .flip-stage, .flip-data { display: none; } /* phones: single static title */
+}
 
 /* animated gradient text for the money words */
 .grad-text {
@@ -1317,6 +1373,16 @@ body.touring #tour-hud { display: flex; }
   .outro-title { max-width: none; padding: 0 2vw; }
   .w-choice { flex-direction: column; align-items: center; }
   .w-choice .cue-btn { width: 100%; max-width: 320px; }
+  /* phones skip the WebGL dive — CSS pulsar glow instead */
+  #flip { min-height: 130svh; }
+  .flip-sticky::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 42%, rgba(0,212,255,0.2), rgba(48,78,255,0.08) 38%, transparent 72%);
+    pointer-events: none;
+  }
+  body.stage-5 main { animation: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1573,26 +1639,27 @@ setTimeout(function () {
 
     <article class="build reveal hud-frame" data-tilt data-num="05">
       <div class="build-head">
-        <h3 class="build-title" data-scramble>Al-Fazah</h3>
-        <span class="build-index">BUILD 05 / CLIENT WORK</span>
+        <h3 class="build-title" data-scramble>Parallel Claude</h3>
+        <span class="build-index">BUILD 05 / THE JARVIS CORE · PRIVATE</span>
       </div>
       <div class="build-body">
-        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: client was tired of answering the same WhatsApp question — now a button answers it</span>Production site for an industrial equipment rental business in Medina, Saudi Arabia. <span class="hl">Arabic-first with live RTL ⇄ LTR switching</span>, zero-backend booking that deep-links into WhatsApp with a pre-filled message in the customer's language, and a print-optimized bilingual rental contract. Real business, real customers, no framework bloat.</p>
+        <p class="build-desc"><span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px;">// excuse for building: why have one AI work for me when I can run a whole team of them</span>This is Phase 03 of the master plan, running today — the reason it's on this page. One sentence in → <span class="hl">a team of Claude AI workers spins up in real terminal panes</span>: architect, researchers, builders, reviewers, testers, split into dependency waves on a shared blackboard. A foreman watches the work and spawns corrective waves when something drifts; an integrator merges everything into one deliverable. I type a goal. A workforce happens. I supervise from increasingly far away.</p>
         <ul class="build-facts">
-          <li>full bilingual AR/EN + RTL handling</li>
-          <li>WhatsApp deep-link booking flow</li>
-          <li>printable legal contract w/ @media print</li>
-          <li>~200 lines of dependency-free JS</li>
+          <li>multi-agent waves: roles + dependencies</li>
+          <li>git-worktree isolation per worker</li>
+          <li>adaptive foreman + integrator merge</li>
+          <li>per-phase cost &amp; token tracking</li>
         </ul>
       </div>
-      <div class="pipeline" aria-label="Al-Fazah stack">
-        <span class="pipe-node">catalog data</span><span class="pipe-arrow">→</span>
-        <span class="pipe-node">client-side render</span><span class="pipe-arrow">→</span>
-        <span class="pipe-node">language engine</span><span class="pipe-arrow">→</span>
-        <span class="pipe-node">wa.me deep link</span><span class="pipe-arrow">→</span>
-        <span class="pipe-node">booked ✓</span>
+      <div class="pipeline" aria-label="Parallel Claude pipeline">
+        <span class="pipe-node">one goal</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">clarify</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">plan critic</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">worker waves</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">foreman</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">integrator</span><span class="pipe-arrow">→</span>
+        <span class="pipe-node">shipped</span>
       </div>
-      <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/al-fazah-rentals" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
   </section>
 
@@ -1600,10 +1667,20 @@ setTimeout(function () {
   <section id="flip" data-stage="3">
     <div class="flip-sticky">
       <canvas id="warp-gl" aria-hidden="true" role="presentation"></canvas>
+      <div class="flip-data fd-tl" id="fd-dist">DIST 0.42 LY</div>
+      <div class="flip-data fd-br" id="fd-freq">PULSE 1.2 HZ</div>
       <div class="flip-inner" id="flip-inner">
-        <div class="flip-warn reveal">⚠ magnetosphere breached — keep scrolling to dive</div>
+        <div class="flip-warn reveal">⚠ magnetosphere ahead — your scroll is the throttle</div>
         <h2 class="flip-title reveal d1" data-scramble>Entering the pulsar</h2>
-        <p class="flip-sub reveal d2">Your scroll is the throttle. Fly into it.</p>
+        <p class="flip-sub reveal d2">Keep scrolling. Fly into it.</p>
+      </div>
+      <div class="flip-stage" id="flip-l2">
+        <div class="fl2-big">MAGNETOSPHERE CONTACT</div>
+        <div class="fl2-sub">hold on — crossing the light</div>
+      </div>
+      <div class="flip-stage" id="flip-l3">
+        <h2 class="fl3-big">Inside.</h2>
+        <div class="fl2-sub">welcome to the machine room</div>
       </div>
     </div>
   </section>
@@ -1636,7 +1713,7 @@ setTimeout(function () {
       <div class="evo-line reveal"><span class="yr">2024</span><div class="what"><strong>UNO in Pygame</strong><span>Hot-seat card game with custom art and a hide-your-hand mechanic. First OOP, first game loop.</span></div></div>
       <div class="evo-line reveal"><span class="yr">2025</span><div class="what"><strong>Macro Studio</strong><span>Input automation engine — global hooks, DirectInput injection, threaded playback. Built so the computer could click for him. The laziness was the point.</span></div></div>
       <div class="evo-line reveal"><span class="yr">2026</span><div class="what"><strong>Playwright E2E + CI</strong><span>Tests that run themselves on every push — because clicking through a site manually, twice, is unacceptable.</span></div></div>
-      <div class="evo-line reveal"><span class="yr">2026</span><div class="what"><strong>UniPlan · Al-Fazah · Hayaku</strong><span>Parsers, solvers, multilingual client work, multi-model local AI pipelines. The curve goes vertical.</span></div></div>
+      <div class="evo-line reveal"><span class="yr">2026</span><div class="what"><strong>UniPlan · Hayaku · Parallel Claude</strong><span>Parsers, solvers, multi-model AI pipelines — then a system that runs teams of AIs. The curve goes vertical.</span></div></div>
       <div class="evo-line reveal"><span class="yr">NOW</span><div class="what"><strong>AI Automation @ AQVC</strong><span>Pointing all of the above at venture capital's paperwork problem. From a hammock, ideally.</span></div></div>
     </div>
 
@@ -1701,6 +1778,7 @@ setTimeout(function () {
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 760; // phones get the simple, kind version
   var isCoarse = window.matchMedia('(pointer: coarse)').matches;
 
   /* ================= entropy core ================= */
@@ -1803,7 +1881,7 @@ setTimeout(function () {
   var ctx = canvas.getContext('2d');
   var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
   var particles = [];
-  var MAX_P = isCoarse ? 70 : 150;
+  var MAX_P = isMobile ? 40 : 150;
   var meteors = [];
   var bursts = [];
   var trail = [];
@@ -1872,7 +1950,7 @@ setTimeout(function () {
   var pulsar = { x: -200, y: -200, r: 30, rot: 0, ringT: 60 };
   var pulseWaves = [];
   var stars = [];
-  for (var si0 = 0; si0 < 130; si0++) {
+  for (var si0 = 0; si0 < (isMobile ? 70 : 130); si0++) {
     stars.push({ x: Math.random(), y: Math.random(), z: 0.3 + Math.random() * 0.7, ph: Math.random() * 6.28 });
   }
 
@@ -1977,7 +2055,7 @@ setTimeout(function () {
     var active = Math.floor(MAX_P * (0.18 + chaos * 0.82));
     var rgb = STAGE_RGB[Math.max(0, currentStage)] || '0,212,255';
     var speed = 0.3 + chaos * 2.2 + Math.min(3, scrollVel * 0.04);
-    var linkDist = chaos > 0.55 ? 110 + chaos * 40 : 0;
+    var linkDist = (!isMobile && chaos > 0.55) ? 110 + chaos * 40 : 0;
 
     for (var i = 0; i < active; i++) {
       var p = particles[i];
@@ -2084,7 +2162,7 @@ setTimeout(function () {
     }
 
     // ambient electricity: arcs crackle off particles as entropy climbs
-    if (!reduceMotion && chaos > 0.45 && Math.random() < 0.008 + chaos * 0.022) {
+    if (!reduceMotion && !isMobile && chaos > 0.45 && Math.random() < 0.008 + chaos * 0.022) {
       var ep = particles[Math.floor(Math.random() * active)];
       if (ep) spawnSpark(ep.x, ep.y);
     }
@@ -2114,7 +2192,7 @@ setTimeout(function () {
   window.__heroGL = false;
   (function pulsarGL() {
     var c = document.getElementById('pulsar-gl');
-    if (!c || reduceMotion) return;
+    if (!c || reduceMotion || isMobile) return; // no fullscreen shaders on phone GPUs
     var gl = c.getContext('webgl', { alpha: true, antialias: true });
     if (!gl) return;
 
@@ -2228,7 +2306,7 @@ setTimeout(function () {
      The flip section is a real tunnel shader, not a metaphor. */
   (function warpGL() {
     var c = document.getElementById('warp-gl');
-    if (!c || reduceMotion) return;
+    if (!c || reduceMotion || isMobile) return; // phones get the CSS glow instead
     var gl = c.getContext('webgl', { alpha: true, antialias: true });
     if (!gl) return;
     var BW = 960, BH = 540;
@@ -2249,6 +2327,7 @@ setTimeout(function () {
       'void main(){\n' +
       '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y;\n' +
       // scroll = throttle: the star approaches as p rises
+      '  uv.y += mix(0.15, 0.0, p);\n' +   // the star starts high, sinks to dead-center as you close in
       '  float zoom = mix(3.6, 0.62, p);\n' +
       '  float d = length(uv) * zoom + 0.0001;\n' +
       '  float a = atan(uv.y, uv.x);\n' +
@@ -2266,6 +2345,8 @@ setTimeout(function () {
       // magnetosphere thickens around you
       '  float nb = fbm(vec2(a * 2.4 + d * 1.5 - t * 0.1, d * 3.0 - t * (0.18 + p * 0.5)));\n' +
       '  float neb = pow(nb, 1.5) * smoothstep(1.6, 0.15, d) * (0.12 + p * 0.34);\n' +
+      // radial speed-streaks during the acceleration beat
+      '  float str = pow(n(vec2(a * 24.0, d * 1.3 - t * 1.8)), 4.0) * smoothstep(0.25, 0.78, p) * smoothstep(1.5, 0.25, d) * 0.5;\n' +
       '  vec3 azure = vec3(0.0, 0.83, 1.0);\n' +
       '  vec3 blue = vec3(0.30, 0.49, 1.0);\n' +
       '  vec3 xray = vec3(0.62, 0.30, 1.0);\n' +
@@ -2274,8 +2355,9 @@ setTimeout(function () {
       '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 3.0)) * beam;\n' +
       '  col += azure * ring * pulse;\n' +
       '  col += mix(blue, xray, nb) * neb;\n' +
+      '  col += mix(bone, vec3(0.0, 0.83, 1.0), 0.45) * str;\n' +
       '  col += bone * pow(p, 3.0) * 0.22;\n' +  // arrival glow, smooth ramp
-      '  float alpha = clamp((core + beam + ring + neb) * 0.9 + pow(p, 3.0) * 0.3, 0.0, 0.85);\n' +
+      '  float alpha = clamp((core + beam + ring + neb + str * 0.6) * 0.9 + pow(p, 3.0) * 0.3, 0.0, 0.85);\n' +
       '  alpha *= smoothstep(1.6, 0.45, d) + core * 0.5;\n' +
       '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 0.85));\n' +
       '}';
@@ -2363,6 +2445,17 @@ setTimeout(function () {
   var heroSection = document.getElementById('hero');
   var flipEl = document.getElementById('flip');
   var flipInner = document.getElementById('flip-inner');
+  var flipL2 = document.getElementById('flip-l2');
+  var flipL3 = document.getElementById('flip-l3');
+  var fdDist = document.getElementById('fd-dist');
+  var fdFreq = document.getElementById('fd-freq');
+  // trapezoid window: 0 → 1 between a..b, hold, 1 → 0 between c..e
+  function band(x, a, b, c, e) {
+    if (x <= a || x >= e) return 0;
+    if (x < b) return (x - a) / (b - a);
+    if (x > c) return 1 - (x - c) / (e - c);
+    return 1;
+  }
   var skewCur = 0, lastLoopY = window.scrollY;
   function loop() {
     chaos += (chaosTarget - chaos) * 0.06;
@@ -2373,31 +2466,44 @@ setTimeout(function () {
     var dy = window.scrollY - lastLoopY;
     lastLoopY = window.scrollY;
     skewCur += (Math.max(-2, Math.min(2, dy * 0.045)) - skewCur) * 0.12;
-    if (!reduceMotion && currentStage < 5) {
+    if (!reduceMotion && !isMobile && currentStage < 5) {
       mainEl.style.transform = Math.abs(skewCur) > 0.01 ? 'skewY(' + skewCur.toFixed(3) + 'deg)' : '';
     } else if (mainEl.style.transform) {
       mainEl.style.transform = '';
     }
 
-    // the dive: scroll progress through #flip drives the pulsar approach
+    // THE CROSSING: scroll progress through #flip drives a three-beat dive
     if (flipEl) {
       var fTop = flipEl.offsetTop;
       var fRange = flipEl.offsetHeight - window.innerHeight;
       var fp = fRange > 0 ? (window.scrollY - fTop) / fRange : 0;
       fp = Math.max(0, Math.min(1, fp));
       window.__flipProg = fp;
-      if (flipInner && !reduceMotion) {
-        if (fp > 0 && fp < 1) {
-          var tScale = 1 + fp * 1.7;
-          var tOp = fp < 0.45 ? 1 : Math.max(0, 1 - (fp - 0.45) / 0.35);
-          flipInner.style.transform = 'scale(' + tScale.toFixed(3) + ')';
-          flipInner.style.opacity = tOp.toFixed(3);
-          flipInner.style.filter = fp > 0.45 ? 'blur(' + ((fp - 0.45) * 14).toFixed(1) + 'px)' : '';
-        } else if (flipInner.style.opacity !== '') {
-          flipInner.style.transform = '';
-          flipInner.style.opacity = '';
-          flipInner.style.filter = '';
+      if (!reduceMotion && !isMobile && flipInner) {
+        // live instruments: numbers belong to your scroll
+        if (fdDist && fp > 0 && fp < 1) {
+          fdDist.textContent = 'DIST ' + (0.42 * (1 - fp)).toFixed(2) + ' LY';
+          fdFreq.textContent = 'PULSE ' + (1.2 + fp * 28).toFixed(1) + ' HZ';
+          var dOp = (fp > 0.04 && fp < 0.92) ? 0.85 : 0;
+          fdDist.style.opacity = dOp;
+          fdFreq.style.opacity = dOp;
+        } else if (fdDist) {
+          fdDist.style.opacity = 0;
+          fdFreq.style.opacity = 0;
         }
+        // beat 1: the approach title rides toward you then dissolves
+        var l1 = fp < 0.3 ? 1 : Math.max(0, 1 - (fp - 0.3) / 0.14);
+        flipInner.style.opacity = l1.toFixed(3);
+        flipInner.style.transform = 'scale(' + (1 + fp * 1.25).toFixed(3) + ')';
+        flipInner.style.filter = fp > 0.3 ? 'blur(' + ((fp - 0.3) * 16).toFixed(1) + 'px)' : '';
+        // beat 2: magnetosphere contact
+        var l2 = band(fp, 0.42, 0.5, 0.66, 0.76);
+        flipL2.style.opacity = l2.toFixed(3);
+        flipL2.style.transform = 'scale(' + (0.94 + fp * 0.2).toFixed(3) + ')';
+        // beat 3: inside
+        var l3 = band(fp, 0.8, 0.88, 0.985, 1.0);
+        flipL3.style.opacity = l3.toFixed(3);
+        flipL3.style.transform = 'scale(' + (0.9 + fp * 0.14).toFixed(3) + ')';
       }
     }
 
@@ -2729,7 +2835,7 @@ setTimeout(function () {
     "Build two: UniPlan. The university published unreadable PDFs. He taught a parser to read them and an algorithm to assemble the perfect schedule. One click, straight to your calendar.": "assets/voice/v30.ogg",
     "Build three: the OLX Sniper. It watches marketplace listings around the clock and flags underpriced deals before any human can refresh. Private build. It works too well.": "assets/voice/v31.ogg",
     "Build four: Macro Studio. It records every click and keystroke, then replays them forever. The computer does the clicking. He supervises. Loosely.": "assets/voice/v32.ogg",
-    "Build five: Al-Fazah. Real client, real business. Arabic and English, bookings straight into WhatsApp. No backend, no receptionist, no problem.": "assets/voice/v33.ogg",
+    "Build five: Parallel Claude. One sentence in — a team of AI workers out. Architects, builders, reviewers, all coordinated while he watches. This is the Jarvis prototype. Phase three is not theoretical.": "assets/voice/v33.ogg",
     "His laws. Anything done twice gets a script. Any script run twice gets a pipeline. Effort is a bug, not a feature.": "assets/voice/v34.ogg"
   };
   var voicePlayer = new Audio();
@@ -2801,7 +2907,7 @@ setTimeout(function () {
     { sel: '.build[data-num="02"]', text: 'Build two: UniPlan. The university published unreadable PDFs. He taught a parser to read them and an algorithm to assemble the perfect schedule. One click, straight to your calendar.' },
     { sel: '.build[data-num="03"]', text: 'Build three: the OLX Sniper. It watches marketplace listings around the clock and flags underpriced deals before any human can refresh. Private build. It works too well.' },
     { sel: '.build[data-num="04"]', text: 'Build four: Macro Studio. It records every click and keystroke, then replays them forever. The computer does the clicking. He supervises. Loosely.' },
-    { sel: '.build[data-num="05"]', text: 'Build five: Al-Fazah. Real client, real business. Arabic and English, bookings straight into WhatsApp. No backend, no receptionist, no problem.' },
+    { sel: '.build[data-num="05"]', text: 'Build five: Parallel Claude. One sentence in — a team of AI workers out. Architects, builders, reviewers, all coordinated while he watches. This is the Jarvis prototype. Phase three is not theoretical.' },
     { sel: '#flip', text: 'Past this point: my territory. Mind the event horizon.' },
     { sel: '#machine', text: 'Live telemetry. Cron jobs on the night shift. He sleeps; nothing else here does.' },
     { sel: '#overload', text: 'Maximum output. Minimum effort. His entire philosophy, rendered in particles. Click anything — it detonates.' },
