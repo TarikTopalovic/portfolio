@@ -841,6 +841,48 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 #welcome { display: none; position: relative; text-align: center; padding: 0 6vw; }
 #boot.welcome #board-btn { display: none; }
 #boot.welcome #welcome { display: block; }
+/* ── pulsar ignition ── */
+.ign-core {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 14px; height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--bone);
+  box-shadow:
+    0 0 30px 8px rgba(176, 38, 255, 0.9),
+    0 0 90px 34px rgba(0, 229, 255, 0.35),
+    0 0 160px 70px rgba(255, 46, 166, 0.15);
+  animation: ign 2.2s cubic-bezier(0.7, 0, 0.3, 1) both;
+  pointer-events: none;
+}
+@keyframes ign {
+  0% { transform: scale(0.15); opacity: 0; }
+  30% { transform: scale(1.7); opacity: 1; }   /* swell */
+  52% { transform: scale(0.4); }               /* collapse */
+  70% { transform: scale(3.4); }               /* ignite */
+  100% { transform: scale(1.1); opacity: 0.9; }
+}
+.ign-beam {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 240vmax; height: 240vmax;
+  margin: -120vmax 0 0 -120vmax;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    transparent 0deg, rgba(0,229,255,0.4) 5deg, transparent 13deg,
+    transparent 180deg, rgba(176,38,255,0.4) 185deg, transparent 193deg);
+  opacity: 0;
+  filter: blur(5px);
+  animation: beam-sweep 2s ease-in-out 1s both;
+  pointer-events: none;
+}
+@keyframes beam-sweep {
+  0% { transform: rotate(-30deg); opacity: 0; }
+  18% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: rotate(330deg); opacity: 0; }
+}
 .wring {
   position: absolute;
   left: 50%; top: 50%;
@@ -849,10 +891,10 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   border: 1px solid var(--acid);
   border-radius: 50%;
   opacity: 0;
-  animation: ring-exp 2.4s ease-out both;
+  animation: ring-exp 2.2s ease-out 1.1s both;
 }
-.wring.r2 { animation-delay: 0.35s; border-color: var(--cyan); }
-.wring.r3 { animation-delay: 0.7s; border-color: var(--magenta); }
+.wring.r2 { animation-delay: 1.4s; border-color: var(--cyan); }
+.wring.r3 { animation-delay: 1.7s; border-color: var(--magenta); }
 @keyframes ring-exp {
   0% { transform: scale(1); opacity: 0.75; }
   100% { transform: scale(90); opacity: 0; }
@@ -864,11 +906,20 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   line-height: 1.04;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  transform: translateY(46px);
-  opacity: 0;
-  animation: w-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+  position: relative;
 }
-.w-line.w2 { animation-delay: 0.5s; color: var(--acid); }
+.w-line.w2 { color: var(--acid); }
+/* each letter arrives on its own pulse */
+.wl {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em) scale(1.45);
+  filter: blur(10px);
+  animation: wl-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(1.35s + var(--i) * 0.045s) both;
+}
+@keyframes wl-pop {
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
 .w-sub {
   margin-top: 26px;
   font-family: var(--font-mono);
@@ -876,7 +927,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   letter-spacing: 0.5em;
   text-transform: uppercase;
   opacity: 0;
-  animation: w-up 0.7s ease 1.25s both;
+  animation: w-up 0.7s ease 2.5s both;
 }
 @keyframes w-up {
   from { transform: translateY(46px); opacity: 0; }
@@ -889,12 +940,13 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
-  animation: w-up 0.7s ease 2s both;
+  animation: w-up 0.7s ease 3.1s both;
 }
 .cue-btn.ghost { border-color: var(--line); color: var(--fg); opacity: 0.75; }
 .cue-btn.ghost:hover { background: var(--fg); color: var(--bg); opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .w-line, .w-sub, .w-choice, .wring { opacity: 1 !important; transform: none !important; }
+  .w-line, .w-sub, .w-choice, .wring, .wl { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .ign-core, .ign-beam { display: none !important; }
 }
 
 /* hold the hero entrance until the gate opens */
@@ -1230,6 +1282,7 @@ body.touring #tour-hud { display: flex; }
   </div>
   <button id="board-btn" type="button">⦿ come aboard<span style="display:block; margin-top:10px; font-size:10px; opacity:0.55; letter-spacing:0.2em;">click anywhere</span></button>
   <div id="welcome">
+    <i class="ign-core"></i><i class="ign-beam"></i>
     <i class="wring r1"></i><i class="wring r2"></i><i class="wring r3"></i>
     <div class="w-line">Welcome aboard,</div>
     <div class="w-line w2">Captain.</div>
@@ -1491,9 +1544,9 @@ setTimeout(function () {
   <section id="flip" data-stage="3">
     <canvas id="warp-gl" aria-hidden="true" role="presentation"></canvas>
     <div class="flip-inner">
-      <div class="flip-warn reveal">⚠ entropy threshold exceeded — containment failing</div>
-      <h2 class="flip-title reveal d1" data-scramble>Entering the machine</h2>
-      <p class="flip-sub reveal d2">Past this point the page stops pretending to be a document.</p>
+      <div class="flip-warn reveal">⚠ pulse threshold exceeded — magnetosphere breached</div>
+      <h2 class="flip-title reveal d1" data-scramble>Entering the pulsar</h2>
+      <p class="flip-sub reveal d2">Past this point you are inside the star. The machine lives here.</p>
     </div>
   </section>
 
@@ -2131,29 +2184,31 @@ setTimeout(function () {
       '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y;\n' +
       '  float d = length(uv) + 0.0001;\n' +
       '  float a = atan(uv.y, uv.x);\n' +
-      '  float z = 0.22 / d + t * 0.42;\n' +          // log-ish tunnel depth, slow drift inward
-      '  float swirl = a + z * 0.85;\n' +              // twist tightens toward the core
-      // two volumetric dust layers, stretched along the flow for soft streaks
-      '  float v1 = fbm(vec2(swirl * 1.7, z * 0.8));\n' +
-      '  float v2 = fbm(vec2(swirl * 1.1 - 2.7, z * 0.45 + 13.0 - t * 0.1));\n' +
-      '  float val = v1 * 0.65 + v2 * 0.45;\n' +
-      '  float cloud = smoothstep(0.28, 0.78, val);\n' +
-      '  vec3 deep = vec3(0.045, 0.0, 0.11);\n' +      // ultraviolet base
-      '  vec3 cyn = vec3(0.0, 0.72, 1.0);\n' +
+      // you are falling INTO the pulsar, looking straight down its axis
+      '  float pulse = 0.7 + 0.3 * pow(0.5 + 0.5 * sin(t * 4.4), 2.0);\n' +
+      // the core grows as you approach — bright, alive
+      '  float core = exp(-d * 3.4) * 1.7 * pulse;\n' +
+      // twin jets head-on: rotating spokes of light
+      '  float rot = t * 0.85;\n' +
+      '  float beam = pow(max(cos(a - rot), 0.0), 20.0) + pow(max(cos(a - rot - 3.14159), 0.0), 20.0);\n' +
+      '  beam *= smoothstep(1.35, 0.12, d) * pulse * 0.85;\n' +
+      // pulse shells racing inward past you
+      '  float ring = pow(0.5 + 0.5 * sin((d * 8.0 + t * 2.2) * 3.1416), 7.0);\n' +
+      '  ring *= smoothstep(0.08, 0.4, d) * smoothstep(1.2, 0.5, d) * 0.55;\n' +
+      // magnetosphere clouds spiraling in
+      '  float nb = fbm(vec2(a * 2.4 + d * 1.6 - t * 0.12, d * 3.2 - t * 0.5));\n' +
+      '  float neb = nb * smoothstep(1.3, 0.2, d) * 0.4;\n' +
+      '  vec3 violet = vec3(0.69, 0.15, 1.0);\n' +
+      '  vec3 cyn = vec3(0.0, 0.85, 1.0);\n' +
       '  vec3 mag = vec3(1.0, 0.2, 0.62);\n' +
-      '  vec3 acid = vec3(0.69, 0.15, 1.0);\n' +
-      '  vec3 col = mix(deep, cyn, cloud * 0.85);\n' +
-      '  col = mix(col, mag, pow(val, 3.0) * 0.85);\n' +
-      // hot accretion rim hugging the event horizon
-      '  float rim = smoothstep(0.34, 0.155, d) * smoothstep(0.085, 0.15, d);\n' +
-      '  col += acid * rim * (0.45 + 0.55 * val);\n' +
-      '  col += cyn * rim * rim * 0.35;\n' +
-      // pure black core, soft outer fade
-      '  col *= smoothstep(0.045, 0.13, d);\n' +
-      '  col *= smoothstep(1.15, 0.3, d);\n' +
-      '  float alpha = clamp(cloud * 0.9 + rim + pow(val, 3.0) * 0.5, 0.0, 1.0);\n' +
-      '  alpha *= smoothstep(1.1, 0.45, d);\n' +
-      '  gl_FragColor = vec4(col, alpha);\n' +
+      '  vec3 bone = vec3(0.94, 0.92, 0.88);\n' +
+      '  vec3 col = bone * core;\n' +
+      '  col += mix(cyn, violet, 0.5 + 0.5 * sin(a * 3.0 + t * 0.3)) * beam;\n' +
+      '  col += violet * ring * pulse;\n' +
+      '  col += mix(violet, mag, nb) * neb;\n' +
+      '  float alpha = clamp(core + beam + ring * 0.8 + neb, 0.0, 1.0);\n' +
+      '  alpha *= smoothstep(1.25, 0.5, d) + core * 0.4;\n' +
+      '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 1.0));\n' +
       '}';
 
     function sh(type, src) {
@@ -2820,6 +2875,20 @@ setTimeout(function () {
     ];
     var i = 0;
     document.documentElement.style.overflow = 'hidden';
+    // split the welcome lines into per-letter pulses
+    var wlIdx = 0;
+    document.querySelectorAll('#welcome .w-line').forEach(function (row) {
+      var text = row.textContent;
+      row.textContent = '';
+      text.split('').forEach(function (ch) {
+        if (ch === ' ') { row.appendChild(document.createTextNode(' ')); return; }
+        var s = document.createElement('span');
+        s.className = 'wl';
+        s.style.setProperty('--i', wlIdx++);
+        s.textContent = ch;
+        row.appendChild(s);
+      });
+    });
     function finishBoot() {
       bootEl.classList.add('out');
       document.documentElement.style.overflow = '';
