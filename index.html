@@ -769,6 +769,29 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 /* magnetic hero letters */
 .hero-name .ch { display: inline-block; will-change: transform; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
 
+/* stage-change chromatic flash */
+#flash {
+  position: fixed; inset: 0;
+  z-index: 65;
+  pointer-events: none;
+  background: var(--accent);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+#flash.on { opacity: 0.2; transition: opacity 0.05s; }
+
+/* animated gradient text for the money words */
+.grad-text {
+  background: linear-gradient(90deg, var(--acid), var(--cyan), var(--magenta), var(--acid));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: grad-slide 5s linear infinite;
+}
+@keyframes grad-slide { to { background-position: 300% 0; } }
+
 /* ghost numbers behind build cards */
 .build { position: relative; overflow: hidden; }
 .build::before {
@@ -786,6 +809,18 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   z-index: 0;
 }
 .build > * { position: relative; z-index: 1; }
+
+/* scanline sweep across a card on hover */
+.build::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, color-mix(in srgb, var(--accent) 16%, transparent) 50%, transparent 58%);
+  transform: translateX(-130%);
+}
+.build:hover::after { transform: translateX(130%); transition: transform 0.85s ease; }
 
 /* pipeline pulse — data travels while the human rests */
 .build.in .pipe-node { animation: node-pulse 3.4s ease-in-out infinite; }
@@ -920,6 +955,7 @@ setTimeout(function () {
 </script>
 
 <canvas id="field" aria-hidden="true"></canvas>
+<div id="flash" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div id="cursor" aria-hidden="true"></div>
 
@@ -958,7 +994,7 @@ setTimeout(function () {
       <span class="row outline">Topalovic</span>
     </h1>
     <div class="hero-sub">
-      <div class="hero-role">AI Automation Engineer <em>@ AQVC</em></div>
+      <div class="hero-role">AI Automation Engineer <em class="grad-text">@ AQVC</em></div>
       <p class="hero-note">Professionally lazy. I don't do tasks — I build the thing that does the task, then supervise. Loosely. This page even comes with a butler.</p>
     </div>
     <div class="scroll-cue">
@@ -976,7 +1012,7 @@ setTimeout(function () {
   <section id="work" data-stage="1">
     <div class="act-label reveal">Act I — The Day Job</div>
     <div class="work-grid">
-      <h2 class="work-statement reveal">Venture capital runs on documents, data and grunt work. I was far too lazy to do the grunt work — so I taught the <span class="x">machines</span> to.</h2>
+      <h2 class="work-statement reveal">Venture capital runs on documents, data and grunt work. I was far too lazy to do the grunt work — so I taught the <span class="x grad-text">machines</span> to.</h2>
       <div class="work-copy reveal d2">
         <p>AQVC is a Berlin-based, tech-enabled asset manager — a VC fund-of-funds that screens thousands of venture funds to back the best of them.</p>
         <p>That volume doesn't scale with headcount. It scales with <strong>automation</strong>: LLM pipelines, document intelligence, data enrichment and internal tooling that compress weeks of analyst work into minutes.</p>
@@ -1203,7 +1239,7 @@ setTimeout(function () {
   <!-- ════════ OUTRO · SILENCE ════════ -->
   <section id="outro" data-stage="6">
     <div class="outro-line reveal">entropy released · system cooling · human still idle</div>
-    <h2 class="outro-title reveal d1">Maximum output. Minimum me. Now imagine that pointed at <em>your</em> busywork.</h2>
+    <h2 class="outro-title reveal d1">Maximum output. Minimum me. Now imagine that pointed at <em class="grad-text">your</em> busywork.</h2>
     <p class="outro-line reveal d2" style="text-transform: none; letter-spacing: 0.06em;">replying to email is one of the few things I haven't automated. yet.</p>
     <div class="outro-links reveal d2">
       <a class="btn" href="https://github.com/TarikTopalovic" target="_blank" rel="noopener">GitHub ↗</a>
@@ -1333,6 +1369,8 @@ setTimeout(function () {
   var particles = [];
   var MAX_P = isCoarse ? 70 : 150;
   var ringPhase = 0;
+  var meteors = [];
+  var bursts = [];
 
   function resize() {
     W = window.innerWidth; H = window.innerHeight;
@@ -1432,6 +1470,46 @@ setTimeout(function () {
       }
     }
 
+    // shooting stars across the arrival universe
+    if (currentStage === 0 && Math.random() < 0.012 && meteors.length < 3) {
+      meteors.push({
+        x: W * (0.3 + Math.random() * 0.7),
+        y: H * Math.random() * 0.35,
+        vx: -(7 + Math.random() * 5),
+        vy: 2.5 + Math.random() * 2,
+        life: 1
+      });
+    }
+    for (var mi = meteors.length - 1; mi >= 0; mi--) {
+      var mt = meteors[mi];
+      mt.x += mt.vx; mt.y += mt.vy; mt.life -= 0.016;
+      if (mt.life <= 0 || mt.x < -60) { meteors.splice(mi, 1); continue; }
+      var tail = ctx.createLinearGradient(mt.x, mt.y, mt.x - mt.vx * 9, mt.y - mt.vy * 9);
+      tail.addColorStop(0, 'rgba(200,255,0,' + (0.85 * mt.life).toFixed(3) + ')');
+      tail.addColorStop(1, 'rgba(255,46,166,0)');
+      ctx.strokeStyle = tail;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(mt.x, mt.y);
+      ctx.lineTo(mt.x - mt.vx * 9, mt.y - mt.vy * 9);
+      ctx.stroke();
+    }
+
+    // click bursts — every click detonates
+    for (var bi = bursts.length - 1; bi >= 0; bi--) {
+      var bp = bursts[bi];
+      bp.x += bp.vx; bp.y += bp.vy;
+      bp.vx *= 0.95; bp.vy = bp.vy * 0.95 + 0.06;
+      bp.life -= 0.022;
+      if (bp.life <= 0) { bursts.splice(bi, 1); continue; }
+      ctx.globalAlpha = bp.life;
+      ctx.fillStyle = bp.col;
+      ctx.beginPath();
+      ctx.arc(bp.x, bp.y, bp.r * bp.life, 0, 6.2832);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
     // flip regime: warp tunnel — falling between universes
     if (currentStage === 3) {
       ringPhase += 1.4 + chaos * 2.2;
@@ -1505,6 +1583,36 @@ setTimeout(function () {
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
+
+  /* ================= click detonations ================= */
+  window.addEventListener('click', function (e) {
+    if (reduceMotion || e.target.closest('a, button')) return;
+    var n = Math.round(22 + chaos * 38);
+    for (var i = 0; i < n; i++) {
+      var ang = Math.random() * 6.2832;
+      var v = 1.5 + Math.random() * (3.5 + chaos * 4);
+      bursts.push({
+        x: e.clientX, y: e.clientY,
+        vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
+        r: 1.5 + Math.random() * 2.5,
+        life: 1,
+        col: PALETTE_DARK[Math.floor(Math.random() * PALETTE_DARK.length)]
+      });
+    }
+    if (bursts.length > 400) bursts.splice(0, bursts.length - 400);
+  });
+
+  /* ================= stage-change flash ================= */
+  var flashEl = document.getElementById('flash');
+  var flashTimer = null;
+  stageHooks.push(function () {
+    if (reduceMotion || !introFlashArmed) return;
+    flashEl.classList.add('on');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { flashEl.classList.remove('on'); }, 90);
+  });
+  var introFlashArmed = false;
+  setTimeout(function () { introFlashArmed = true; }, 2500);
 
   /* ================= reveals ================= */
   var io = new IntersectionObserver(function (entries) {
