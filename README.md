@@ -11,6 +11,6 @@ One HTML file, zero frameworks. Inside it:
 - Two WebGL fragment shaders: a plasma accretion sun and a volumetric wormhole
 - A scroll-driven entropy engine: the universe shifts hue and gets wilder the deeper you go
 - Particle field, electric sparks, click detonations, magnetic typography
-- The Master Plan: retire at 23, let Jarvis run everything
+- The Master Plan: retire at 25, let Jarvis run everything
 
 Built once. Runs forever. Human effort: 0.00.

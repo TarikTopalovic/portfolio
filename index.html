@@ -6,7 +6,7 @@
 <title>Tarik Topalovic — AI Automation Engineer</title>
 <meta name="description" content="Tarik Topalovic — AI Automation Engineer at AQVC. Tariq means 'the pulsing star'. This is his pulsar: LLM pipelines, automation builds, and a butler named T.A.R.I.K."/>
 <meta property="og:title" content="Tarik Topalovic — AI Automation Engineer"/>
-<meta property="og:description" content="Tariq means 'the pulsing star'. Enter the pulsar: automation builds, a voiced AI butler, and the plan to retire at 23."/>
+<meta property="og:description" content="Tariq means 'the pulsing star'. Enter the pulsar: automation builds, a voiced AI butler, and the plan to retire at 25."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://tariktopalovic.github.io/portfolio/"/>
 <meta name="twitter:card" content="summary"/>
@@ -27,15 +27,15 @@
   --paper: #f1ede2;
   --paper-warm: #ece5d3;
   --ink: #161412;
-  --void: #07060a;
+  --void: #04060f;
   --bone: #efeae0;
   --signal: #ff4d00;      /* act I–III accent */
-  --acid: #b026ff;        /* dark-zone accent */
-  --cyan: #00e5ff;
-  --magenta: #ff2ea6;
-  --bg: #0c0118;
+  --acid: #00d4ff;        /* dark-zone accent */
+  --cyan: #4d7cff;
+  --magenta: #9d4dff;
+  --bg: #02040f;
   --fg: var(--bone);
-  --line: rgba(176, 38, 255, 0.18);
+  --line: rgba(0, 212, 255, 0.18);
   --accent: var(--acid);
   --font-display: 'Clash Display', 'Satoshi', sans-serif;
   --font-body: 'Satoshi', sans-serif;
@@ -44,9 +44,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; scrollbar-color: #b026ff #0a0112; }
+html { scroll-behavior: smooth; scrollbar-color: #00d4ff #02040d; }
 ::-webkit-scrollbar { width: 9px; }
-::-webkit-scrollbar-track { background: #0a0112; }
+::-webkit-scrollbar-track { background: #02040d; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--acid), var(--magenta), var(--cyan));
   border-radius: 0;
@@ -67,7 +67,7 @@ body {
   body { cursor: auto; }
 }
 
-::selection { background: #b026ff; color: #07060a; } /* static fallback (Firefox: no vars in ::selection) */
+::selection { background: #00d4ff; color: #020610; } /* static fallback (Firefox: no vars in ::selection) */
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -81,12 +81,12 @@ body {
 
 /* ---- stage palettes: body gets .stage-N from scroll position ----
    No white anywhere. The universe just keeps shifting hue. */
-body.stage-0 { --bg: #0c0118; --fg: var(--bone); --line: rgba(176,38,255,0.18); --accent: var(--acid); }
-body.stage-1 { --bg: #040812; --fg: var(--bone); --line: rgba(0,229,255,0.18); --accent: var(--cyan); }
-body.stage-2 { --bg: #0c0310; --fg: var(--bone); --line: rgba(255,46,166,0.2); --accent: var(--magenta); }
+body.stage-0 { --bg: #02040f; --fg: var(--bone); --line: rgba(0,212,255,0.18); --accent: var(--acid); }
+body.stage-1 { --bg: #030b18; --fg: var(--bone); --line: rgba(77,124,255,0.18); --accent: var(--cyan); }
+body.stage-2 { --bg: #060418; --fg: var(--bone); --line: rgba(157,77,255,0.2); --accent: var(--magenta); }
 body.stage-3, body.stage-4 { --bg: var(--void); --fg: var(--bone); --line: rgba(239,234,224,0.14); --accent: var(--acid); }
-body.stage-5 { --bg: #040308; --fg: var(--bone); --line: rgba(239,234,224,0.18); --accent: var(--magenta); }
-body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); --accent: var(--acid); }
+body.stage-5 { --bg: #02040a; --fg: var(--bone); --line: rgba(239,234,224,0.18); --accent: var(--acid); }
+body.stage-6 { --bg: #010204; --fg: var(--bone); --line: rgba(239,234,224,0.1); --accent: var(--acid); }
 
 /* ============ fixed layers ============ */
 #field {
@@ -100,13 +100,13 @@ body.stage-6 { --bg: #020203; --fg: var(--bone); --line: rgba(239,234,224,0.1); 
 /* custom cursor — grows + heats up with chaos */
 #cursor {
   position: fixed; top: 0; left: 0;
-  z-index: 70;
+  z-index: 120;
   width: 12px; height: 12px;
   margin: -6px 0 0 -6px;
   border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 0 1.5px rgba(2, 4, 15, 0.85), 0 0 10px 1px rgba(0, 212, 255, 0.5);
   pointer-events: none;
-  mix-blend-mode: difference;
   transform: translate(-100px, -100px);
   transition: width 0.25s, height 0.25s, margin 0.25s;
 }
@@ -216,11 +216,11 @@ section { position: relative; padding: 0 6vw; }
   width: clamp(220px, 30vw, 460px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(239,234,224,0.16) 0%, rgba(176,38,255,0.1) 22%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(239,234,224,0.16) 0%, rgba(0,212,255,0.1) 22%, transparent 60%);
   box-shadow:
-    0 0 90px 14px rgba(176, 38, 255, 0.35),
-    0 0 240px 60px rgba(0, 229, 255, 0.14),
-    0 0 380px 110px rgba(255, 46, 166, 0.07);
+    0 0 90px 14px rgba(0, 212, 255, 0.35),
+    0 0 240px 60px rgba(77, 124, 255, 0.14),
+    0 0 380px 110px rgba(157, 77, 255, 0.07);
   animation: breathe 2.4s ease-in-out infinite; /* a pulsar pulses */
   will-change: transform;
 }
@@ -236,13 +236,13 @@ section { position: relative; padding: 0 6vw; }
   position: absolute;
   inset: 30%;
   border-radius: 50%;
-  border: 1px solid rgba(176,38,255,0.7);
+  border: 1px solid rgba(0,212,255,0.7);
   opacity: 0;
   animation: pulse-out 3.6s ease-out infinite;
   pointer-events: none;
 }
-.pulse-ring.p2 { animation-delay: 1.2s; border-color: rgba(0,229,255,0.6); }
-.pulse-ring.p3 { animation-delay: 2.4s; border-color: rgba(255,46,166,0.55); }
+.pulse-ring.p2 { animation-delay: 1.2s; border-color: rgba(77,124,255,0.6); }
+.pulse-ring.p3 { animation-delay: 2.4s; border-color: rgba(157,77,255,0.55); }
 @keyframes pulse-out {
   0% { transform: scale(0.4); opacity: 0.8; }
   100% { transform: scale(2.6); opacity: 0; }
@@ -278,12 +278,12 @@ section { position: relative; padding: 0 6vw; }
 .orbit i {
   position: absolute;
   top: 50%; left: 50%;
-  border: 1px solid rgba(0,229,255,0.3);
+  border: 1px solid rgba(77,124,255,0.3);
   border-radius: 50%;
   transform-style: preserve-3d;
 }
 .orbit i:nth-child(1) { width: clamp(300px, 42vw, 640px); height: clamp(300px, 42vw, 640px); margin: calc(clamp(300px, 42vw, 640px) / -2) 0 0 calc(clamp(300px, 42vw, 640px) / -2); animation: orbit-a 26s linear infinite; }
-.orbit i:nth-child(2) { width: clamp(380px, 54vw, 820px); height: clamp(380px, 54vw, 820px); margin: calc(clamp(380px, 54vw, 820px) / -2) 0 0 calc(clamp(380px, 54vw, 820px) / -2); border-style: dashed; border-color: rgba(255,46,166,0.35); animation: orbit-b 40s linear infinite reverse; }
+.orbit i:nth-child(2) { width: clamp(380px, 54vw, 820px); height: clamp(380px, 54vw, 820px); margin: calc(clamp(380px, 54vw, 820px) / -2) 0 0 calc(clamp(380px, 54vw, 820px) / -2); border-style: dashed; border-color: rgba(157,77,255,0.35); animation: orbit-b 40s linear infinite reverse; }
 .orbit i:nth-child(1)::after {
   content: '';
   position: absolute;
@@ -291,7 +291,7 @@ section { position: relative; padding: 0 6vw; }
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--acid);
-  box-shadow: 0 0 12px 2px rgba(176,38,255,0.8);
+  box-shadow: 0 0 12px 2px rgba(0,212,255,0.8);
 }
 @keyframes orbit-a { from { transform: rotateX(64deg) rotateZ(0); } to { transform: rotateX(64deg) rotateZ(360deg); } }
 @keyframes orbit-b { from { transform: rotateX(70deg) rotateZ(0); } to { transform: rotateX(70deg) rotateZ(360deg); } }
@@ -304,8 +304,8 @@ section { position: relative; padding: 0 6vw; }
   bottom: -2vh;
   height: 34vh;
   background-image:
-    linear-gradient(to right, rgba(176,38,255,0.16) 1px, transparent 1px),
-    linear-gradient(to top, rgba(0,229,255,0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,212,255,0.16) 1px, transparent 1px),
+    linear-gradient(to top, rgba(77,124,255,0.12) 1px, transparent 1px);
   background-size: 56px 44px;
   transform: perspective(420px) rotateX(58deg);
   transform-origin: bottom;
@@ -548,17 +548,23 @@ section { position: relative; padding: 0 6vw; }
 .btn:hover { color: var(--bg); border-color: var(--accent); }
 .btn:hover::before { transform: translateY(0); }
 
-/* ============ THE FLIP ============ */
+/* ============ THE FLIP — a scroll-driven dive into the star ============ */
 #flip {
-  min-height: 70svh;
+  min-height: 280svh;
+  padding: 0;
+}
+.flip-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-top: 14vh;
-  padding-bottom: 14vh;
+  overflow: hidden;
+  padding: 0 6vw;
 }
-.flip-inner { max-width: 900px; }
+.flip-inner { max-width: 900px; text-shadow: 0 2px 28px rgba(2,4,15,0.95), 0 0 10px rgba(2,4,15,0.85); }
 .flip-warn {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -683,15 +689,15 @@ body.stage-5 .mega .gl::before {
   color: var(--cyan);
   transform: translate(-4px, -2px);
   clip-path: polygon(0 12%, 100% 12%, 100% 44%, 0 44%);
-  animation: glitch-a 2.1s steps(2) infinite;
-  opacity: 0.85;
+  animation: glitch-a 4.2s steps(2) infinite;
+  opacity: 0.55;
 }
 body.stage-5 .mega .gl::after {
-  color: var(--magenta);
+  color: #2563ff;
   transform: translate(4px, 2px);
   clip-path: polygon(0 58%, 100% 58%, 100% 88%, 0 88%);
-  animation: glitch-b 1.7s steps(2) infinite;
-  opacity: 0.85;
+  animation: glitch-b 3.6s steps(2) infinite;
+  opacity: 0.55;
 }
 @keyframes glitch-a {
   0%,88% { transform: translate(-4px,-2px); } 90% { transform: translate(8px,1px) skewX(4deg); }
@@ -715,7 +721,7 @@ body.stage-5 .mega .gl::after {
   width: 120%;
   padding: 10px 0;
   background: var(--accent);
-  color: #07060a;
+  color: #020610;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.2em;
@@ -728,7 +734,7 @@ body.stage-5 .mega .gl::after {
 body.stage-5 .diag-strip { opacity: 1; }
 .diag-strip .track { display: inline-block; animation: marquee var(--mspd, 16s) linear infinite; }
 .diag-strip .track span { margin: 0 2em; }
-.ds-1 { top: 14%; transform: rotate(-7deg); background: var(--magenta); }
+.ds-1 { top: 14%; transform: rotate(-7deg); background: #2563ff; }
 .ds-2 { bottom: 18%; transform: rotate(5deg); background: var(--acid); animation-direction: reverse; }
 .ds-2 .track { animation-direction: reverse; }
 .ds-3 { top: 48%; transform: rotate(-2deg); background: var(--cyan); --mspd: 11s; }
@@ -772,10 +778,10 @@ body.stage-5 .diag-strip { opacity: 1; }
 }
 
 /* screen shake at max chaos */
-body.stage-5 main { animation: tremor 0.18s infinite; }
+body.stage-5 main { animation: tremor 0.38s infinite; }
 @keyframes tremor {
-  0% { transform: translate(0,0); } 25% { transform: translate(0.7px,-0.6px); }
-  50% { transform: translate(-0.6px,0.5px); } 75% { transform: translate(0.5px,0.7px); }
+  0% { transform: translate(0,0); } 25% { transform: translate(0.4px,-0.3px); }
+  50% { transform: translate(-0.3px,0.3px); } 75% { transform: translate(0.3px,0.4px); }
   100% { transform: translate(0,0); }
 }
 
@@ -783,7 +789,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 #boot {
   position: fixed; inset: 0;
   z-index: 100;
-  background: #0c0118;
+  background: #02040f;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono);
   font-size: 13px;
@@ -817,7 +823,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   width: 10px; height: 10px;
   border-radius: 50%;
   background: var(--bone);
-  box-shadow: 0 0 14px 4px rgba(176,38,255,0.85), 0 0 34px 12px rgba(0,229,255,0.3);
+  box-shadow: 0 0 14px 4px rgba(0,212,255,0.85), 0 0 34px 12px rgba(77,124,255,0.3);
   animation: pulse 1.1s ease-in-out infinite;
   flex: none;
 }
@@ -843,7 +849,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 .bl .tag.dim { color: var(--bone); opacity: 0.55; }
 .boot-bar {
   height: 5px;
-  border: 1px solid rgba(176,38,255,0.3);
+  border: 1px solid rgba(0,212,255,0.3);
   margin: 14px 0 12px;
 }
 .boot-bar i {
@@ -868,7 +874,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   position: relative;
   transition: background 0.3s, color 0.3s;
 }
-#board-btn:hover { background: var(--acid); color: #0c0118; }
+#board-btn:hover { background: var(--acid); color: #02040f; }
 #board-btn::after {
   content: '';
   position: absolute;
@@ -897,9 +903,9 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   border-radius: 50%;
   background: var(--bone);
   box-shadow:
-    0 0 30px 8px rgba(176, 38, 255, 0.9),
-    0 0 90px 34px rgba(0, 229, 255, 0.35),
-    0 0 160px 70px rgba(255, 46, 166, 0.15);
+    0 0 30px 8px rgba(0, 212, 255, 0.9),
+    0 0 90px 34px rgba(77, 124, 255, 0.35),
+    0 0 160px 70px rgba(157, 77, 255, 0.15);
   animation: ign 2.2s cubic-bezier(0.7, 0, 0.3, 1) both;
   pointer-events: none;
 }
@@ -917,8 +923,8 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   margin: -120vmax 0 0 -120vmax;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
-    transparent 0deg, rgba(0,229,255,0.4) 5deg, transparent 13deg,
-    transparent 180deg, rgba(176,38,255,0.4) 185deg, transparent 193deg);
+    transparent 0deg, rgba(77,124,255,0.4) 5deg, transparent 13deg,
+    transparent 180deg, rgba(0,212,255,0.4) 185deg, transparent 193deg);
   opacity: 0;
   filter: blur(5px);
   animation: beam-sweep 2s ease-in-out 1s both;
@@ -1040,7 +1046,7 @@ body.preboot .scroll-cue { animation-play-state: paused; }
   text-transform: uppercase;
   color: var(--fg);
   border: 1px solid var(--line);
-  background: rgba(7, 6, 10, 0.82); /* fallback for browsers without color-mix */
+  background: rgba(4, 6, 15, 0.82); /* fallback for browsers without color-mix */
   background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: blur(8px);
   padding: 9px 16px;
@@ -1072,6 +1078,9 @@ body.touring #tour-hud { display: flex; }
   width: 100%;
   height: 100%;
   pointer-events: none;
+  opacity: 0.7;
+  mask-image: radial-gradient(ellipse 80% 72% at 50% 48%, black 50%, transparent 98%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 72% at 50% 48%, black 50%, transparent 98%);
 }
 .flip-inner { position: relative; z-index: 1; }
 
@@ -1132,7 +1141,7 @@ body.touring #tour-hud { display: flex; }
   z-index: 55;
   width: min(340px, calc(100vw - 32px));
   border: 1px solid var(--line);
-  background: rgba(18, 14, 26, 0.92); /* fallback for browsers without color-mix */
+  background: rgba(8, 14, 28, 0.92); /* fallback for browsers without color-mix */
   background: color-mix(in srgb, var(--bg) 88%, var(--fg) 12%);
   backdrop-filter: blur(8px);
   font-family: var(--font-mono);
@@ -1216,7 +1225,7 @@ body.touring #tour-hud { display: flex; }
   overflow: hidden;
 }
 .mission::before {
-  content: 'RETIRE@23';
+  content: 'RETIRE@25';
   position: absolute;
   right: -1%;
   bottom: -18%;
@@ -1385,7 +1394,7 @@ setTimeout(function () {
     </div>
     <div class="hero-kicker reveal in">
       <span class="ok">● PULSAR SPINNING</span>
-      <span>MISSION: RETIRE AT 23</span>
+      <span>MISSION: RETIRE AT 25</span>
       <span>EFFORT: 0% (BY DESIGN)</span>
       <span id="hero-clock">--:--:--</span>
     </div>
@@ -1440,13 +1449,13 @@ setTimeout(function () {
 
     <div class="mission reveal hud-frame" id="mission">
       <div class="act-label">The Master Plan</div>
-      <h3 class="mission-title">Retire at <span class="grad-text">23</span>. Let Jarvis run everything.</h3>
-      <p class="mission-sub">Retirement doesn't mean stopping — it means the systems work so I don't have to. Pipelines earning the keep, a butler running operations, me supervising from a hammock. Every project on this page is a brick in that machine. This is not a joke. It is a roadmap.</p>
+      <h3 class="mission-title">Retire at <span class="grad-text">25</span>. Let Jarvis run everything.</h3>
+      <p class="mission-sub">The entire reason I became an AI engineer: build a Jarvis good enough to do my job, then let it. Pipelines earning the keep, a butler running operations, me supervising from a hammock. Every project on this page is a brick in that machine. This is not a joke. It is a roadmap.</p>
       <div class="phases">
         <div class="phase done"><span class="ph-n">PHASE 01</span><span class="ph-t">Learn to make machines work for me</span><span class="ph-s">✓ complete</span></div>
         <div class="phase live"><span class="ph-n">PHASE 02</span><span class="ph-t">Automate the day job</span><span class="ph-s">● in progress @ AQVC</span></div>
         <div class="phase live"><span class="ph-n">PHASE 03</span><span class="ph-t">Assemble Jarvis, piece by piece</span><span class="ph-s">● T.A.R.I.K. is the prototype</span></div>
-        <div class="phase"><span class="ph-n">PHASE 04</span><span class="ph-t">Retire. Age 23. Hammock.</span><span class="ph-s">◌ scheduled</span></div>
+        <div class="phase"><span class="ph-n">PHASE 04</span><span class="ph-t">Retire. Age 25. Hammock.</span><span class="ph-s">◌ scheduled</span></div>
       </div>
       <div class="jarvis-bar">
         <div class="lab"><span>JARVIS BUILD PROGRESS</span><span>61%</span></div>
@@ -1589,11 +1598,13 @@ setTimeout(function () {
 
   <!-- ════════ THE FLIP ════════ -->
   <section id="flip" data-stage="3">
-    <canvas id="warp-gl" aria-hidden="true" role="presentation"></canvas>
-    <div class="flip-inner">
-      <div class="flip-warn reveal">⚠ pulse threshold exceeded — magnetosphere breached</div>
-      <h2 class="flip-title reveal d1" data-scramble>Entering the pulsar</h2>
-      <p class="flip-sub reveal d2">Past this point you are inside the star. The machine lives here.</p>
+    <div class="flip-sticky">
+      <canvas id="warp-gl" aria-hidden="true" role="presentation"></canvas>
+      <div class="flip-inner" id="flip-inner">
+        <div class="flip-warn reveal">⚠ magnetosphere breached — keep scrolling to dive</div>
+        <h2 class="flip-title reveal d1" data-scramble>Entering the pulsar</h2>
+        <p class="flip-sub reveal d2">Your scroll is the throttle. Fly into it.</p>
+      </div>
     </div>
   </section>
 
@@ -1814,7 +1825,7 @@ setTimeout(function () {
       });
     }
     pts.push({ x: x2, y: y2 });
-    sparks.push({ pts: pts, life: 1, col: Math.random() < 0.55 ? '0,229,255' : '176,38,255' });
+    sparks.push({ pts: pts, life: 1, col: Math.random() < 0.55 ? '77,124,255' : '0,212,255' });
   }
 
   function drawSparks() {
@@ -1905,9 +1916,9 @@ setTimeout(function () {
         ctx.translate(pulsar.x, pulsar.y);
         ctx.rotate(ang);
         var grad = ctx.createLinearGradient(0, 0, L, 0);
-        grad.addColorStop(0, 'rgba(176,38,255,' + (0.34 + chaos * 0.2).toFixed(3) + ')');
-        grad.addColorStop(0.25, 'rgba(0,229,255,' + (0.13 + chaos * 0.1).toFixed(3) + ')');
-        grad.addColorStop(1, 'rgba(255,46,166,0)');
+        grad.addColorStop(0, 'rgba(0,212,255,' + (0.34 + chaos * 0.2).toFixed(3) + ')');
+        grad.addColorStop(0.25, 'rgba(77,124,255,' + (0.13 + chaos * 0.1).toFixed(3) + ')');
+        grad.addColorStop(1, 'rgba(157,77,255,0)');
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.moveTo(0, -pulsar.r * 0.32);
@@ -1924,8 +1935,8 @@ setTimeout(function () {
     if (!glOwnsStar) {
       var core = ctx.createRadialGradient(pulsar.x, pulsar.y, 0, pulsar.x, pulsar.y, pulsar.r * 3);
       core.addColorStop(0, 'rgba(239,234,224,0.95)');
-      core.addColorStop(0.25, 'rgba(176,38,255,0.55)');
-      core.addColorStop(1, 'rgba(176,38,255,0)');
+      core.addColorStop(0.25, 'rgba(0,212,255,0.55)');
+      core.addColorStop(1, 'rgba(0,212,255,0)');
       ctx.fillStyle = core;
       ctx.beginPath();
       ctx.arc(pulsar.x, pulsar.y, pulsar.r * 3, 0, 6.2832);
@@ -1943,7 +1954,7 @@ setTimeout(function () {
         pw.r += 3.2 + chaos * 8;
         pw.a *= 0.986;
         if (pw.a < 0.015 || pw.r > L) { pulseWaves.splice(w, 1); continue; }
-        ctx.strokeStyle = 'rgba(176,38,255,' + pw.a.toFixed(3) + ')';
+        ctx.strokeStyle = 'rgba(0,212,255,' + pw.a.toFixed(3) + ')';
         ctx.lineWidth = 1.4;
         ctx.beginPath();
         ctx.arc(pulsar.x, pulsar.y, pw.r, 0, 6.2832);
@@ -1952,9 +1963,9 @@ setTimeout(function () {
     }
   }
 
-  var PALETTE_DARK = ['#b026ff', '#00e5ff', '#ff2ea6', '#3b82ff'];
+  var PALETTE_DARK = ['#00d4ff', '#4d7cff', '#9d4dff', '#3b82ff'];
   // particle hue follows the stage accent — the dust changes universe with you
-  var STAGE_RGB = ['176,38,255', '0,229,255', '255,46,166', '176,38,255', '176,38,255', '176,38,255', '176,38,255'];
+  var STAGE_RGB = ['0,212,255', '77,124,255', '157,77,255', '0,212,255', '0,212,255', '0,212,255', '0,212,255'];
 
   function fieldFrame() {
     ctx.clearRect(0, 0, W, H);
@@ -1964,7 +1975,7 @@ setTimeout(function () {
     if (reduceMotion) return;
 
     var active = Math.floor(MAX_P * (0.18 + chaos * 0.82));
-    var rgb = STAGE_RGB[Math.max(0, currentStage)] || '176,38,255';
+    var rgb = STAGE_RGB[Math.max(0, currentStage)] || '0,212,255';
     var speed = 0.3 + chaos * 2.2 + Math.min(3, scrollVel * 0.04);
     var linkDist = chaos > 0.55 ? 110 + chaos * 40 : 0;
 
@@ -2047,8 +2058,8 @@ setTimeout(function () {
       mt.x += mt.vx; mt.y += mt.vy; mt.life -= 0.016;
       if (mt.life <= 0 || mt.x < -60) { meteors.splice(mi, 1); continue; }
       var tail = ctx.createLinearGradient(mt.x, mt.y, mt.x - mt.vx * 9, mt.y - mt.vy * 9);
-      tail.addColorStop(0, 'rgba(176,38,255,' + (0.85 * mt.life).toFixed(3) + ')');
-      tail.addColorStop(1, 'rgba(255,46,166,0)');
+      tail.addColorStop(0, 'rgba(0,212,255,' + (0.85 * mt.life).toFixed(3) + ')');
+      tail.addColorStop(1, 'rgba(157,77,255,0)');
       ctx.strokeStyle = tail;
       ctx.lineWidth = 1.6;
       ctx.beginPath();
@@ -2073,7 +2084,7 @@ setTimeout(function () {
     }
 
     // ambient electricity: arcs crackle off particles as entropy climbs
-    if (!reduceMotion && chaos > 0.45 && Math.random() < 0.015 + chaos * 0.045) {
+    if (!reduceMotion && chaos > 0.45 && Math.random() < 0.008 + chaos * 0.022) {
       var ep = particles[Math.floor(Math.random() * active)];
       if (ep) spawnSpark(ep.x, ep.y);
     }
@@ -2125,23 +2136,30 @@ setTimeout(function () {
       '  float rr = length(d) + 0.0001;\n' +
       '  float a = atan(d.y, d.x);\n' +
       // the defining trait: it PULSES (smooth sinus, no hard strobe)
-      '  float pulse = 0.74 + 0.30 * pow(0.5 + 0.5 * sin(t * 4.4), 2.0);\n' +
-      // blinding core
-      '  float core = exp(-rr * 7.5) * 2.3 * pulse;\n' +
-      // twin lighthouse jets sweeping
-      '  float rot = t * 0.85;\n' +
-      '  float beam = pow(max(cos(a - rot), 0.0), 48.0) + pow(max(cos(a - rot - 3.14159), 0.0), 48.0);\n' +
-      '  beam *= exp(-rr * 0.5) * 1.5 * pulse;\n' +
-      // swirling nebula shell
-      '  float nb = fbm(vec2(a * 2.2 + rr * 1.4 - t * 0.1, rr * 3.0 + t * 0.06));\n' +
-      '  float neb = nb * exp(-rr * 0.85) * 0.55;\n' +
-      '  vec3 violet = vec3(0.69, 0.15, 1.0);\n' +
-      '  vec3 cyn = vec3(0.0, 0.9, 1.0);\n' +
-      '  vec3 mag = vec3(1.0, 0.18, 0.65);\n' +
-      '  vec3 bone = vec3(0.94, 0.92, 0.88);\n' +
-      '  vec3 col = bone * core + mix(cyn, violet, 0.5 + 0.5 * sin(a * 2.0)) * beam;\n' +
-      '  col += mix(violet, mag, nb) * neb;\n' +
-      '  float alpha = clamp(core + beam * 0.9 + neb, 0.0, 1.0);\n' +
+      '  float pulse = 0.82 + 0.18 * pow(0.5 + 0.5 * sin(t * 3.0), 2.0);\n' +
+      // blinding core with a hot azure rim
+      '  float core = exp(-rr * 8.5) * 2.6 * pulse;\n' +
+      '  float rim = smoothstep(0.2, 0.13, rr) * smoothstep(0.07, 0.12, rr) * 0.9;\n' +
+      // diffraction spikes — the astrophoto cross flare
+      '  float spike = (exp(-abs(d.y) * 30.0 - rr * 2.8) + exp(-abs(d.x) * 30.0 - rr * 2.8)) * 0.8 * pulse;\n' +
+      // twin lighthouse jets: a tight bright blade inside a soft wide cone
+      '  float rot = t * 0.7;\n' +
+      '  float ca = cos(a - rot), cb = cos(a - rot - 3.14159);\n' +
+      '  float blade = pow(max(ca, 0.0), 90.0) + pow(max(cb, 0.0), 90.0);\n' +
+      '  float cone = pow(max(ca, 0.0), 13.0) + pow(max(cb, 0.0), 13.0);\n' +
+      '  float beam = (blade * 1.6 + cone * 0.32) * exp(-rr * 0.45) * pulse;\n' +
+      // structured magnetosphere clouds
+      '  float nb = fbm(vec2(a * 2.6 + rr * 1.8 - t * 0.09, rr * 3.4 + t * 0.05));\n' +
+      '  float neb = pow(nb, 1.6) * exp(-rr * 0.8) * 0.65;\n' +
+      '  vec3 azure = vec3(0.0, 0.83, 1.0);\n' +
+      '  vec3 blue = vec3(0.30, 0.49, 1.0);\n' +
+      '  vec3 xray = vec3(0.62, 0.30, 1.0);\n' +
+      '  vec3 bone = vec3(0.96, 0.95, 0.92);\n' +
+      '  vec3 col = bone * (core + spike);\n' +
+      '  col += azure * rim;\n' +
+      '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 2.0)) * beam;\n' +
+      '  col += mix(blue, xray, nb) * neb;\n' +
+      '  float alpha = clamp(core + spike + rim + beam * 0.9 + neb, 0.0, 1.0);\n' +
       '  gl_FragColor = vec4(col, alpha);\n' +
       '}';
 
@@ -2221,6 +2239,7 @@ setTimeout(function () {
       'precision mediump float;\n' +
       'uniform float t;\n' +
       'uniform vec2 r;\n' +
+      'uniform float p;\n' +   // dive progress 0..1 — driven by YOUR scroll
       'float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n' +
       'float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);\n' +
       '  return mix(mix(h(i), h(i + vec2(1.0, 0.0)), f.x), mix(h(i + vec2(0.0, 1.0)), h(i + vec2(1.0, 1.0)), f.x), f.y); }\n' +
@@ -2229,33 +2248,36 @@ setTimeout(function () {
       '  return v; }\n' +
       'void main(){\n' +
       '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y;\n' +
-      '  float d = length(uv) + 0.0001;\n' +
+      // scroll = throttle: the star approaches as p rises
+      '  float zoom = mix(3.6, 0.62, p);\n' +
+      '  float d = length(uv) * zoom + 0.0001;\n' +
       '  float a = atan(uv.y, uv.x);\n' +
-      // you are falling INTO the pulsar, looking straight down its axis
-      '  float pulse = 0.7 + 0.3 * pow(0.5 + 0.5 * sin(t * 4.4), 2.0);\n' +
-      // the core grows as you approach — bright, alive
-      '  float core = exp(-d * 3.4) * 1.7 * pulse;\n' +
-      // twin jets head-on: rotating spokes of light
-      '  float rot = t * 0.85;\n' +
-      '  float beam = pow(max(cos(a - rot), 0.0), 20.0) + pow(max(cos(a - rot - 3.14159), 0.0), 20.0);\n' +
-      '  beam *= smoothstep(1.35, 0.12, d) * pulse * 0.85;\n' +
-      // pulse shells racing inward past you
-      '  float ring = pow(0.5 + 0.5 * sin((d * 8.0 + t * 2.2) * 3.1416), 7.0);\n' +
-      '  ring *= smoothstep(0.08, 0.4, d) * smoothstep(1.2, 0.5, d) * 0.55;\n' +
-      // magnetosphere clouds spiraling in
-      '  float nb = fbm(vec2(a * 2.4 + d * 1.6 - t * 0.12, d * 3.2 - t * 0.5));\n' +
-      '  float neb = nb * smoothstep(1.3, 0.2, d) * 0.4;\n' +
-      '  vec3 violet = vec3(0.69, 0.15, 1.0);\n' +
-      '  vec3 cyn = vec3(0.0, 0.85, 1.0);\n' +
-      '  vec3 mag = vec3(1.0, 0.2, 0.62);\n' +
-      '  vec3 bone = vec3(0.94, 0.92, 0.88);\n' +
+      '  float pulse = 0.82 + 0.18 * pow(0.5 + 0.5 * sin(t * 3.0), 2.0);\n' +
+      '  float core = exp(-d * 3.6) * (0.5 + p * 1.4) * pulse;\n' +
+      // jets widen and brighten as you close in
+      '  float rot = t * (0.45 + p * 0.8);\n' +
+      '  float ca = cos(a - rot), cb = cos(a - rot - 3.14159);\n' +
+      '  float wexp = mix(75.0, 13.0, p);\n' +
+      '  float beam = (pow(max(ca, 0.0), wexp) + pow(max(cb, 0.0), wexp)) * (0.22 + p * 0.8);\n' +
+      '  beam *= smoothstep(1.7, 0.1, d) * pulse;\n' +
+      // pulse shells race past faster the deeper you dive
+      '  float ring = pow(0.5 + 0.5 * sin((d * mix(6.0, 11.0, p) + t * (1.1 + p * 2.4)) * 3.1416), 6.0);\n' +
+      '  ring *= smoothstep(0.06, 0.35, d) * smoothstep(1.5, 0.4, d) * (0.1 + p * 0.28);\n' +
+      // magnetosphere thickens around you
+      '  float nb = fbm(vec2(a * 2.4 + d * 1.5 - t * 0.1, d * 3.0 - t * (0.18 + p * 0.5)));\n' +
+      '  float neb = pow(nb, 1.5) * smoothstep(1.6, 0.15, d) * (0.12 + p * 0.34);\n' +
+      '  vec3 azure = vec3(0.0, 0.83, 1.0);\n' +
+      '  vec3 blue = vec3(0.30, 0.49, 1.0);\n' +
+      '  vec3 xray = vec3(0.62, 0.30, 1.0);\n' +
+      '  vec3 bone = vec3(0.96, 0.95, 0.92);\n' +
       '  vec3 col = bone * core;\n' +
-      '  col += mix(cyn, violet, 0.5 + 0.5 * sin(a * 3.0 + t * 0.3)) * beam;\n' +
-      '  col += violet * ring * pulse;\n' +
-      '  col += mix(violet, mag, nb) * neb;\n' +
-      '  float alpha = clamp(core + beam + ring * 0.8 + neb, 0.0, 1.0);\n' +
-      '  alpha *= smoothstep(1.25, 0.5, d) + core * 0.4;\n' +
-      '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 1.0));\n' +
+      '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 3.0)) * beam;\n' +
+      '  col += azure * ring * pulse;\n' +
+      '  col += mix(blue, xray, nb) * neb;\n' +
+      '  col += bone * pow(p, 3.0) * 0.3;\n' +  // arrival glow, smooth ramp
+      '  float alpha = clamp((core + beam + ring + neb) * 0.9 + pow(p, 3.0) * 0.35, 0.0, 0.92);\n' +
+      '  alpha *= smoothstep(1.6, 0.45, d) + core * 0.5;\n' +
+      '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 0.92));\n' +
       '}';
 
     function sh(type, src) {
@@ -2280,6 +2302,7 @@ setTimeout(function () {
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     var uT = gl.getUniformLocation(prog, 't');
+    var uP = gl.getUniformLocation(prog, 'p');
     gl.uniform2f(gl.getUniformLocation(prog, 'r'), BW, BH);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -2295,6 +2318,7 @@ setTimeout(function () {
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.uniform1f(uT, (performance.now() - start) / 1000);
+        gl.uniform1f(uP, window.__flipProg || 0);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
       }
       requestAnimationFrame(draw);
@@ -2337,6 +2361,8 @@ setTimeout(function () {
   /* ================= main loop ================= */
   var mainEl = document.querySelector('main');
   var heroSection = document.getElementById('hero');
+  var flipEl = document.getElementById('flip');
+  var flipInner = document.getElementById('flip-inner');
   var skewCur = 0, lastLoopY = window.scrollY;
   function loop() {
     chaos += (chaosTarget - chaos) * 0.06;
@@ -2351,6 +2377,28 @@ setTimeout(function () {
       mainEl.style.transform = Math.abs(skewCur) > 0.01 ? 'skewY(' + skewCur.toFixed(3) + 'deg)' : '';
     } else if (mainEl.style.transform) {
       mainEl.style.transform = '';
+    }
+
+    // the dive: scroll progress through #flip drives the pulsar approach
+    if (flipEl) {
+      var fTop = flipEl.offsetTop;
+      var fRange = flipEl.offsetHeight - window.innerHeight;
+      var fp = fRange > 0 ? (window.scrollY - fTop) / fRange : 0;
+      fp = Math.max(0, Math.min(1, fp));
+      window.__flipProg = fp;
+      if (flipInner && !reduceMotion) {
+        if (fp > 0 && fp < 1) {
+          var tScale = 1 + fp * 1.7;
+          var tOp = fp < 0.45 ? 1 : Math.max(0, 1 - (fp - 0.45) / 0.35);
+          flipInner.style.transform = 'scale(' + tScale.toFixed(3) + ')';
+          flipInner.style.opacity = tOp.toFixed(3);
+          flipInner.style.filter = fp > 0.45 ? 'blur(' + ((fp - 0.45) * 14).toFixed(1) + 'px)' : '';
+        } else if (flipInner.style.opacity !== '') {
+          flipInner.style.transform = '';
+          flipInner.style.opacity = '';
+          flipInner.style.filter = '';
+        }
+      }
     }
 
     // hero exit: the arrival universe recedes as you leave it
@@ -2466,8 +2514,8 @@ setTimeout(function () {
       var els = document.querySelectorAll('[data-scramble]');
       var el = els[Math.floor(Math.random() * els.length)];
       var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0 && Math.random() < chaos * 0.7) scramble(el);
-    }, 2400);
+      if (rect.top < window.innerHeight && rect.bottom > 0 && Math.random() < chaos * 0.35) scramble(el);
+    }, 4800);
   }
 
   /* ================= card tilt ================= */
@@ -2610,7 +2658,7 @@ setTimeout(function () {
   tick();
   setInterval(tick, 1000);
 
-  var tags = ['ENTROPY 100% — HOLD ON', 'MAXIMUM OUTPUT — MINIMUM EFFORT', 'EVERY PARTICLE IS A SCRIPT', 'THE HUMAN IS AFK', 'THIS SECTION RUNS ITSELF', 'RETIREMENT ETA: AGE 23'];
+  var tags = ['ENTROPY 100% — HOLD ON', 'MAXIMUM OUTPUT — MINIMUM EFFORT', 'EVERY PARTICLE IS A SCRIPT', 'THE HUMAN IS AFK', 'THIS SECTION RUNS ITSELF', 'RETIREMENT ETA: AGE 25'];
   var ti = 0;
   setInterval(function () {
     if (currentStage === 5) {
@@ -2631,7 +2679,7 @@ setTimeout(function () {
   var STAGE_MSGS = [
     ['Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.',
      'Welcome to his universe. He is not here. He automated being here.',
-     'I am the prototype. The finished Jarvis ships before he turns 23 — that is the retirement plan.'],
+     'I am the prototype. The finished Jarvis ships before he turns 25 — that is the retirement plan.'],
     ["He calls this 'the day job'. I do the day. He provides the job title.",
      'He reads the reports my pipelines write. Sometimes. From the hammock.'],
     ['Fine — he did build these himself. I just keep them running while he naps.',
@@ -2651,7 +2699,7 @@ setTimeout(function () {
   var VOICE_FILES = {
     "Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.": "assets/voice/v01.ogg",
     "Welcome to his universe. He is not here. He automated being here.": "assets/voice/v02.ogg",
-    "I am the prototype. The finished Jarvis ships before he turns 23 — that is the retirement plan.": "assets/voice/v03.ogg",
+    "I am the prototype. The finished Jarvis ships before he turns 25 — that is the retirement plan.": "assets/voice/v03.ogg",
     "He calls this 'the day job'. I do the day. He provides the job title.": "assets/voice/v04.ogg",
     "He reads the reports my pipelines write. Sometimes. From the hammock.": "assets/voice/v05.ogg",
     "Fine — he did build these himself. I just keep them running while he naps.": "assets/voice/v06.ogg",
@@ -2663,7 +2711,7 @@ setTimeout(function () {
     "Tour complete. Total human effort expended: 0.00. You are welcome.": "assets/voice/v12.ogg",
     "Good evening. I am T.A.R.I.K. — Tarik built me to run this page. Allow me to show you what he is.": "assets/voice/v13.ogg",
     "The day job: AI Automation Engineer at AQVC, Berlin. Thousands of venture funds screened a year — his pipelines carry the load.": "assets/voice/v14.ogg",
-    "The master plan: retire at twenty-three with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.": "assets/voice/v15.ogg",
+    "The master plan: retire at twenty-five with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.": "assets/voice/v15.ogg",
     "Exhibit A: he chained four AI models on his own GPU to learn Japanese without subtitles. Lazy? Yes. Brilliant? Also yes. Keep going.": "assets/voice/v16.ogg",
     "Past this point: my territory. Mind the event horizon.": "assets/voice/v17.ogg",
     "Live telemetry. Cron jobs on the night shift. He sleeps; nothing else here does.": "assets/voice/v18.ogg",
@@ -2747,7 +2795,7 @@ setTimeout(function () {
     { sel: '#hero', text: 'Good evening. I am T.A.R.I.K. — Tarik built me to run this page. Allow me to show you what he is.' },
     { sel: '#work', text: 'The day job: AI Automation Engineer at AQVC, Berlin. Thousands of venture funds screened a year — his pipelines carry the load.' },
     { sel: '.manifesto', text: 'His laws. Anything done twice gets a script. Any script run twice gets a pipeline. Effort is a bug, not a feature.' },
-    { sel: '#mission', text: 'The master plan: retire at twenty-three with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.' },
+    { sel: '#mission', text: 'The master plan: retire at twenty-five with a finished Jarvis running everything. I am phase three. He is alarmingly on schedule.' },
     { sel: '#builds', text: 'Now — the evidence. Five machines. Five excuses to never work again.' },
     { sel: '.build[data-num="01"]', text: 'Build one: Hayaku. Four AI models chained on his own GPU — transcription, speaker detection, grammar, translation. He built an entire studio because subtitles annoyed him.' },
     { sel: '.build[data-num="02"]', text: 'Build two: UniPlan. The university published unreadable PDFs. He taught a parser to read them and an algorithm to assemble the perfect schedule. One click, straight to your calendar.' },
@@ -3049,8 +3097,8 @@ setTimeout(function () {
   document.addEventListener('visibilitychange', function () {
     document.title = document.hidden ? '⚙ still running. unlike you.' : realTitle;
   });
-  console.log('%cTOPALOVIC.SYS v3.0', 'color:#b026ff; font-size:22px; font-family:monospace; font-weight:bold;');
-  console.log('%cYou opened the console. Excellent instincts — that is exactly the kind of person he wants to hear from.\n→ github.com/TarikTopalovic', 'color:#ff2ea6; font-family:monospace;');
+  console.log('%cTOPALOVIC.SYS v3.0', 'color:#00d4ff; font-size:22px; font-family:monospace; font-weight:bold;');
+  console.log('%cYou opened the console. Excellent instincts — that is exactly the kind of person he wants to hear from.\n→ github.com/TarikTopalovic', 'color:#9d4dff; font-family:monospace;');
 
   onScroll();
 })();
