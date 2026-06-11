@@ -221,7 +221,7 @@ section { position: relative; padding: 0 6vw; }
     0 0 90px 14px rgba(0, 212, 255, 0.35),
     0 0 240px 60px rgba(77, 124, 255, 0.14),
     0 0 380px 110px rgba(157, 77, 255, 0.07);
-  animation: breathe 2.4s ease-in-out infinite; /* a pulsar pulses */
+  /* no breathing — steady starlight */
   will-change: transform;
 }
 .eclipse::after {
@@ -236,13 +236,13 @@ section { position: relative; padding: 0 6vw; }
   position: absolute;
   inset: 30%;
   border-radius: 50%;
-  border: 1px solid rgba(0,212,255,0.7);
+  border: 1px solid rgba(0,212,255,0.42);
   opacity: 0;
   animation: pulse-out 3.6s ease-out infinite;
   pointer-events: none;
 }
-.pulse-ring.p2 { animation-delay: 1.2s; border-color: rgba(77,124,255,0.6); }
-.pulse-ring.p3 { animation-delay: 2.4s; border-color: rgba(157,77,255,0.55); }
+.pulse-ring.p2 { animation-delay: 1.2s; border-color: rgba(77,124,255,0.38); }
+.pulse-ring.p3 { animation-delay: 2.4s; border-color: rgba(157,77,255,0.34); }
 @keyframes pulse-out {
   0% { transform: scale(0.4); opacity: 0.8; }
   100% { transform: scale(2.6); opacity: 0; }
@@ -411,6 +411,10 @@ section { position: relative; padding: 0 6vw; }
   letter-spacing: 0.06em;
   user-select: none;
 }
+.strip {
+  mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+}
 .strip .track { display: inline-block; animation: marquee var(--mspd, 28s) linear infinite; }
 .strip .track span { margin: 0 1.6em; }
 .strip .track .hot { color: var(--accent); transition: color 0.9s; }
@@ -472,7 +476,7 @@ section { position: relative; padding: 0 6vw; }
   margin-bottom: 6vh;
   background: color-mix(in srgb, var(--bg) 92%, var(--fg) 8%);
   transform-style: preserve-3d;
-  transition: border-color 0.4s, box-shadow 0.4s, background-color 0.9s;
+  transition: border-color 0.4s, box-shadow 0.4s, background-color 0.9s, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 .build:hover { border-color: var(--accent); box-shadow: 0 30px 80px -40px color-mix(in srgb, var(--accent) 60%, transparent); }
@@ -966,7 +970,7 @@ body.stage-5 main { animation: tremor 0.38s infinite; }
 .wl {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.55em) scale(1.45);
+  transform: translateY(0.55em) scale(1.45) rotate(4deg);
   filter: blur(10px);
   animation: wl-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(1.35s + var(--i) * 0.045s) both;
 }
@@ -2214,14 +2218,14 @@ setTimeout(function () {
       '  float rr = length(d) + 0.0001;\n' +
       '  float a = atan(d.y, d.x);\n' +
       // the defining trait: it PULSES (smooth sinus, no hard strobe)
-      '  float pulse = 0.82 + 0.18 * pow(0.5 + 0.5 * sin(t * 3.0), 2.0);\n' +
+      '  float pulse = 1.0;\n' +   // steady — a lighthouse, not a strobe
       // blinding core with a hot azure rim
-      '  float core = exp(-rr * 8.5) * 2.6 * pulse;\n' +
-      '  float rim = smoothstep(0.2, 0.13, rr) * smoothstep(0.07, 0.12, rr) * 0.9;\n' +
+      '  float core = exp(-rr * 8.5) * 2.2;\n' +
+      '  float rim = smoothstep(0.2, 0.13, rr) * smoothstep(0.07, 0.12, rr) * 0.7;\n' +
       // diffraction spikes — the astrophoto cross flare
-      '  float spike = (exp(-abs(d.y) * 30.0 - rr * 2.8) + exp(-abs(d.x) * 30.0 - rr * 2.8)) * 0.8 * pulse;\n' +
+      '  float spike = (exp(-abs(d.y) * 30.0 - rr * 2.8) + exp(-abs(d.x) * 30.0 - rr * 2.8)) * 0.55;\n' +
       // twin lighthouse jets: a tight bright blade inside a soft wide cone
-      '  float rot = t * 0.7;\n' +
+      '  float rot = t * 0.26;\n' +
       '  float ca = cos(a - rot), cb = cos(a - rot - 3.14159);\n' +
       '  float blade = pow(max(ca, 0.0), 90.0) + pow(max(cb, 0.0), 90.0);\n' +
       '  float cone = pow(max(ca, 0.0), 13.0) + pow(max(cb, 0.0), 13.0);\n' +
@@ -2709,10 +2713,15 @@ setTimeout(function () {
     var max = pairs[0] ? pairs[0][1] : 1;
     document.getElementById('tele-langs').innerHTML = pairs.map(function (p) {
       return '<div class="langbar"><div class="lab"><span>' + esc(p[0]) + '</span><span>' + p[1].toFixed(1) + '%</span></div>' +
-        '<div class="bar"><i style="transform: scaleX(' + (p[1] / max) + ')"></i></div></div>';
+        '<div class="bar"><i data-w="' + (p[1] / max).toFixed(4) + '"></i></div></div>';
     }).join('');
-    document.querySelectorAll('.langbar .bar i').forEach(function (el) {
-      el.style.transition = 'none';
+    // bars grow in on the next frame so the CSS transition actually plays
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.querySelectorAll('#tele-langs .bar i').forEach(function (el) {
+          el.style.transform = 'scaleX(' + el.getAttribute('data-w') + ')';
+        });
+      });
     });
   }
   function renderStats(o) {
@@ -2931,7 +2940,7 @@ setTimeout(function () {
     (function g() {
       if (!auto.on) return;
       var p = Math.min(1, (performance.now() - t0) / ms);
-      var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      var e = p < 0.5 ? 16 * p * p * p * p * p : 1 - Math.pow(-2 * p + 2, 5) / 2;
       window.scrollTo(0, y0 + (y - y0) * e);
       if (p < 1) auto.raf = requestAnimationFrame(g);
       else if (done) done();
