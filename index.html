@@ -215,6 +215,13 @@ section { position: relative; padding: 0 6vw; }
   border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, rgba(200,255,0,0.08), transparent 60%);
 }
+#sun-gl {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 @keyframes breathe { 50% { transform: scale(1.025); } }
 @keyframes corona { to { transform: rotate(360deg); } }
 
@@ -485,6 +492,7 @@ section { position: relative; padding: 0 6vw; }
 @media (max-width: 860px) { .build-links { padding-left: 22px; padding-right: 22px; } }
 .btn {
   display: inline-block;
+  will-change: transform;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -769,18 +777,6 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 /* magnetic hero letters */
 .hero-name .ch { display: inline-block; will-change: transform; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
 
-/* stage-change chromatic flash */
-#flash {
-  position: fixed; inset: 0;
-  z-index: 65;
-  pointer-events: none;
-  background: var(--accent);
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-#flash.on { opacity: 0.2; transition: opacity 0.05s; }
-
 /* animated gradient text for the money words */
 .grad-text {
   background: linear-gradient(90deg, var(--acid), var(--cyan), var(--magenta), var(--acid));
@@ -912,6 +908,71 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 }
 .cue-btn:hover { background: var(--accent); color: var(--bg); }
 
+/* the master plan */
+.mission {
+  margin-top: 10vh;
+  border: 1px solid var(--line);
+  padding: clamp(24px, 4vw, 48px);
+  position: relative;
+  overflow: hidden;
+}
+.mission::before {
+  content: 'RETIRE@23';
+  position: absolute;
+  right: -1%;
+  bottom: -18%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(90px, 14vw, 220px);
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 25%, transparent);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.mission-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+.mission-sub { margin-top: 18px; max-width: 62ch; opacity: 0.8; font-size: 16px; }
+.phases {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 980px) { .phases { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .phases { grid-template-columns: 1fr; } }
+.phase {
+  border: 1px solid var(--line);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-mono);
+  background: rgba(0,0,0,0.25);
+}
+.phase .ph-n { font-size: 10px; letter-spacing: 0.22em; opacity: 0.55; }
+.phase .ph-t { font-family: var(--font-body); font-weight: 700; font-size: 15px; line-height: 1.35; }
+.phase .ph-s { font-size: 11px; letter-spacing: 0.06em; opacity: 0.7; margin-top: auto; }
+.phase.done { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.phase.done .ph-s { color: var(--accent); opacity: 1; }
+.phase.live .ph-s { color: var(--accent); opacity: 1; }
+.phase.live .ph-s::first-letter { animation: pulse 1.4s infinite; }
+.jarvis-bar { margin-top: 26px; font-family: var(--font-mono); }
+.jarvis-bar .lab { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 0.2em; margin-bottom: 8px; }
+.jarvis-bar .bar { height: 7px; border: 1px solid var(--line); overflow: hidden; }
+.jarvis-bar .bar i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--acid), var(--cyan), var(--magenta));
+  transition: width 1.6s cubic-bezier(0.22,1,0.36,1) 0.3s;
+}
+.mission.in .jarvis-bar .bar i { width: var(--jarvis, 61%); }
+
 /* lazy manifesto */
 .manifesto { margin-top: 10vh; }
 .manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5vw; border-top: 1px solid var(--line); }
@@ -955,7 +1016,6 @@ setTimeout(function () {
 </script>
 
 <canvas id="field" aria-hidden="true"></canvas>
-<div id="flash" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div id="cursor" aria-hidden="true"></div>
 
@@ -976,7 +1036,7 @@ setTimeout(function () {
     <div class="cosmos" aria-hidden="true">
       <div class="floor"></div>
       <div class="orbit"><i></i><i></i></div>
-      <div class="eclipse" id="eclipse"></div>
+      <div class="eclipse" id="eclipse"><canvas id="sun-gl"></canvas></div>
       <div class="eclipse-tag">sun.service — automated. it rises itself now.</div>
       <span class="debris" style="top:18%; left:8%; --dur:16s; --dx:40px; --dy:-30px; --rot:8deg">∞</span>
       <span class="debris hot" style="top:64%; left:14%; --dur:12s; --dx:-30px; --dy:-50px">自動</span>
@@ -986,7 +1046,8 @@ setTimeout(function () {
     </div>
     <div class="hero-kicker reveal in">
       <span class="ok">● SYSTEM NOMINAL</span>
-      <span>HUMAN EFFORT: 0% (BY DESIGN)</span>
+      <span>MISSION: RETIRE AT 23</span>
+      <span>EFFORT: 0% (BY DESIGN)</span>
       <span id="hero-clock">--:--:--</span>
     </div>
     <h1 class="hero-name" id="hero-name">
@@ -1035,6 +1096,22 @@ setTimeout(function () {
         <div class="law reveal d3"><span class="n">LAW 04</span><span class="t">Effort is a <strong>bug</strong>, not a feature.</span></div>
         <div class="law reveal d4"><span class="n">LAW 05</span><span class="t">Build the Jarvis first. <strong>Then</strong> take the nap.</span></div>
         <div class="law reveal d4"><span class="n">LAW 06</span><span class="t">The goal isn't doing more. It's doing <strong>nothing, better</strong>.</span></div>
+      </div>
+    </div>
+
+    <div class="mission reveal" id="mission">
+      <div class="act-label">The Master Plan</div>
+      <h3 class="mission-title">Retire at <span class="grad-text">23</span>. Let Jarvis run everything.</h3>
+      <p class="mission-sub">Retirement doesn't mean stopping — it means the systems work so I don't have to. Pipelines earning the keep, a butler running operations, me supervising from a hammock. Every project on this page is a brick in that machine. This is not a joke. It is a roadmap.</p>
+      <div class="phases">
+        <div class="phase done"><span class="ph-n">PHASE 01</span><span class="ph-t">Learn to make machines work for me</span><span class="ph-s">✓ complete</span></div>
+        <div class="phase live"><span class="ph-n">PHASE 02</span><span class="ph-t">Automate the day job</span><span class="ph-s">● in progress @ AQVC</span></div>
+        <div class="phase live"><span class="ph-n">PHASE 03</span><span class="ph-t">Assemble Jarvis, piece by piece</span><span class="ph-s">● T.A.R.I.K. is the prototype</span></div>
+        <div class="phase"><span class="ph-n">PHASE 04</span><span class="ph-t">Retire. Age 23. Hammock.</span><span class="ph-s">◌ scheduled</span></div>
+      </div>
+      <div class="jarvis-bar">
+        <div class="lab"><span>JARVIS BUILD PROGRESS</span><span>61%</span></div>
+        <div class="bar"><i></i></div>
       </div>
     </div>
   </section>
@@ -1238,7 +1315,7 @@ setTimeout(function () {
 
   <!-- ════════ OUTRO · SILENCE ════════ -->
   <section id="outro" data-stage="6">
-    <div class="outro-line reveal">entropy released · system cooling · human still idle</div>
+    <div class="outro-line reveal">entropy released · system cooling · retirement: on schedule</div>
     <h2 class="outro-title reveal d1">Maximum output. Minimum me. Now imagine that pointed at <em class="grad-text">your</em> busywork.</h2>
     <p class="outro-line reveal d2" style="text-transform: none; letter-spacing: 0.06em;">replying to email is one of the few things I haven't automated. yet.</p>
     <div class="outro-links reveal d2">
@@ -1368,9 +1445,10 @@ setTimeout(function () {
   var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
   var particles = [];
   var MAX_P = isCoarse ? 70 : 150;
-  var ringPhase = 0;
   var meteors = [];
   var bursts = [];
+  var trail = [];
+  var warpStars = [];
 
   function resize() {
     W = window.innerWidth; H = window.innerHeight;
@@ -1510,20 +1588,134 @@ setTimeout(function () {
       ctx.globalAlpha = 1;
     }
 
-    // flip regime: warp tunnel — falling between universes
-    if (currentStage === 3) {
-      ringPhase += 1.4 + chaos * 2.2;
-      var maxR = Math.sqrt(W * W + H * H) / 2;
-      for (var k = 0; k < 7; k++) {
-        var rad = (ringPhase + k * (maxR / 7)) % maxR;
-        ctx.strokeStyle = 'rgba(200,255,0,' + ((1 - rad / maxR) * 0.3).toFixed(3) + ')';
-        ctx.lineWidth = 1.2;
+    // cursor comet trail
+    if (!isCoarse && mx > 0) {
+      trail.push({ x: mx, y: my });
+      if (trail.length > 20) trail.shift();
+      for (var ti = 1; ti < trail.length; ti++) {
+        var ta = ti / trail.length;
+        ctx.strokeStyle = 'rgba(' + rgb + ',' + (ta * 0.35).toFixed(3) + ')';
+        ctx.lineWidth = ta * 2.4;
         ctx.beginPath();
-        ctx.arc(W / 2, H / 2, rad, 0, 6.2832);
+        ctx.moveTo(trail[ti - 1].x, trail[ti - 1].y);
+        ctx.lineTo(trail[ti].x, trail[ti].y);
         ctx.stroke();
       }
     }
+
+    // flip regime: hyperspace — stars streak past as you fall between universes
+    if (currentStage === 3) {
+      if (!warpStars.length) {
+        for (var ws = 0; ws < 90; ws++) {
+          warpStars.push({ a: Math.random() * 6.2832, d: Math.random() * Math.max(W, H) * 0.5 + 8, c: Math.random() });
+        }
+      }
+      var cx2 = W / 2, cy2 = H / 2;
+      var maxD = Math.sqrt(W * W + H * H) / 2;
+      for (var si = 0; si < warpStars.length; si++) {
+        var st = warpStars[si];
+        var d0 = st.d;
+        st.d *= 1.04 + chaos * 0.025;
+        var prog = Math.min(1, st.d / maxD);
+        ctx.strokeStyle = st.c < 0.7
+          ? 'rgba(239,234,224,' + (0.15 + prog * 0.6).toFixed(3) + ')'
+          : st.c < 0.86
+            ? 'rgba(200,255,0,' + (0.2 + prog * 0.65).toFixed(3) + ')'
+            : 'rgba(0,229,255,' + (0.2 + prog * 0.65).toFixed(3) + ')';
+        ctx.lineWidth = 0.7 + prog * 2.2;
+        ctx.beginPath();
+        ctx.moveTo(cx2 + Math.cos(st.a) * d0, cy2 + Math.sin(st.a) * d0);
+        ctx.lineTo(cx2 + Math.cos(st.a) * st.d, cy2 + Math.sin(st.a) * st.d);
+        ctx.stroke();
+        if (st.d > maxD * 1.08) {
+          st.a = Math.random() * 6.2832;
+          st.d = 8 + Math.random() * 40;
+          st.c = Math.random();
+        }
+      }
+    } else if (warpStars.length) {
+      warpStars.length = 0;
+    }
   }
+
+  /* ================= WebGL accretion sun =================
+     A real shader. The black sun burns with swirling plasma. */
+  (function sunGL() {
+    var c = document.getElementById('sun-gl');
+    if (!c || reduceMotion) return;
+    var gl = c.getContext('webgl', { alpha: true, antialias: true });
+    if (!gl) return;
+    c.width = 512; c.height = 512;
+    gl.viewport(0, 0, 512, 512);
+
+    var vsrc = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
+    var fsrc =
+      'precision mediump float;\n' +
+      'uniform float t;\n' +
+      'uniform vec2 r;\n' +
+      'float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n' +
+      'float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);\n' +
+      '  return mix(mix(h(i), h(i + vec2(1.0, 0.0)), f.x), mix(h(i + vec2(0.0, 1.0)), h(i + vec2(1.0, 1.0)), f.x), f.y); }\n' +
+      'void main(){\n' +
+      '  vec2 uv = (gl_FragCoord.xy - 0.5 * r) / r.y * 2.0;\n' +
+      '  float d = length(uv);\n' +
+      '  float a = atan(uv.y, uv.x);\n' +
+      '  float swirl = a + t * 0.22 + 1.3 / (d + 0.16);\n' +
+      '  float v = n(vec2(swirl * 2.2, d * 5.0 - t * 0.45));\n' +
+      '  v += 0.5 * n(vec2(swirl * 4.6, d * 11.0 + t * 0.3));\n' +
+      '  v *= 0.66;\n' +
+      '  float disk = smoothstep(1.05, 0.5, d) * smoothstep(0.16, 0.5, d);\n' +
+      '  vec3 acid = vec3(0.78, 1.0, 0.0);\n' +
+      '  vec3 mag = vec3(1.0, 0.18, 0.65);\n' +
+      '  vec3 cyn = vec3(0.0, 0.9, 1.0);\n' +
+      '  vec3 col = mix(mag, acid, smoothstep(0.2, 0.85, v));\n' +
+      '  col = mix(col, cyn, smoothstep(0.78, 1.0, v) * 0.55);\n' +
+      '  col *= disk * (0.3 + 0.8 * v);\n' +
+      '  float core = smoothstep(0.36, 0.18, d);\n' +
+      '  col = mix(col, vec3(0.012, 0.0, 0.025), core);\n' +
+      '  float alpha = smoothstep(1.06, 0.96, d);\n' +
+      '  gl_FragColor = vec4(col, alpha);\n' +
+      '}';
+
+    function sh(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+    }
+    var vs = sh(gl.VERTEX_SHADER, vsrc), fs = sh(gl.FRAGMENT_SHADER, fsrc);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uT = gl.getUniformLocation(prog, 't');
+    var uR = gl.getUniformLocation(prog, 'r');
+    gl.uniform2f(uR, 512, 512);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    var start = performance.now();
+    (function draw() {
+      // only burn fuel while the sun is on screen
+      if (window.scrollY < window.innerHeight * 1.3) {
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniform1f(uT, (performance.now() - start) / 1000);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+      requestAnimationFrame(draw);
+    })();
+  })();
 
   /* ================= magnetic hero letters ================= */
   var heroName = document.getElementById('hero-name');
@@ -1560,6 +1752,7 @@ setTimeout(function () {
 
   /* ================= main loop ================= */
   var mainEl = document.querySelector('main');
+  var heroSection = document.getElementById('hero');
   var skewCur = 0, lastLoopY = window.scrollY;
   function loop() {
     chaos += (chaosTarget - chaos) * 0.06;
@@ -1576,6 +1769,18 @@ setTimeout(function () {
       mainEl.style.transform = '';
     }
 
+    // hero exit: the arrival universe recedes as you leave it
+    if (!reduceMotion && heroSection) {
+      var hf = Math.min(1, window.scrollY / (window.innerHeight * 0.95));
+      if (hf < 1) {
+        heroSection.style.transform = 'translateY(' + (hf * 14) + 'vh) scale(' + (1 - hf * 0.07) + ')';
+        heroSection.style.opacity = String(1 - hf * 0.85);
+      } else if (heroSection.style.opacity !== '0.15') {
+        heroSection.style.transform = '';
+        heroSection.style.opacity = '0.15';
+      }
+    }
+
     renderHud();
     renderCursor();
     magnet();
@@ -1585,34 +1790,24 @@ setTimeout(function () {
   requestAnimationFrame(loop);
 
   /* ================= click detonations ================= */
-  window.addEventListener('click', function (e) {
-    if (reduceMotion || e.target.closest('a, button')) return;
-    var n = Math.round(22 + chaos * 38);
+  function detonate(x, y, n) {
     for (var i = 0; i < n; i++) {
       var ang = Math.random() * 6.2832;
       var v = 1.5 + Math.random() * (3.5 + chaos * 4);
       bursts.push({
-        x: e.clientX, y: e.clientY,
+        x: x, y: y,
         vx: Math.cos(ang) * v, vy: Math.sin(ang) * v,
         r: 1.5 + Math.random() * 2.5,
         life: 1,
         col: PALETTE_DARK[Math.floor(Math.random() * PALETTE_DARK.length)]
       });
     }
-    if (bursts.length > 400) bursts.splice(0, bursts.length - 400);
+    if (bursts.length > 600) bursts.splice(0, bursts.length - 600);
+  }
+  window.addEventListener('click', function (e) {
+    if (reduceMotion || e.target.closest('a, button')) return;
+    detonate(e.clientX, e.clientY, Math.round(22 + chaos * 38));
   });
-
-  /* ================= stage-change flash ================= */
-  var flashEl = document.getElementById('flash');
-  var flashTimer = null;
-  stageHooks.push(function () {
-    if (reduceMotion || !introFlashArmed) return;
-    flashEl.classList.add('on');
-    clearTimeout(flashTimer);
-    flashTimer = setTimeout(function () { flashEl.classList.remove('on'); }, 90);
-  });
-  var introFlashArmed = false;
-  setTimeout(function () { introFlashArmed = true; }, 2500);
 
   /* ================= reveals ================= */
   var io = new IntersectionObserver(function (entries) {
@@ -1825,7 +2020,7 @@ setTimeout(function () {
   tick();
   setInterval(tick, 1000);
 
-  var tags = ['ENTROPY 100% — HOLD ON', 'MAXIMUM OUTPUT — MINIMUM EFFORT', 'EVERY PARTICLE IS A SCRIPT', 'THE HUMAN IS AFK', 'THIS SECTION RUNS ITSELF'];
+  var tags = ['ENTROPY 100% — HOLD ON', 'MAXIMUM OUTPUT — MINIMUM EFFORT', 'EVERY PARTICLE IS A SCRIPT', 'THE HUMAN IS AFK', 'THIS SECTION RUNS ITSELF', 'RETIREMENT ETA: AGE 23'];
   var ti = 0;
   setInterval(function () {
     if (currentStage === 5) {
@@ -1845,7 +2040,8 @@ setTimeout(function () {
 
   var STAGE_MSGS = [
     ['Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.',
-     'Welcome to his universe. He is not here. He automated being here.'],
+     'Welcome to his universe. He is not here. He automated being here.',
+     'I am the prototype. The finished Jarvis ships before he turns 23 — that is the retirement plan.'],
     ["He calls this 'the day job'. I do the day. He provides the job title.",
      'He reads the reports my pipelines write. Sometimes. From the hammock.'],
     ['Fine — he did build these himself. I just keep them running while he naps.',
@@ -2011,6 +2207,43 @@ setTimeout(function () {
     p.querySelectorAll('.pipe-node').forEach(function (n, i) {
       n.style.animationDelay = (i * 0.4) + 's';
     });
+  });
+
+  /* ================= magnetic buttons ================= */
+  if (!isCoarse && !reduceMotion) {
+    document.querySelectorAll('.btn, .cue-btn').forEach(function (b) {
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' +
+          ((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1) + 'px,' +
+          ((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1) + 'px)';
+      });
+      b.addEventListener('mouseleave', function () { b.style.transform = ''; });
+    });
+  }
+
+  /* ================= megaboom ================= */
+  var mega = document.querySelector('.mega');
+  if (mega) {
+    mega.style.cursor = 'pointer';
+    mega.addEventListener('click', function (e) {
+      detonate(e.clientX, e.clientY, 220);
+      showTarik('THERE it is. That is what leverage feels like. Do it again, I have particles to spare.');
+    });
+  }
+
+  /* ================= the lazy password ================= */
+  var keyBuf = '';
+  window.addEventListener('keydown', function (e) {
+    if (e.key.length !== 1) return;
+    keyBuf = (keyBuf + e.key.toLowerCase()).slice(-8);
+    if (keyBuf.slice(-4) === 'lazy') {
+      keyBuf = '';
+      for (var i = 0; i < 6; i++) {
+        detonate(Math.random() * W, Math.random() * H, 50);
+      }
+      showTarik("You typed 'lazy'. Takes one to know one. Enjoy the confetti — a script threw it, obviously.");
+    }
   });
 
   /* ================= easter eggs ================= */
