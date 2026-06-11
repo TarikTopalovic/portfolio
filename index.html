@@ -38,7 +38,13 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scrollbar-color: #c8ff00 #0a0112; }
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: #0a0112; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--acid), var(--magenta), var(--cyan));
+  border-radius: 0;
+}
 
 body {
   background: var(--bg);
@@ -733,6 +739,62 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   100% { transform: translate(0,0); }
 }
 
+/* ============ boot sequence ============ */
+#boot {
+  position: fixed; inset: 0;
+  z-index: 100;
+  background: #0c0118;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--bone);
+  transition: opacity 0.5s, visibility 0.5s;
+}
+#boot.out { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot-inner { width: min(420px, 84vw); }
+.boot-inner > div:first-child { letter-spacing: 0.18em; text-transform: uppercase; color: var(--acid); }
+.boot-bar {
+  height: 5px;
+  border: 1px solid rgba(200,255,0,0.3);
+  margin: 14px 0 12px;
+}
+.boot-bar i {
+  display: block; height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--acid), var(--magenta));
+  transition: width 0.18s steps(4);
+}
+#boot-msg { opacity: 0.6; min-height: 1.6em; }
+
+/* magnetic hero letters */
+.hero-name .ch { display: inline-block; will-change: transform; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+
+/* ghost numbers behind build cards */
+.build { position: relative; overflow: hidden; }
+.build::before {
+  content: attr(data-num);
+  position: absolute;
+  right: -2%;
+  top: -16%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(160px, 24vw, 380px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 35%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.build > * { position: relative; z-index: 1; }
+
+/* pipeline pulse — data travels while the human rests */
+.build.in .pipe-node { animation: node-pulse 3.4s ease-in-out infinite; }
+@keyframes node-pulse {
+  0%, 100% { border-color: var(--line); box-shadow: none; }
+  12% { border-color: var(--accent); box-shadow: 0 0 14px -2px var(--accent); }
+  26% { border-color: var(--line); box-shadow: none; }
+}
+
 /* ============ T.A.R.I.K. — the butler ============ */
 #tarik {
   position: fixed;
@@ -837,7 +899,25 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
 </style>
 </head>
 <body class="stage-0">
-<noscript><style>.reveal { opacity: 1; transform: none; } body { cursor: auto; }</style></noscript>
+<noscript><style>.reveal { opacity: 1; transform: none; } body { cursor: auto; } #boot { display: none; }</style></noscript>
+
+<div id="boot" aria-hidden="true">
+  <div class="boot-inner">
+    <div>TOPALOVIC.SYS v3.0</div>
+    <div class="boot-bar"><i id="boot-fill"></i></div>
+    <div id="boot-msg">initializing universe…</div>
+  </div>
+</div>
+<script>
+// failsafe: if anything downstream breaks, never strand the visitor on the boot screen
+setTimeout(function () {
+  var b = document.getElementById('boot');
+  if (b && !b.classList.contains('out')) {
+    b.classList.add('out');
+    document.documentElement.style.overflow = '';
+  }
+}, 4000);
+</script>
 
 <canvas id="field" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
@@ -873,9 +953,9 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
       <span>HUMAN EFFORT: 0% (BY DESIGN)</span>
       <span id="hero-clock">--:--:--</span>
     </div>
-    <h1 class="hero-name">
+    <h1 class="hero-name" id="hero-name">
       <span class="row">Tarik</span>
-      <span class="row outline" data-scramble>Topalovic</span>
+      <span class="row outline">Topalovic</span>
     </h1>
     <div class="hero-sub">
       <div class="hero-role">AI Automation Engineer <em>@ AQVC</em></div>
@@ -931,7 +1011,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   <section id="builds" data-stage="2">
     <div class="act-label reveal">Act II — Things I Built</div>
 
-    <article class="build reveal" data-tilt>
+    <article class="build reveal" data-tilt data-num="01">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Hayaku Pro</h3>
         <span class="build-index">BUILD 01 / LOCAL AI PIPELINE</span>
@@ -957,7 +1037,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/JapaneseTeacher" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt>
+    <article class="build reveal" data-tilt data-num="02">
       <div class="build-head">
         <h3 class="build-title" data-scramble>UniPlan Pro</h3>
         <span class="build-index">BUILD 02 / CONSTRAINT SOLVER</span>
@@ -982,7 +1062,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/COURSE_SCHEDULER" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt>
+    <article class="build reveal" data-tilt data-num="03">
       <div class="build-head">
         <h3 class="build-title" data-scramble>OLX Sniper</h3>
         <span class="build-index">BUILD 03 / DEAL HUNTER · PRIVATE</span>
@@ -1006,7 +1086,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
       </div>
     </article>
 
-    <article class="build reveal" data-tilt>
+    <article class="build reveal" data-tilt data-num="04">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Macro Studio</h3>
         <span class="build-index">BUILD 04 / INPUT AUTOMATION</span>
@@ -1030,7 +1110,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
       <div class="build-links"><a class="btn" href="https://github.com/TarikTopalovic/MacroApp" target="_blank" rel="noopener">View source ↗</a></div>
     </article>
 
-    <article class="build reveal" data-tilt>
+    <article class="build reveal" data-tilt data-num="05">
       <div class="build-head">
         <h3 class="build-title" data-scramble>Al-Fazah</h3>
         <span class="build-index">BUILD 05 / CLIENT WORK</span>
@@ -1252,6 +1332,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
   var particles = [];
   var MAX_P = isCoarse ? 70 : 150;
+  var ringPhase = 0;
 
   function resize() {
     W = window.innerWidth; H = window.innerHeight;
@@ -1350,15 +1431,76 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
         }
       }
     }
+
+    // flip regime: warp tunnel — falling between universes
+    if (currentStage === 3) {
+      ringPhase += 1.4 + chaos * 2.2;
+      var maxR = Math.sqrt(W * W + H * H) / 2;
+      for (var k = 0; k < 7; k++) {
+        var rad = (ringPhase + k * (maxR / 7)) % maxR;
+        ctx.strokeStyle = 'rgba(200,255,0,' + ((1 - rad / maxR) * 0.3).toFixed(3) + ')';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(W / 2, H / 2, rad, 0, 6.2832);
+        ctx.stroke();
+      }
+    }
+  }
+
+  /* ================= magnetic hero letters ================= */
+  var heroName = document.getElementById('hero-name');
+  var chars = [];
+  if (heroName) {
+    heroName.querySelectorAll('.row').forEach(function (row) {
+      var text = row.textContent;
+      row.textContent = '';
+      text.split('').forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = c;
+        row.appendChild(s);
+      });
+    });
+    chars = Array.prototype.slice.call(heroName.querySelectorAll('.ch'));
+  }
+  function magnet() {
+    if (isCoarse || reduceMotion || currentStage !== 0) return;
+    for (var i = 0; i < chars.length; i++) {
+      var el = chars[i];
+      var r = el.getBoundingClientRect();
+      var dx = (r.left + r.width / 2) - mx;
+      var dy = (r.top + r.height / 2) - my;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 170 && d > 0.01) {
+        var f = (1 - d / 170) * 30;
+        el.style.transform = 'translate(' + (dx / d * f).toFixed(1) + 'px,' + (dy / d * f).toFixed(1) + 'px)';
+      } else if (el.style.transform) {
+        el.style.transform = '';
+      }
+    }
   }
 
   /* ================= main loop ================= */
+  var mainEl = document.querySelector('main');
+  var skewCur = 0, lastLoopY = window.scrollY;
   function loop() {
     chaos += (chaosTarget - chaos) * 0.06;
     if (Math.abs(chaosTarget - chaos) < 0.001) chaos = chaosTarget;
     scrollVel *= 0.95;
+
+    // scroll-velocity skew: the page leans into your speed
+    var dy = window.scrollY - lastLoopY;
+    lastLoopY = window.scrollY;
+    skewCur += (Math.max(-2, Math.min(2, dy * 0.045)) - skewCur) * 0.12;
+    if (!reduceMotion && currentStage < 5) {
+      mainEl.style.transform = Math.abs(skewCur) > 0.01 ? 'skewY(' + skewCur.toFixed(3) + 'deg)' : '';
+    } else if (mainEl.style.transform) {
+      mainEl.style.transform = '';
+    }
+
     renderHud();
     renderCursor();
+    magnet();
     fieldFrame();
     requestAnimationFrame(loop);
   }
@@ -1594,14 +1736,19 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   var heroAuto = document.getElementById('hero-autopilot');
 
   var STAGE_MSGS = [
-    'Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.',
-    "He calls this 'the day job'. I do the day. He provides the job title.",
-    'Fine — he did build these himself. I just keep them running while he naps.',
-    'Warning: past this point he let me redecorate. I have… opinions.',
-    'My quarters. Live data, cron jobs, zero supervision. As intended.',
-    "He said 'make it crazy'. I asked him to define crazy. He said 'no'.",
-    'Tour complete. Total human effort expended: 0.00. You are welcome.'
+    ['Oh — a visitor. Welcome. I run this page; Tarik automated himself out of the job.',
+     'Welcome to his universe. He is not here. He automated being here.'],
+    ["He calls this 'the day job'. I do the day. He provides the job title.",
+     'He reads the reports my pipelines write. Sometimes. From the hammock.'],
+    ['Fine — he did build these himself. I just keep them running while he naps.',
+     'Every project below exists because he refused to do something twice.'],
+    ['Warning: past this point he let me redecorate. I have… opinions.'],
+    ['My quarters. Live data, cron jobs, zero supervision. As intended.',
+     'Nothing on this dashboard is manual. He would consider that a personal failure.'],
+    ["He said 'make it crazy'. I asked him to define crazy. He said 'no'."],
+    ['Tour complete. Total human effort expended: 0.00. You are welcome.']
   ];
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
   var typeTimer = null;
   function say(text) {
@@ -1632,7 +1779,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
     tarikRestore.classList.add('show');
   }
   tarikMin.addEventListener('click', hideTarik);
-  tarikRestore.addEventListener('click', function () { showTarik(STAGE_MSGS[Math.min(currentStage, 6)]); });
+  tarikRestore.addEventListener('click', function () { showTarik(pick(STAGE_MSGS[Math.min(currentStage, 6)])); });
 
   /* ---- autopilot ---- */
   var auto = { on: false, raf: 0 };
@@ -1703,7 +1850,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   /* ---- commentary as you descend ---- */
   stageHooks.push(function (stage) {
     if (!tarikShown || tarikMinimized) return;
-    say(STAGE_MSGS[Math.min(stage, STAGE_MSGS.length - 1)]);
+    say(pick(STAGE_MSGS[Math.min(stage, STAGE_MSGS.length - 1)]));
     tarikEl.classList.remove('alert');
   });
 
@@ -1712,7 +1859,7 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   function intro() {
     if (introDone || tarikMinimized) return;
     introDone = true;
-    showTarik(STAGE_MSGS[0]);
+    showTarik(pick(STAGE_MSGS[0]));
   }
   setTimeout(intro, 6000);
   window.addEventListener('scroll', function onFirstScroll() {
@@ -1720,6 +1867,52 @@ body.stage-5 main { animation: tremor 0.18s infinite; }
   }, { passive: true });
 
   setAutoUi();
+
+  /* ================= boot sequence ================= */
+  (function boot() {
+    var bootEl = document.getElementById('boot');
+    var fill = document.getElementById('boot-fill');
+    var bootMsg = document.getElementById('boot-msg');
+    var steps = [
+      [12, 'initializing universe…'],
+      [37, 'calibrating black sun…'],
+      [58, 'hiring butler…'],
+      [81, 'automating the loading screen…'],
+      [100, 'done. effort spent: 0.00']
+    ];
+    var i = 0;
+    document.documentElement.style.overflow = 'hidden';
+    function step() {
+      if (i >= steps.length) {
+        setTimeout(function () {
+          bootEl.classList.add('out');
+          document.documentElement.style.overflow = '';
+        }, 280);
+        return;
+      }
+      fill.style.width = steps[i][0] + '%';
+      bootMsg.textContent = steps[i][1];
+      i++;
+      setTimeout(step, reduceMotion ? 30 : 220);
+    }
+    step();
+  })();
+
+  /* ================= stagger pipeline pulses ================= */
+  document.querySelectorAll('.pipeline').forEach(function (p) {
+    p.querySelectorAll('.pipe-node').forEach(function (n, i) {
+      n.style.animationDelay = (i * 0.4) + 's';
+    });
+  });
+
+  /* ================= easter eggs ================= */
+  var realTitle = document.title;
+  document.addEventListener('visibilitychange', function () {
+    document.title = document.hidden ? '⚙ still running. unlike you.' : realTitle;
+  });
+  console.log('%cTOPALOVIC.SYS v3.0', 'color:#c8ff00; font-size:22px; font-family:monospace; font-weight:bold;');
+  console.log('%cYou opened the console. Excellent instincts — that is exactly the kind of person he wants to hear from.\n→ github.com/TarikTopalovic', 'color:#ff2ea6; font-family:monospace;');
+
   onScroll();
 })();
 </script>
