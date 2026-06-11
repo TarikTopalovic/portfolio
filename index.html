@@ -2252,17 +2252,17 @@ setTimeout(function () {
       '  float zoom = mix(3.6, 0.62, p);\n' +
       '  float d = length(uv) * zoom + 0.0001;\n' +
       '  float a = atan(uv.y, uv.x);\n' +
-      '  float pulse = 0.82 + 0.18 * pow(0.5 + 0.5 * sin(t * 3.0), 2.0);\n' +
-      '  float core = exp(-d * 3.6) * (0.5 + p * 1.4) * pulse;\n' +
+      '  float pulse = 0.82 + 0.18 * (1.0 - p * 0.85) * pow(0.5 + 0.5 * sin(t * 3.0), 2.0);\n' +
+      '  float core = exp(-d * 3.6) * (0.5 + p * 0.9) * pulse;\n' +
       // jets widen and brighten as you close in
-      '  float rot = t * (0.45 + p * 0.8);\n' +
+      '  float rot = t * (0.4 + p * 0.45);\n' +
       '  float ca = cos(a - rot), cb = cos(a - rot - 3.14159);\n' +
       '  float wexp = mix(75.0, 13.0, p);\n' +
-      '  float beam = (pow(max(ca, 0.0), wexp) + pow(max(cb, 0.0), wexp)) * (0.22 + p * 0.8);\n' +
+      '  float beam = (pow(max(ca, 0.0), wexp) + pow(max(cb, 0.0), wexp)) * (0.2 + p * 0.45);\n' +
       '  beam *= smoothstep(1.7, 0.1, d) * pulse;\n' +
       // pulse shells race past faster the deeper you dive
-      '  float ring = pow(0.5 + 0.5 * sin((d * mix(6.0, 11.0, p) + t * (1.1 + p * 2.4)) * 3.1416), 6.0);\n' +
-      '  ring *= smoothstep(0.06, 0.35, d) * smoothstep(1.5, 0.4, d) * (0.1 + p * 0.28);\n' +
+      '  float ring = pow(0.5 + 0.5 * sin((d * mix(6.0, 11.0, p) + t * (1.0 + p * 0.8)) * 3.1416), 6.0);\n' +
+      '  ring *= smoothstep(0.06, 0.35, d) * smoothstep(1.5, 0.4, d) * (0.08 + p * 0.12);\n' +
       // magnetosphere thickens around you
       '  float nb = fbm(vec2(a * 2.4 + d * 1.5 - t * 0.1, d * 3.0 - t * (0.18 + p * 0.5)));\n' +
       '  float neb = pow(nb, 1.5) * smoothstep(1.6, 0.15, d) * (0.12 + p * 0.34);\n' +
@@ -2274,10 +2274,10 @@ setTimeout(function () {
       '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 3.0)) * beam;\n' +
       '  col += azure * ring * pulse;\n' +
       '  col += mix(blue, xray, nb) * neb;\n' +
-      '  col += bone * pow(p, 3.0) * 0.3;\n' +  // arrival glow, smooth ramp
-      '  float alpha = clamp((core + beam + ring + neb) * 0.9 + pow(p, 3.0) * 0.35, 0.0, 0.92);\n' +
+      '  col += bone * pow(p, 3.0) * 0.22;\n' +  // arrival glow, smooth ramp
+      '  float alpha = clamp((core + beam + ring + neb) * 0.9 + pow(p, 3.0) * 0.3, 0.0, 0.85);\n' +
       '  alpha *= smoothstep(1.6, 0.45, d) + core * 0.5;\n' +
-      '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 0.92));\n' +
+      '  gl_FragColor = vec4(col, clamp(alpha, 0.0, 0.85));\n' +
       '}';
 
     function sh(type, src) {
