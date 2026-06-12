@@ -2872,6 +2872,7 @@ setTimeout(function () {
 
   var tarikShown = false;
   var tarikMinimized = false;
+  var tarikAutoHide = 0;
   function showTarik(text, alert) {
     tarikShown = true;
     tarikMinimized = false;
@@ -2879,6 +2880,11 @@ setTimeout(function () {
     tarikRestore.classList.remove('show');
     tarikEl.classList.toggle('alert', !!alert);
     if (text) say(text);
+    // small screens: say the line, then get out of the way (tours stay)
+    clearTimeout(tarikAutoHide);
+    if (isMobile && !auto.on) {
+      tarikAutoHide = setTimeout(hideTarik, 6500);
+    }
   }
   function hideTarik() {
     tarikMinimized = true;
@@ -2976,6 +2982,7 @@ setTimeout(function () {
     if (auto.on) return;
     auto.on = true;
     auto.idx = 0;
+    clearTimeout(tarikAutoHide); // narration must stay on screen
     // note: does NOT enable voice — voice is opt-in only
     setAutoUi();
     tourStop();
