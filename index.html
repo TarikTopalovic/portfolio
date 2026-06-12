@@ -1376,6 +1376,13 @@ body.touring #tour-hud { display: flex; }
   .outro-title { max-width: none; padding: 0 2vw; }
   .w-choice { flex-direction: column; align-items: center; }
   .w-choice .cue-btn { width: 100%; max-width: 320px; }
+  /* declutter: phones carry less information per screen */
+  #effort-line { display: none !important; }
+  .hero-kicker span:nth-child(3), .hero-kicker #hero-clock { display: none; }
+  .eclipse-tag { display: none; }
+  .scroll-cue > span { display: none; }
+  .pipeline { display: none; }
+  .figures-note { display: none; }
   /* calm mobile: statics instead of motion */
   body.stage-5 main { animation: none; }
   .floor { animation: none; opacity: 0.55; }
@@ -1440,7 +1447,7 @@ setTimeout(function () {
 <div class="hud hud-tr">
   <span>PULSE <span id="chaos-pct">000%</span></span>
   <div class="meter"><div class="meter-fill" id="chaos-bar"></div></div>
-  <span style="display:block; margin-top:7px; opacity:0.75">EFFORT <span id="effort-pct">000%</span></span>
+  <span id="effort-line" style="display:block; margin-top:7px; opacity:0.75">EFFORT <span id="effort-pct">000%</span></span>
 </div>
 <div class="hud hud-bl" id="act-label">ACT 0 — SIGNAL</div>
 <div class="hud hud-br">TIME SAVED THIS VISIT <span id="saved-ticker">00:00</span></div>
