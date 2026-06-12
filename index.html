@@ -216,11 +216,10 @@ section { position: relative; padding: 0 6vw; }
   width: clamp(220px, 30vw, 460px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(239,234,224,0.16) 0%, rgba(0,212,255,0.1) 22%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(239,234,224,0.08) 0%, rgba(0,212,255,0.05) 22%, transparent 55%);
   box-shadow:
-    0 0 90px 14px rgba(0, 212, 255, 0.35),
-    0 0 240px 60px rgba(77, 124, 255, 0.14),
-    0 0 380px 110px rgba(157, 77, 255, 0.07);
+    0 0 70px 8px rgba(0, 212, 255, 0.16),
+    0 0 200px 40px rgba(77, 124, 255, 0.07);
   /* no breathing — steady starlight */
   will-change: transform;
 }
@@ -2214,34 +2213,40 @@ setTimeout(function () {
       '  for (int i = 0; i < 4; i++) { v += amp * n(p); p *= 2.13; amp *= 0.5; }\n' +
       '  return v; }\n' +
       'void main(){\n' +
+      // DESIGN: a tiny blinding point inside vast thin geometry.
+      // Small core + needle jets + inclined razor-thin rings. Steady light.
       '  vec2 d = (gl_FragCoord.xy - c) / (pr * 7.0);\n' +
       '  float rr = length(d) + 0.0001;\n' +
       '  float a = atan(d.y, d.x);\n' +
-      // the defining trait: it PULSES (smooth sinus, no hard strobe)
-      '  float pulse = 1.0;\n' +   // steady — a lighthouse, not a strobe
-      // blinding core with a hot azure rim
-      '  float core = exp(-rr * 8.5) * 2.2;\n' +
-      '  float rim = smoothstep(0.2, 0.13, rr) * smoothstep(0.07, 0.12, rr) * 0.7;\n' +
-      // diffraction spikes — the astrophoto cross flare
-      '  float spike = (exp(-abs(d.y) * 30.0 - rr * 2.8) + exp(-abs(d.x) * 30.0 - rr * 2.8)) * 0.55;\n' +
-      // twin lighthouse jets: a tight bright blade inside a soft wide cone
-      '  float rot = t * 0.26;\n' +
+      // core: small, intense, clean double-falloff
+      '  float core = exp(-rr * 16.0) * 3.0 + exp(-rr * 5.0) * 0.32;\n' +
+      // tiny star sparkle (not big flare bars)
+      '  float sp = (exp(-abs(d.y) * 64.0 - rr * 7.0) + exp(-abs(d.x) * 64.0 - rr * 7.0)) * 0.45;\n' +
+      // needle-thin twin jets, very slow sweep
+      '  float rot = t * 0.2;\n' +
       '  float ca = cos(a - rot), cb = cos(a - rot - 3.14159);\n' +
-      '  float blade = pow(max(ca, 0.0), 90.0) + pow(max(cb, 0.0), 90.0);\n' +
-      '  float cone = pow(max(ca, 0.0), 13.0) + pow(max(cb, 0.0), 13.0);\n' +
-      '  float beam = (blade * 1.6 + cone * 0.32) * exp(-rr * 0.45) * pulse;\n' +
-      // structured magnetosphere clouds
-      '  float nb = fbm(vec2(a * 2.6 + rr * 1.8 - t * 0.09, rr * 3.4 + t * 0.05));\n' +
-      '  float neb = pow(nb, 1.6) * exp(-rr * 0.8) * 0.65;\n' +
+      '  float jet = (pow(max(ca, 0.0), 300.0) + pow(max(cb, 0.0), 300.0)) * 1.3;\n' +
+      '  jet += (pow(max(ca, 0.0), 36.0) + pow(max(cb, 0.0), 36.0)) * 0.10;\n' +
+      '  jet *= exp(-rr * 0.8);\n' +
+      // two inclined razor rings — the torus seen at an angle
+      '  float cs = cos(0.45), sn = sin(0.45);\n' +
+      '  vec2 q = vec2(d.x * cs - d.y * sn, d.x * sn + d.y * cs);\n' +
+      '  q.y *= 2.6;\n' +
+      '  float er = length(q);\n' +
+      '  float ring1 = exp(-pow((er - 0.40) * 26.0, 2.0)) * 0.5;\n' +
+      '  float ring2 = exp(-pow((er - 0.64) * 22.0, 2.0)) * 0.28;\n' +
+      '  float front = 0.6 + 0.4 * smoothstep(-0.25, 0.25, q.y);\n' +
+      '  float rings = (ring1 + ring2) * front;\n' +
+      // whisper of halo
+      '  float halo = exp(-rr * 1.7) * 0.1;\n' +
+      '  vec3 ice = vec3(0.85, 0.95, 1.0);\n' +
       '  vec3 azure = vec3(0.0, 0.83, 1.0);\n' +
       '  vec3 blue = vec3(0.30, 0.49, 1.0);\n' +
-      '  vec3 xray = vec3(0.62, 0.30, 1.0);\n' +
-      '  vec3 bone = vec3(0.96, 0.95, 0.92);\n' +
-      '  vec3 col = bone * (core + spike);\n' +
-      '  col += azure * rim;\n' +
-      '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 2.0)) * beam;\n' +
-      '  col += mix(blue, xray, nb) * neb;\n' +
-      '  float alpha = clamp(core + spike + rim + beam * 0.9 + neb, 0.0, 1.0);\n' +
+      '  vec3 col = ice * (core + sp);\n' +
+      '  col += mix(ice, azure, 0.55) * jet;\n' +
+      '  col += mix(azure, blue, 0.5 + 0.5 * sin(a * 2.0 + 1.2)) * rings;\n' +
+      '  col += blue * halo;\n' +
+      '  float alpha = clamp(core + sp + jet + rings + halo, 0.0, 1.0);\n' +
       '  gl_FragColor = vec4(col, alpha);\n' +
       '}';
 
