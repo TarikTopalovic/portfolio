@@ -1376,16 +1376,16 @@ body.touring #tour-hud { display: flex; }
   .outro-title { max-width: none; padding: 0 2vw; }
   .w-choice { flex-direction: column; align-items: center; }
   .w-choice .cue-btn { width: 100%; max-width: 320px; }
-  /* phones skip the WebGL dive — CSS pulsar glow instead */
-  #flip { min-height: 130svh; }
-  .flip-sticky::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 42%, rgba(0,212,255,0.2), rgba(48,78,255,0.08) 38%, transparent 72%);
-    pointer-events: none;
-  }
+  /* calm mobile: statics instead of motion */
   body.stage-5 main { animation: none; }
+  .floor { animation: none; opacity: 0.55; }
+  .debris { display: none; }
+  .orbit i:nth-child(2) { display: none; }
+  .pulse-ring.p2, .pulse-ring.p3 { display: none; }
+  #work + .strip { display: none; }
+  .ds-3 { display: none; }
+  body.stage-5 .mega .gl::before,
+  body.stage-5 .mega .gl::after { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1862,7 +1862,7 @@ setTimeout(function () {
   var ctx = canvas.getContext('2d');
   var W = 0, H = 0, DPR = Math.min(2, window.devicePixelRatio || 1);
   var particles = [];
-  var MAX_P = isMobile ? 40 : 150;
+  var MAX_P = isMobile ? 24 : 150;
   var meteors = [];
   var bursts = [];
   var trail = [];
@@ -1931,7 +1931,7 @@ setTimeout(function () {
   var pulsar = { x: -200, y: -200, r: 30, rot: 0, ringT: 60 };
   var pulseWaves = [];
   var stars = [];
-  for (var si0 = 0; si0 < (isMobile ? 70 : 130); si0++) {
+  for (var si0 = 0; si0 < (isMobile ? 48 : 130); si0++) {
     stars.push({ x: Math.random(), y: Math.random(), z: 0.3 + Math.random() * 0.7, ph: Math.random() * 6.28 });
   }
 
@@ -1964,7 +1964,7 @@ setTimeout(function () {
     pulsar.r += (tr - pulsar.r) * 0.07;
 
     // it spins faster the deeper you go — the pulse rate IS the entropy
-    pulsar.rot += reduceMotion ? 0 : 0.014 + chaos * 0.11 + Math.min(0.05, scrollVel * 0.0008);
+    pulsar.rot += reduceMotion ? 0 : (isMobile ? 0.6 : 1) * (0.014 + chaos * 0.11 + Math.min(0.05, scrollVel * 0.0008));
 
     var glOwnsStar = window.__heroGL; // hero shader renders the close-up; 2D takes over after
     var L = Math.sqrt(W * W + H * H) * 1.1;
@@ -1975,7 +1975,7 @@ setTimeout(function () {
         ctx.translate(pulsar.x, pulsar.y);
         ctx.rotate(ang);
         var grad = ctx.createLinearGradient(0, 0, L, 0);
-        grad.addColorStop(0, 'rgba(0,212,255,' + (0.34 + chaos * 0.2).toFixed(3) + ')');
+        grad.addColorStop(0, 'rgba(0,212,255,' + ((isMobile ? 0.2 : 0.34) + chaos * (isMobile ? 0.1 : 0.2)).toFixed(3) + ')');
         grad.addColorStop(0.25, 'rgba(77,124,255,' + (0.13 + chaos * 0.1).toFixed(3) + ')');
         grad.addColorStop(1, 'rgba(157,77,255,0)');
         ctx.fillStyle = grad;
@@ -2006,7 +2006,7 @@ setTimeout(function () {
     if (!reduceMotion) {
       if (--pulsar.ringT <= 0) {
         pulseWaves.push({ r: pulsar.r * 1.4, a: 0.4 });
-        pulsar.ringT = Math.max(38, 170 - chaos * 120);
+        pulsar.ringT = isMobile ? Math.max(120, 240 - chaos * 80) : Math.max(38, 170 - chaos * 120);
       }
       for (var w = pulseWaves.length - 1; w >= 0; w--) {
         var pw = pulseWaves[w];
@@ -2103,7 +2103,7 @@ setTimeout(function () {
     }
 
     // shooting stars across the arrival universe
-    if (currentStage === 0 && Math.random() < 0.012 && meteors.length < 3) {
+    if (!isMobile && currentStage === 0 && Math.random() < 0.012 && meteors.length < 3) {
       meteors.push({
         x: W * (0.3 + Math.random() * 0.7),
         y: H * Math.random() * 0.35,
@@ -2531,8 +2531,8 @@ setTimeout(function () {
   }
   window.addEventListener('click', function (e) {
     if (reduceMotion || e.target.closest('a, button')) return;
-    detonate(e.clientX, e.clientY, Math.round(22 + chaos * 38));
-    for (var sk = 0; sk < 5; sk++) spawnSpark(e.clientX, e.clientY, 70 + Math.random() * 130);
+    detonate(e.clientX, e.clientY, Math.round(isMobile ? 10 + chaos * 10 : 22 + chaos * 38));
+    if (!isMobile) for (var sk = 0; sk < 5; sk++) spawnSpark(e.clientX, e.clientY, 70 + Math.random() * 130);
   });
 
   // every universe shift = one big pulse from the star
@@ -2603,7 +2603,7 @@ setTimeout(function () {
     });
     // periodic re-scramble, probability scales with chaos
     setInterval(function () {
-      if (chaos < 0.35) return;
+      if (chaos < 0.35 || isMobile) return;
       var els = document.querySelectorAll('[data-scramble]');
       var el = els[Math.floor(Math.random() * els.length)];
       var rect = el.getBoundingClientRect();
