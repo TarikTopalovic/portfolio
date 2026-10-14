@@ -1,16 +1,7 @@
-# TOPALOVIC.SYS — Portfolio
+# Tarik Topalovic: projects
 
-Interactive portfolio of **Tarik Topalovic**, AI Automation Engineer @ AQVC (Berlin).
+Interactive portfolio: a map of every project by area, a filterable work index with a detail panel per project, a replay of real tasks run by T.A.R.I.K. (my desktop agent), the Adria Hack 2026 win, and contact.
 
-**Live:** https://tariktopalovic.github.io/portfolio/
+One `index.html`, vanilla JS and canvas, no build. Project data is the `P` array near the top of the script.
 
-One HTML file, zero frameworks. Inside it:
-
-- A boot sequence and a "Welcome aboard, Captain" boarding ceremony
-- **T.A.R.I.K.** — a voiced AI butler (pre-rendered neural TTS) that gives a 14-stop guided tour
-- Two WebGL fragment shaders: a plasma accretion sun and a volumetric wormhole
-- A scroll-driven entropy engine: the universe shifts hue and gets wilder the deeper you go
-- Particle field, electric sparks, click detonations, magnetic typography
-- The Master Plan: retire at 25, let Jarvis run everything
-
-Built once. Runs forever. Human effort: 0.00.
+Local preview: `python3 -m http.server 8765` then open http://127.0.0.1:8765/
